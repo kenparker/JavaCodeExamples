@@ -9,6 +9,8 @@
         <module>StringValidator</module>
         <module>Collections</module>
         <module>EqualsandHashCode</module>
+        <module>Threads</module>
+        <module>ExampleThreads</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
