@@ -42,6 +42,8 @@ public class TestHashMap {
         Dog d3 = new Dog("white");
         Dog d4 = new Dog("white");
         
+        System.out.println("d3.color == d4.color" +  (d3.color == d4.color));
+        
         hasMap.put(d1, 10);
         hasMap.put(d2, 15);
         hasMap.put(d3, 5);
