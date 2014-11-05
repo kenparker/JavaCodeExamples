@@ -2,6 +2,7 @@
 package com.maggioni.HaspMap.Programmcreek;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -35,27 +36,40 @@ public class TestHashMap {
 
     public static void main(String[] args) {
         
-        HashMap<Dog, Integer> hasMap = new HashMap<Dog, Integer>();
+        HashMap<Dog, Integer> hashMap = new HashMap<Dog, Integer>();
         
         Dog d1= new Dog("red");
         Dog d2 = new Dog("black");
         Dog d3 = new Dog("white");
         Dog d4 = new Dog("white");
         
-        System.out.println("d3.color == d4.color" +  (d3.color == d4.color));
+        System.out.println("d3.color == d4.color " +  (d3.color == d4.color));
         
-        hasMap.put(d1, 10);
-        hasMap.put(d2, 15);
-        hasMap.put(d3, 5);
-        hasMap.put(d4, 20);
+        hashMap.put(d1, 10);
+        hashMap.put(d2, 15);
+        hashMap.put(d3, 5);
+        hashMap.put(d4, 20);
         
-        System.out.println("hashmap size" + hasMap.size());
+        System.out.println("hashmap size " + hashMap.size());
         
-        for (Map.Entry<Dog, Integer> entrySet : hasMap.entrySet()) {
-            System.out.println("" + entrySet.getKey().toString() + entrySet.getValue());
+        for (Map.Entry<Dog, Integer> entrySet : hashMap.entrySet()) {
+            System.out.println("" + entrySet.getKey().toString() + " " + entrySet.getValue());
             
         }
-        
+        System.out.println("printMap 1-----------");
+        printMap(hashMap);
+        System.out.println("printMap 2 -----------");
+        printMap(hashMap);
+      
+    }
+    
+    public static void printMap(Map mp) {
+        Iterator it = mp.entrySet().iterator();
+        while (it.hasNext()) {
+             Map.Entry pairs = (Map.Entry) it.next();
+             System.out.println(pairs.getKey() + " = " + pairs.getValue());
+             
+        }
     }
     
 }
