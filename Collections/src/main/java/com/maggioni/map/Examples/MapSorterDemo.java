@@ -2,6 +2,7 @@ package com.maggioni.Map.Examples;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +44,11 @@ public class MapSorterDemo
         List<Integer> sortedIds = new ArrayList<>(ids);
         Collections.sort(sortedIds);
         System.out.println("sorted keys of map : " + sortedIds);
+        
+        Comparator comp = Collections.reverseOrder();
+        Collections.sort(sortedIds,comp);
+        System.out.println("sorted keys of map (descending) : " + sortedIds);
+        
     }
 
 }
