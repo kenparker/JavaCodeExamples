@@ -12,6 +12,7 @@
         <module>Threads</module>
         <module>ExampleThreads</module>
         <module>JUnit_Cookbook_Examples</module>
+        <module>Java8Examples</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
