@@ -10,12 +10,15 @@ import java.util.function.Predicate;
  */
 public class Lambda {
 
-    private enum Gender {MALE, FEMALE};
-    
+    private enum Gender {
+
+        MALE, FEMALE
+    };
+
     public static class Person {
-        
+
         private final String name;
-        private final int  age;
+        private final int age;
         private final Gender gender;
 
         public Person(String name, int age, Gender gender) {
@@ -24,6 +27,11 @@ public class Lambda {
             this.gender = gender;
         }
 
+        public String getName() {
+            return name;
+        }
+
+        
         public int getAge() {
             return age;
         }
@@ -31,32 +39,37 @@ public class Lambda {
         public Gender getGender() {
             return gender;
         }
-                
+
     }
-    
+
     public static void main(String[] args) {
-        
-        List persons = new ArrayList<Object>();
+
+        List<Person> persons = new ArrayList<>();
         persons.add(new Person("angelo", 50, Lambda.Gender.MALE));
-         persons.add(new Person("paolo", 10, Lambda.Gender.MALE));
-          persons.add(new Person("giuseppe", 5, Lambda.Gender.MALE));
-           persons.add(new Person("andrea", 22, Lambda.Gender.FEMALE));
-            persons.add(new Person("guglielmo", 2, Lambda.Gender.FEMALE));
-           
-            printNames(persons, p -> p. < 18);
-            
-            printNames(persons, p -> p.getGender() == Gender.MALE);
-            
-    }
-    
-    private static void printNames(List persons, Predicate predicate) {
+        persons.add(new Person("paolo", 10, Lambda.Gender.MALE));
+        persons.add(new Person("giuseppe", 5, Lambda.Gender.MALE));
+        persons.add(new Person("andrea", 22, Lambda.Gender.FEMALE));
+        persons.add(new Person("guglielmo", 2, Lambda.Gender.FEMALE));
+
+        persons.stream()
+                .filter((Person p) -> p.getAge() < 18)
+                .map((Person p) -> p.name)
+                .sorted()
+                .forEach(name -> System.out.println(name));
         
+        printNames(persons, 
+                (Person p) -> p.getAge() < 18);
+
+    }
+
+    private static void printNames(List<Person> persons, Predicate<Person> predicate) {
+
         persons.stream()
                 .filter(predicate)
-                .map(p -> p.getName())
+                .map((Person p) -> p.getName())
                 .sorted()
-                .forEach(name -> System.out.println("name"));
-               
+                .forEach(name -> System.out.println(name));
+
     }
-    
+
 }
