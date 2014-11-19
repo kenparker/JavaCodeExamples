@@ -8,11 +8,11 @@
     <modules>
         <module>StringValidator</module>
         <module>Collections</module>
-        <module>EqualsandHashCode</module>
-        <module>Threads</module>
+        <module>EqualsandHashCode</module>      
         <module>JUnit_Cookbook_Examples</module>
         <module>Java8Examples</module>
         <module>Mockito</module>
+        <module>Threads</module>
         <module>ThreadsAtomicIntegerExample</module>
         <module>ThreadsConcurrentQueue</module>
     </modules>
