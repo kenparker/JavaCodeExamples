@@ -1,8 +1,6 @@
 package com.maggioni.Threads;
 
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class JoinExample implements Runnable {
 
