@@ -1,3 +1,5 @@
+package AtomicExamples;
+
 
 import java.util.concurrent.atomic.AtomicInteger;
 
