@@ -2,6 +2,7 @@ package com.maggioni.TreeSet;
 
 import com.maggioni.TreeMap.User;
 import com.maggioni.TreeMap.UserSalaryComparator;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -34,6 +35,16 @@ public class JavaTreeSetExample {
         populateUser(userSetBasedOnSalary);
         System.out.println("** Users based on salary **");
         System.out.println(userSetBasedOnSalary.toString());
+        
+        System.out.println("** Users based on FirstName using Comparator **");
+        Set userSet1 = new TreeSet(Comparator.comparing(User::getFirstName));
+        populateUser(userSet1);
+        System.out.println(userSet1.toString());
+        
+        System.out.println("** Users based on LastName using Comparator reversed **");
+        Set userSet2 = new TreeSet(Comparator.comparing(User::getLastName).reversed());
+        populateUser(userSet2);
+        System.out.println(userSet2.toString());
 
     }
 
