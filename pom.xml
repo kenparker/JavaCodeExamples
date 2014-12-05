@@ -5,8 +5,7 @@
     <artifactId>JavaCodeExamples</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    <modules>
-        <module>StringValidator</module>   
+    <modules>   
         <module>EqualsandHashCode</module>      
         <module>JUnit_Cookbook_Examples</module>
         <module>Java8Examples</module>
@@ -16,6 +15,7 @@
         <module>ThreadsConcurrentQueue</module>
         <module>Collections</module>
         <module>CollectionsComparator</module>
+        <module>StringExamples</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
