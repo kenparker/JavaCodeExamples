@@ -12,10 +12,10 @@
         <module>Mockito</module>
         <module>Threads</module>
         <module>ThreadsAtomicIntegerExample</module>
-        <module>ThreadsConcurrentQueue</module>
         <module>Collections</module>
         <module>CollectionsComparator</module>
         <module>StringExamples</module>
+        <module>ThreadsConcurrentCollections</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
