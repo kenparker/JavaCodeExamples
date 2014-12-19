@@ -10,11 +10,11 @@
         <module>JUnit_Cookbook_Examples</module>
         <module>Java8Examples</module>
         <module>Mockito</module>
-        <module>Threads</module>
-        <module>ThreadsAtomicIntegerExample</module>
         <module>Collections</module>
         <module>CollectionsComparator</module>
         <module>StringExamples</module>
+        <module>Threads</module>
+        <module>ThreadsAtomicIntegerExample</module>
         <module>ThreadsConcurrentCollections</module>
     </modules>
     <properties>
