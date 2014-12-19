@@ -16,7 +16,7 @@ import java.util.Set;
  * 
  * new line
  */
-public class HelloJUnit {
+public class HashMapOtherLoopExample {
 
     private static final Map<Integer, Worker> workersById = new HashMap<>();
 
