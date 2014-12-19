@@ -17,6 +17,7 @@
         <module>ThreadsAtomicIntegerExample</module>
         <module>ThreadsConcurrentCollections</module>
         <module>DesignPattern</module>
+        <module>OtherExamples</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
