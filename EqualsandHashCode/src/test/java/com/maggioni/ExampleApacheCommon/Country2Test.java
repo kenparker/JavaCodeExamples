@@ -13,8 +13,13 @@ public class Country2Test extends TestCase {
             // something
         };
 
-        // it should return wrong as equals and hascode are not implemented well
-        new EqualsTester(a, b, c, d);
+        try {
+            // it should return wrong as equals and hascode are not implemented well
+            new EqualsTester(a, b, c, d);
+        } catch (Exception e) {
+            fail();
+        }
+
     }
 
 }
