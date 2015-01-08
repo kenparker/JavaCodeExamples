@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.maggioni.Collections;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import java.util.Collection;
-import java.util.Iterator;
 
 /**
  *
- * @author maggioni
+ * http://tomjefferys.blogspot.de/2011/09/multimaps-google-guava.html
  */
 public class MultiMapDemo1 {
 
