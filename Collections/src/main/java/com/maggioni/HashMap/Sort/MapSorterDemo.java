@@ -1,4 +1,4 @@
-package com.maggioni.Map.Examples;
+package com.maggioni.HashMap.Sort;
 
 import java.util.ArrayList;
 import java.util.Collections;

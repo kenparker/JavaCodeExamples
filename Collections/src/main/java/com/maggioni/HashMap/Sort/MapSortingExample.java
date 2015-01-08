@@ -1,6 +1,6 @@
 
 
-package com.maggioni.Map.Examples;
+package com.maggioni.HashMap.Sort;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Ordering;

@@ -1,4 +1,4 @@
-package com.maggioni.HaspMap.Programmcreek;
+package com.maggioni.HashMap.Sort;
 
 import java.util.Comparator;
 import java.util.Map;

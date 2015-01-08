@@ -1,4 +1,4 @@
-package com.maggioni.HashMap;
+package com.maggioni.HashMap.Sort;
 
 import java.text.ParseException;
 import java.util.ArrayList;
