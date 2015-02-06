@@ -27,6 +27,7 @@ class Coffee {
 
     CoffeSize size;
     NameEnums name; // Declaration in another file
+    AnimalType animalType; // Public enum same Package
 
     enum Location {
 
@@ -42,6 +43,7 @@ public class EnumDemo1 {
         cf.size = CoffeSize.BIG;
         cf.name = NameEnums.MARCO;
         cf.location = Coffee.Location.MILANO; // Class name required because enclosed in a class
+        cf.animalType = AnimalType.MAMMALS;
         
         System.out.println(CoffeSize.BIG.getLidCode()); // returns the default value B
         System.out.println(CoffeSize.MEDIUM.getLidCode()); // returns the overriden value A
