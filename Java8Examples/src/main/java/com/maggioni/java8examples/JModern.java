@@ -20,6 +20,13 @@ public class JModern {
 
         // print a nicely-formatted student directory
         directory.forEach((letter, names) -> System.out.println(letter + "nt" + names.stream().collect(Collectors.joining("nt"))));
+        
+        System.out.println("");
+        range(0, 100)
+                .mapToObj(i -> randomString(new Random(), 'a', 'z', 20))
+                .sorted()
+                .collect(groupingBy(y -> y.charAt(0)))
+                .forEach((a,b) -> System.out.println(a + "middel"+ b.stream().collect(Collectors.joining(" D ")) ));
     }
 
     public static String randomString(Random r, char from, char to, int length) {
