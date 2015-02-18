@@ -12,7 +12,9 @@ public class C extends B{
     }
     
     protected void c() {
-        a();
+        a(); // the method called is from the superclass B, B.a() is overriding A.a()
+        
+        aa(); // from the super class A
         
         b();       
     }
