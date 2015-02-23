@@ -60,10 +60,14 @@ public class InputStreamTest {
         Reader initialReader = new StringReader("Firstline \n secondline \nthrird line");
         stringFromStream = CharStreams.toString(initialReader);
         System.out.println("String from StringReader :" + stringFromStream);
+        initialReader.close();
 
         // Conversion from String to InputStream
+        System.out.println("Conversion from String to InputStream");
         InputStream inputStream = new ByteArrayInputStream(stringFromStream.getBytes()); // this is the actual conversion
         System.out.println(CharStreams.toString(new InputStreamReader(inputStream))); // this line is just a test that the InputStream can be printed out
+        inputStream.close();
+        
     }
     
 }
