@@ -4,6 +4,7 @@ import com.google.common.io.CharStreams;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import static java.io.File.separator;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,6 +13,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /*
  http://www.baeldung.com/java-convert-reader-to-inputstream#commons-io&sref=https://delicious.com/kenparker/java
@@ -21,6 +24,7 @@ public class InputStreamTest {
     
     public static void main(String[] args) throws UnsupportedEncodingException, IOException {
         
+        // Conversion to String using Guava
         FileInputStream file = new FileInputStream("InputFile.txt");
         String stringFromStream = CharStreams.toString(new InputStreamReader(file, "UTF-8")); // conversion to String
         System.out.println("String from InputFile.txt :" + stringFromStream);
@@ -42,6 +46,7 @@ public class InputStreamTest {
         System.out.println("String from BufferedInputStream :" + stringFromStream);
         buffer1.close(); // important to close otherweise the next read will not work
         
+        // Conversion
         System.out.println("\n example using streams 1");
         fileReader = new FileReader("InputFile.txt");
         BufferedReader br = new BufferedReader(fileReader);
@@ -60,10 +65,14 @@ public class InputStreamTest {
         Reader initialReader = new StringReader("Firstline \n secondline \nthrird line");
         stringFromStream = CharStreams.toString(initialReader);
         System.out.println("String from StringReader :" + stringFromStream);
+        initialReader.close();
 
         // Conversion from String to InputStream
+        System.out.println("Conversion from String to InputStream");
         InputStream inputStream = new ByteArrayInputStream(stringFromStream.getBytes()); // this is the actual conversion
         System.out.println(CharStreams.toString(new InputStreamReader(inputStream))); // this line is just a test that the InputStream can be printed out
+        inputStream.close();
+        
     }
     
 }
