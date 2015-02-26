@@ -21,6 +21,7 @@
         <module>GuavaEssentials</module>
         <module>OCAExamples</module>
         <module>IOOperations</module>
+        <module>Logging</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
