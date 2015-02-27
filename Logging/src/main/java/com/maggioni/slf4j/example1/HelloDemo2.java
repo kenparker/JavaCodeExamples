@@ -8,7 +8,7 @@ import com.jcabi.log.Logger;
  */
 public class HelloDemo2 {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) { 
         
         new HelloDemo2().bar(100);
     }
