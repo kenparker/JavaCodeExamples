@@ -15,6 +15,13 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.10</version>
         </dependency>
+        
+        <!-- Utality Class-->
+        <dependency>
+            <groupId>com.jcabi</groupId>
+            <artifactId>jcabi-log</artifactId>
+            <version>0.16</version>
+        </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>
