@@ -13,8 +13,24 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.12</version>
-            <type>jar</type>
+            <type>jar</type>  
         </dependency>
+        
+        <!-- Logger -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <!-- <artifactId>slf4j-simple</artifactId> -->
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.10</version>
+        </dependency>
+    
+        <!-- Utality Class-->
+        <dependency>
+            <groupId>com.jcabi</groupId>
+            <artifactId>jcabi-log</artifactId>
+            <version>0.16</version>
+        </dependency>
+        
     </dependencies>
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>
