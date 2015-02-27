@@ -13,7 +13,14 @@ public class PolyDemo2 {
         Animal horse3 = new Horse2();
         horse3.eat();           // from Horse2
         // horse3.eat("Carrot"); does not compile
-               
+        ((Animal) horse).walk();
+        ((Animal) horse).eat();
+        
+        animal = (Animal) horse;// eat() from Horse2
+        animal.eat();           // eat() from Horse2
+        System.out.println("horse  is instance of Animal :" + (horse instanceof Animal)); 
+        System.out.println("animal is instance of Animal :" + (animal instanceof Animal));
+        System.out.println("animal is instance of Horse2 :" + (animal instanceof Horse2));
     }
     
 }
