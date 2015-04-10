@@ -12,12 +12,18 @@ public class Foo {
         myBar = new Bar();
         myBar.barNum = 88;
         System.out.println("mybar " + myBar.barNum);
+        
     }
     public static void main(String[] args) {
         Foo foo = new Foo();
         System.out.println("mybar " + foo.myBar.barNum);
         foo.changeId(foo.myBar);
         System.out.println("mybar " + foo.myBar.barNum);
+        
+        
+        String x = "big surprise";
+        System.out.println(x.toString());
+        System.out.println(x);
     }
     
 }
