@@ -14,6 +14,8 @@ public class PrimitivesDemo1 {
         System.out.println(i);
         int i2 = (int) Math.pow(2, 31) - 1;
         System.out.println(i2);
+        i = 0100;
+        System.out.println("i=0100 in octal : "+i);  
 
         long l = 9_223_372_036_854_775_807L;    // 8 byte = 64 Bits = 2^63-1 - 19 Stelle
         System.out.println(l);
@@ -30,6 +32,9 @@ public class PrimitivesDemo1 {
         System.out.printf("Value of double up-to 2 decimals : %.2f", d);
         System.err.println("");
         System.out.println(Double.MAX_VALUE);
+        
+        double ohneVorkomma = .10;
+        double ohneNachkomma = 12.;
 
         int ii = 42;
         byte bb = 100;
@@ -53,13 +58,13 @@ public class PrimitivesDemo1 {
         // http://openbook.rheinwerk-verlag.de/javainsel9/javainsel_02_003.htm#mje0a1a7aa587e4ef38dc8a8d84cfcd506
         // http://de.wikipedia.org/wiki/Gleitkommazahl
         float f33 = 20000000000F;
-        System.out.println("f33 20000000000F  :"+ f33);
+        System.out.println("f33 20000000000F        :"+ f33);
         f33+=1;
-        System.out.println("f33 20000000000F + 1  :"+ f33);
+        System.out.println("f33 20000000000F + 1    :"+ f33);
         System.out.println("f33 is between min and max value :"+ (Float.MIN_VALUE < f33 && Float.MAX_VALUE > f33));
-        System.out.println(20000000000F == 20000000000F + 1);
-        System.out.println(Float.MIN_VALUE);
-        System.out.println(Float.MAX_VALUE);
+        System.out.println("20000000000F == 20000000000F + 1 is: "+(20000000000F == 20000000000F + 1));
+        System.out.println("Float.Min_Value : "+Float.MIN_VALUE);
+        System.out.println("Float.Max_Value : "+Float.MAX_VALUE);
         System.out.printf("%.2f",Float.MAX_VALUE);
         System.out.println("");
         System.out.println(20000000000D == 20000000000D + 1);
