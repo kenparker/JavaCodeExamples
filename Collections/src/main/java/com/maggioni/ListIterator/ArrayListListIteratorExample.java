@@ -18,7 +18,7 @@ public class ArrayListListIteratorExample {
         arrayList.add("element_3");
         arrayList.add("element_4");
         arrayList.add("element_5");
-
+        
         // The ListIterator object is obtained using listIterator() method
         ListIterator it = arrayList.listIterator();
 
