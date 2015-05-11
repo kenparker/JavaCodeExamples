@@ -14,6 +14,16 @@ public class ArrayIndexDemo2 {
         } catch (Exception e) {
             System.out.println("ArryIndexException");
         }
+        int i = 0;
+        System.out.println(" index dd[3] " +  dd[2][0]);
+        dd[i+1+1][0] += 1;                                  // the index i+1+1 is calculated only one time
+        System.out.println(" index dd[3] " +  dd[2][0]);
+        
+        System.out.println(" index dd[1] " +  dd[1][0]);
+        
+        //int a = dd[1L][0];    // do not compile, the index need to be int      
+        Integer inte = new Integer(20);
+        int a = dd[inte][0];    // compile no problem
         
         int x  = 0;
         int y = 11;
