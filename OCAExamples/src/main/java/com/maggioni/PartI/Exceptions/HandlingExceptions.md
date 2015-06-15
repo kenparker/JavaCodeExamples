@@ -7,6 +7,7 @@ RunTimeExceptions
 * NumberFormatException: Thrown to indicate that the application attemped to convert a string to Nnumerix Types
 * NumberFormatException is a child from IllegalArgumentException
 * IllegalArgumentException is a RunTimeException
+* RunTimeException -> IllegalArgumentException
 * RunTimeException -> IllegalArgumentException -> NumberFormatException
 * RunTimeException -> IllegalArgumentException -> IllegalFormatException
 * RunTimeException -> IllegalArgumentException -> InvalidParameterException
@@ -15,7 +16,9 @@ RunTimeExceptions
 
 * RunTimeException -> ArithmeticException
 * RunTimeException -> NullPointerException
-* RunTimeException -> IndexOutOfBoundExceptions
+* RunTimeException -> IndexOutOfBoundException
+* RunTimeException -> IndexOutOfBoundException -> ArrayIndexOutOfBoundsException
+* RunTimeException -> IndexOutOfBoundException -> StringIndexOutOfBoundsException
 
 * RunTimeException -> NullPointerException      Thrown when an appl attemps to use null in case where an obj is required.
 http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html
@@ -25,7 +28,7 @@ Which of the following situations should provide exception handling code?
 2. When verifying user inputs
 
 It is considered bad programming practive to provide exception handling code for the following:
-1. ArrayIndexOutOfBoundsExceptions
+1. ArrayIndexOutOfBoundsException
 2. StackOverflowError
 3. ClassCastingException
 
