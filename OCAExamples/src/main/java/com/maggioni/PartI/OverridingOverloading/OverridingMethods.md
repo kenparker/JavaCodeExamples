@@ -18,7 +18,8 @@ Exceptions
 ----------
 6. The overriding method can throw any unchecked (runtime) exception, regardless of whether the overridden method declares the exception.
 7. The overriding method must not throw checked exceptions that are new or broader that those declared by the overridden method.
-8. The overriding method can throw narrower or fewer exceptions
+    this means the overriding method cannot throw same exceptions or subclasses but not superclasses
+8. The overriding method CAN throw narrower or fewer exceptions
 
 9. STATIC methods cannot be overridden.
 
