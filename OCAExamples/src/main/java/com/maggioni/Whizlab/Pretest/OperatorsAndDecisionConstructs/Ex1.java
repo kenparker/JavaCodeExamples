@@ -1,7 +1,5 @@
 package com.maggioni.Whizlab.Pretest.OperatorsAndDecisionConstructs;
 
-import sun.net.www.content.audio.x_aiff;
-
 public class Ex1 {
 
     public static void main(String[] args) {
