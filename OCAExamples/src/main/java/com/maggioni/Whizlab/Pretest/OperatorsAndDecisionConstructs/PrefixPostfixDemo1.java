@@ -14,6 +14,7 @@ public class PrefixPostfixDemo1 {
         System.out.println("i : " +   i);
         
         System.out.println("------------------");
+        int a,b,c,d;
         i = 6;
         System.out.println("i++>=i : " +  (i++>=i));
         System.out.println("expected true");
@@ -25,13 +26,17 @@ public class PrefixPostfixDemo1 {
         
         System.out.println("------------------");
         i = 6;
-        System.out.println("i<=i++ : " +  (i<=i++));
+        System.out.println("i<=i++ : " +  (i<=( a = i++)));
         System.out.println("expected true");
-        System.out.println("i : " +   i);
+        System.out.println("i : " +   i + " a : " + a);
         i = 6;
-        System.out.println("7<=i++ : " +  (7<=i++));
+        System.out.println("i<=++i : " +  (i<=( a = ++i)));
         System.out.println("expected true");
-        System.out.println("i : " +   i);
+        System.out.println("i : " +   i + " a : " + a);
+        i = 6;
+        System.out.println("7<=i++ : " +  (7<=(a = i++)));
+        System.out.println("expected true");
+        System.out.println("i : " +   i+ " a : " + a);
     }
 
 }
