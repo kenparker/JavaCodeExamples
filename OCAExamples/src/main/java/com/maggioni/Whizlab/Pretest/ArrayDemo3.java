@@ -1,5 +1,7 @@
 package com.maggioni.Whizlab.Pretest;
 
+import java.util.Arrays;
+
 public class ArrayDemo3 {
 
     static int z;
@@ -8,6 +10,9 @@ public class ArrayDemo3 {
     
     public static void main(String[] args) {
         int[] e[] = {{1,2,4},{10,11,12,13}};
+        System.out.println("e :" +  e);
+        System.out.println("Arrays.toString(e) :" +  Arrays.toString(e[0]));
+        System.out.println("e[0] :" +  e[0]);
         int[] a = {1};
         int[] b = {1,2,9};
         int[] c = {1,2,6,4,5};
@@ -28,6 +33,9 @@ public class ArrayDemo3 {
         Integer[] oneArray = {1,5,6,80};
         
         new ArrayDemo3().myMeth();
+        
+        int[] inta = new int[] {1,2,3, new Integer(25)};
+        
     }
     
     void myMeth() {

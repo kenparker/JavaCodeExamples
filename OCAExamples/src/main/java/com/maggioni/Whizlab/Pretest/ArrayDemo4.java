@@ -17,6 +17,9 @@ public class ArrayDemo4 {
         myCats[1] = new Cat[14];
         myCats[1][1] = moreCats[1]; 
         
+        Integer integer = new Integer(20);
+        Cat a = moreCats[integer];
+        
     }
 
 }
