@@ -5,8 +5,6 @@
  */
 package com.maggioni.PartI.Chapter3.Exercise;
 
-import sun.security.util.ECUtil;
-
 /**
  *
  * @author maggioni

@@ -12,4 +12,12 @@ public class A {
     public void aa() {
         System.out.println("I'm from class A.aa()");
     }
+    
+    private void cc() {
+        
+    }
+    
+     public static void staticMethodA() {
+         System.out.println("from A");
+    }
 }

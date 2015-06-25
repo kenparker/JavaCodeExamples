@@ -16,7 +16,11 @@ public class SwitchDemo1 {
         }
         
         Integer integer = new Integer(20);
+        
+        final int d;
+        d = 10;
         switch (integer) {
+            //case d:
             case 1:
                 System.out.println("");
             case 2:
