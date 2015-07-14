@@ -24,7 +24,6 @@ public class RegexDemo1 {
             regex("\\d\\d+", "a125b1  der12");
             regex("\\w", "a125b1  der12");
             regex("\\W", "a 1§56 _Z");
-            regex("\\b", "a 1§56 _Z");
             regex("\\b", "abcd ab a cder");
             regex("\\b", "abcd#ab a cder");
             regex("\\b", "#abcd#ab a cder");
@@ -32,13 +31,30 @@ public class RegexDemo1 {
             regex("0[xX]([a-fA-F0-9])+", "0xaba0xder11 ");
             regex("(0[xX])?([a-fA-F0-9])+", "0xaba0xder11 ");
             regex("(0[xX]){1}([a-fA-F0-9])+", "0xaba0xder11 ");
+            regex("proj1([^,])*", "proj3.txt,proj1scheid.pdf,proj1,proj2,proj1.java");
+            regex("proj1[^,]*", "proj3.txt,proj1scheid.pdf,proj1,proj2,proj1.java");
         }
-        regex("proj1([^,])*", "proj3.txt,proj1scheid.pdf,proj1,proj2,proj1.java");
-        regex("proj1[^,]*", "proj3.txt,proj1scheid.pdf,proj1,proj2,proj1.java");
+        regex("\\b", "a 1§56 _Z");
+        regex("\\B", "a 1§56 _Z");
         regex("\\w", "a 1§56 _Z");
         regex("\\d\\w", "ab4 56_7ab");
         regex("a?", "aba");
         regex("a?", "baba");
+        regex("\\w", "^23 *$76 bc");
+        regex("\\b", "^23 *$76 bc");
+        regex("\\B", "^23 *$76 bc");
+        regex("\\b", "#ab de#");
+        regex("\\B", "#ab de#");
+        regex("\\bcat\\b", "black cat");
+        regex("\\bcat\\b", "catatonic");
+        regex("\\bcat\\b", "_catatonic");
+        regex("\\bcat", "catatonic");
+        regex("\\bcat", "_catatonic");
+        regex("\\bcat", "tomcat");
+        regex("cat\\b", "tomcat");
+        regex("\\bcat.\\b", "certificate");
+        regex("cat.\\b", "certificate");
+
     }
 
     public static void regex(String... s) {
@@ -58,7 +74,7 @@ public class RegexDemo1 {
         }
 
         Matcher m = p.matcher(s[1]);
-        
+
         System.out.println("\n\n regex = " + s[0]);
         System.out.println(" text =  " + s[1]);
         System.out.println(" index = 0123456789012345\n");
