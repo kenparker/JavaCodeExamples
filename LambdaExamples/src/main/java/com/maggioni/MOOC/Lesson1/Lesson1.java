@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -97,6 +98,54 @@ public class Lesson1 {
                 "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"));
 
         /* YOUR CODE HERE */
+        list.removeIf(s -> s.length() % 2 > 0);
+        System.out.println("list ex 2 : " +  list);
+        
+        list = new ArrayList<>(Arrays.asList(
+                "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"));
+        /*
+        http://howtodoinjava.com/2014/04/04/how-to-use-predicate-in-java-8/
+        */
+        Predicate<String> oddLenght = s -> s.length() % 2 > 0;
+        Predicate<String> evenLenght = s -> s.length() % 2 == 0;
+        System.out.println(" ex 2 list filter even :");
+        list.stream()
+                .filter(evenLenght)
+                .forEach(s -> System.out.println(s));
+        System.out.println(" ex 2 list filter odd :");
+        list.stream()
+                .filter(oddLenght)
+                .forEach(s -> System.out.println(s));
+        
+        System.out.println(" ex 2 list filter odd as method :");
+        list.stream()
+                .filter(oddAsMethod())
+                .forEach(s -> System.out.println(s));
+        
+        Predicate<String> anotherPredicate = new Predicate<String>() {
+
+            @Override
+            public boolean test(String t) {
+                return t.length() % 2 > 0;
+            }
+        };
+        list.stream()
+                .filter(anotherPredicate)
+                .forEach(s -> System.out.println(s));
+        
+        
+        
+    }
+    
+    private static Predicate<String> oddAsMethod() {
+        return s -> s.length() % 2 > 0;
+    }
+    
+    /*
+    http://www.tutego.de/blog/javainsel/2013/05/prdikate-und-java-util-function-predicate/
+    */
+    private static Predicate<String> isNotOddasMethod() {
+        return oddAsMethod().negate();
     }
 
     /**
