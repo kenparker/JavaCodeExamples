@@ -1,4 +1,4 @@
-package com.maggioni.otherexamples;
+package com.maggioni.Core.Utilities;
 
 import java.util.Enumeration;
 import java.util.Properties;
