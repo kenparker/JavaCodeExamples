@@ -10,8 +10,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import jdk.nashorn.internal.runtime.regexp.joni.constants.CCVALTYPE;
 
 /**
  * @author Speakjava (simon.ritter@oracle.com)
@@ -52,7 +54,6 @@ public class Lesson1 {
                 "alpha", "bravo", "charlie", "delta", "echo", "foxtrot");
 
         /* YOUR CODE HERE */
-
         Function<String, String> firstChar = s -> s.substring(0, 1);
 
         /* first version */
@@ -75,16 +76,16 @@ public class Lesson1 {
         StringBuilder sb3 = new StringBuilder();
         list.stream()
                 .forEach((li) -> {
-                sb3.append(li.substring(0, 1));
+                    sb3.append(li.substring(0, 1));
                 });
         System.out.println(" sb3 : " + sb3.toString());
-        
+
         /* fourth version */
         StringBuilder sb4 = new StringBuilder();
         list.stream()
                 .forEach((String li) -> sb4.append(li.substring(0, 1)));
         System.out.println(" sb4 : " + sb4.toString());
-        
+
     }
 
     /**
@@ -109,6 +110,11 @@ public class Lesson1 {
                 "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"));
 
         /* YOUR CODE HERE */
+        list.forEach(s -> System.out.println(s));
+        list.replaceAll(s -> s.toUpperCase());
+        list.forEach(s -> System.out.println(s));
+        list.replaceAll(String::toLowerCase);
+        list.forEach(s -> System.out.println(s));
     }
 
     /**
@@ -124,6 +130,17 @@ public class Lesson1 {
         map.put("a", 1);
 
         /* YOUR CODE HERE */
+        StringBuilder sb = new StringBuilder();
+        map.forEach((a, b) -> sb.append(a + b));
+        System.out.println(" exe 4 : " + sb.toString());
+
+        BiConsumer<String, Integer> biFunc = (a, b) -> {
+            sb.append(a + b);
+        };
+
+        sb.setLength(0);
+        map.forEach(biFunc);
+        System.out.println(" exe 4 : " + sb.toString());
     }
 
     /**
@@ -135,6 +152,17 @@ public class Lesson1 {
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
         /* YOUR CODE HERE */
+        new Thread(() -> {
+            System.out.println(" mexe 4 1");
+            list.forEach(a -> System.out.println(Thread.currentThread().getName() + a));
+        }).start();
+
+        Runnable r = () -> {
+            System.out.println(" mexe 4 2");
+            list.forEach(System.out::println);
+        };
+
+        new Thread(r).start();
     }
 
     /**
