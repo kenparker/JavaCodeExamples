@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -87,8 +88,14 @@ public class Lesson2 {
   private void exercise2() {
     List<String> list = Arrays.asList(
         "The", "Quick", "BROWN", "Fox", "Jumped", "Over", "The", "LAZY", "DOG");
+      
+    Predicate<? super String> onlyOdds = s -> s.length() % 2 > 0;
 
     /* YOUR CODE HERE */
+    list.stream()
+            .filter(onlyOdds)
+            .forEach(System.out::println);
+            
   }
 
   /**
@@ -100,9 +107,24 @@ public class Lesson2 {
   private void exercise3() {
     List<String> list = Arrays.asList(
         "The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog");
+      
 
-    /* YOUR CODE HERE */
+    
+    
+      /* YOUR CODE HERE */
+      String reduce = list.stream()
+              .limit(3)
+              .reduce("", (a, b) -> a  + b + "-");
+      System.out.println(" reduce " +  reduce);
+      
+      String collect = list.stream()
+              .limit(3)
+              .collect(Collectors.joining("-"));
+      System.out.println(" collect "+ collect);
+            
   }
+  
+    
 
   /**
    * Count the number of lines in the file using the BufferedReader provided
