@@ -3,7 +3,7 @@
  *
  * JDK 8 MOOC Lesson 1 homework
  */
-package com.maggioni.MOOC.Lesson1;
+package com.maggioni.MOOC.Lessons;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +14,6 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import jdk.nashorn.internal.runtime.regexp.joni.constants.CCVALTYPE;
 
 /**
  * @author Speakjava (simon.ritter@oracle.com)
@@ -188,15 +187,10 @@ public class Lesson1 {
         };
 
         sb.setLength(0);
-        map.forEach(biMethod(sb));
-        System.out.println(" exe 4 2: " + sb.toString());
+        map.forEach(biFunc);
+        System.out.println(" exe 4 : " + sb.toString());
     }
 
-    BiConsumer<String, Integer> biMethod(StringBuilder sb) {
-        return (a, b) -> {
-            sb.append(a + b);};
-    }
-    
     /**
      * Exercise 5
      *
