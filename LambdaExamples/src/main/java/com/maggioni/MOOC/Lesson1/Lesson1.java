@@ -188,10 +188,15 @@ public class Lesson1 {
         };
 
         sb.setLength(0);
-        map.forEach(biFunc);
-        System.out.println(" exe 4 : " + sb.toString());
+        map.forEach(biMethod(sb));
+        System.out.println(" exe 4 2: " + sb.toString());
     }
 
+    BiConsumer<String, Integer> biMethod(StringBuilder sb) {
+        return (a, b) -> {
+            sb.append(a + b);};
+    }
+    
     /**
      * Exercise 5
      *
