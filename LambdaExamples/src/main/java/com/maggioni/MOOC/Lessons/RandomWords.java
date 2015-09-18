@@ -12,10 +12,7 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import javafx.beans.binding.Bindings;
 
 /**
  * Class to generate a list of random words
