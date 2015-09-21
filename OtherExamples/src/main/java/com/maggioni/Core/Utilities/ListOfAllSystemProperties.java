@@ -5,6 +5,10 @@ import java.util.Properties;
 
 public class ListOfAllSystemProperties {
     
+    public static void main(String[] args) {
+        getAllSystemProperties();
+    }
+    
     public static Enumeration<?> getAllSystemProperties() {
         // http://javawiki.sowas.com/doku.php?id=java:system-properties
         Properties properties = System.getProperties();
