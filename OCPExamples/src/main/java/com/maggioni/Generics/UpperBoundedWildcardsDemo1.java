@@ -1,0 +1,52 @@
+package com.maggioni.Generics;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class UpperBoundedWildcardsDemo1 {
+
+    public static void main(String[] args) {
+        
+        List<Gift> listOfGifts = new ArrayList<>();
+        listOfGifts.add(new Gift());
+        listOfGifts.add(new Gift());
+        listOfGifts.add(new Gift());
+        listOfGifts.add(new Phone());
+       
+        List<Phone> listOfPhones = new ArrayList<>();
+        listOfPhones.add(new Phone());
+        listOfPhones.add(new Phone());
+        
+        List<Book> listOfBooks = new ArrayList<>();
+        listOfBooks.add(new Book());
+        listOfBooks.add(new Book());
+        listOfBooks.add(new Book());
+        
+        List<? extends Gift> list;      
+        list = listOfGifts;
+        System.out.println("->readList with listOfGift");
+        readList(list);         // ok
+        System.out.println("->readList2 with listOfGift");
+        readList2(listOfGifts); // ok
+        list = listOfBooks;
+        System.out.println("->readList with listOfBooks");
+        readList(list);         // ok
+        //readList2(listOfBooks); // won't compile
+        list = listOfPhones;    
+        System.out.println("->readList with listOfPhones");
+        readList(list);         // ok
+    }                  
+
+    private static void readList(List<? extends Gift> list) {
+        System.out.println("-->for with Gift");
+        for (Gift list1 : list) {System.out.println(list1.toString());} 
+        System.out.println("-->for with Object");
+        for (Object list1 : list) {System.out.println(list1.toString());}
+    }
+    private static void readList2(List<Gift> list) { // only Gift type of Lists
+        for (Gift list1 : list) {
+            System.out.println(list1.toString());
+        }
+    }
+
+}
