@@ -25,19 +25,21 @@ public class UpperBoundedWildcardsDemo1 {
         List<? extends Gift> list;      
         list = listOfGifts;
         System.out.println("->readList with listOfGift");
-        readList(list);         // ok
+        readList1(list);         // ok
         System.out.println("->readList2 with listOfGift");
         readList2(listOfGifts); // ok
+        
         list = listOfBooks;
         System.out.println("->readList with listOfBooks");
-        readList(list);         // ok
+        readList1(list);         // ok
         //readList2(listOfBooks); // won't compile
+        
         list = listOfPhones;    
         System.out.println("->readList with listOfPhones");
-        readList(list);         // ok
+        readList1(list);         // ok
     }                  
 
-    private static void readList(List<? extends Gift> list) {
+    private static void readList1(List<? extends Gift> list) {
         System.out.println("-->for with Gift");
         for (Gift list1 : list) {System.out.println(list1.toString());} 
         System.out.println("-->for with Object");
