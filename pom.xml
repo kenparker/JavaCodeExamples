@@ -24,6 +24,7 @@
         <module>Logging</module>
         <module>DateCalenderExamples</module>
         <module>LambdaExamples</module>
+        <module>OCPExamples</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
