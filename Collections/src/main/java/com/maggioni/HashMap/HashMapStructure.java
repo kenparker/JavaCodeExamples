@@ -32,6 +32,7 @@ public class HashMapStructure {
             String capital = countryCapitalMap.get(countryObj);
             System.out.println(countryObj.getName() + "-------------" + capital);
         }
+        System.out.println("HasMap size is: " +  countryCapitalMap.size());
     }
     
 }
