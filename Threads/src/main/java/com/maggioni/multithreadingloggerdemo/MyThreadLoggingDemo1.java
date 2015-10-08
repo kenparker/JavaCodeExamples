@@ -1,6 +1,9 @@
 package com.maggioni.multithreadingloggerdemo;
 
 import com.jcabi.log.Logger;
+/*
+http://www.yegor256.com/2014/05/23/avoid-java-static-logger.html
+*/
 
 public class MyThreadLoggingDemo1 extends Thread{
 
