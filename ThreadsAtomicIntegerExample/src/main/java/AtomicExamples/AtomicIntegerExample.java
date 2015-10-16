@@ -26,6 +26,17 @@ public class AtomicIntegerExample {
 				System.out.println("Thread " + Thread.currentThread().getId() 
 						+ " / Value was equal to 9, so it was updated to " + at.intValue());
 			}
+                        
+                    int get = at.get();
+                    int getAndAdd = at.getAndAdd(15);
+                    int addAndGet = at.addAndGet(20);
+                    int andDecrement = at.getAndDecrement();
+                    int andIncrement = at.getAndIncrement();
+                    int decrementAndGet = at.decrementAndGet();
+                    int incrementAndGet = at.incrementAndGet();
+                    int andSet = at.getAndSet(25);
+                    boolean compareAndSet = at.compareAndSet(get, andSet);
+                    at.lazySet(get); // return void
 
 		}
 	}
