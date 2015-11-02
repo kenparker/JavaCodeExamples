@@ -19,6 +19,8 @@ class Better {
     
     void doS() {
         Faster f = Faster.Higher;
+        
         Faster g = Longer;
+        
     }
 }
