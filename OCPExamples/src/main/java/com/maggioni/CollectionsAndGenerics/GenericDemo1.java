@@ -9,6 +9,7 @@ import java.util.List;
 Chapter 11
 https://docs.oracle.com/javase/tutorial/extra/generics/methods.html
 http://openbook.rheinwerk-verlag.de/javainsel/javainsel_09_005.html#dodtp3d148a00-5e2e-421f-8bae-99afc9bf304a
+http://www.angelikalanger.com/GenericsFAQ/FAQSections/TypeArguments.html#FAQ203
 */
 public class GenericDemo1 {
 
