@@ -3,7 +3,8 @@ package com.maggioni.CollectionsAndGenerics;
 import java.util.ArrayList;
 import java.util.List;
 
-class Apple {}
+class Fruit {}
+class Apple extends Fruit{}
 class Macintosch extends Apple {
     public static void main(String[] args) {
         List<Apple> a = new ArrayList<>();

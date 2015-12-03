@@ -48,6 +48,11 @@ public class GenericDemo1 {
         Object get1 = siamesiList.get(0);
         Cat get2 = (Cat) siamesiList.get(0);
         
+        List<Fish> fishs = new ArrayList<>();
+        //doFoo4(fishs); do not compile
+        doFoo7(fishs);
+        doFoo4b(fishs);
+        
     }
 
     public static List doFoo1(List li) {
@@ -62,6 +67,9 @@ public class GenericDemo1 {
         return new ArrayList<>();
     }
     public static List doFoo4(List<Animal> a) {
+        return new ArrayList();
+    }
+    public static List doFoo4b(List<? extends Animal> a) {
         return new ArrayList();
     }
     public static List doFoo5(List<? extends Cat> a) {
