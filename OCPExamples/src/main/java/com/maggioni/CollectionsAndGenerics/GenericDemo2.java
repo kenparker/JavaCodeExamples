@@ -7,7 +7,9 @@ public class GenericDemo2 {
         Animal a = new Animal();
         // foo1(a); do not compile "upperbound" error
         String b = "22";
-        foo1(b);
+        String foo1 = foo1(b);
+        Object foo2 = foo1(b);
+        CharSequence foo3 = foo1(b);
         foo4(b);
         
         SubtypeOfS sub = new SubtypeOfS();
@@ -26,6 +28,7 @@ public class GenericDemo2 {
     public static <S extends CharSequence> S foo2(S s) {      
         return s;
     }
+    
     
     public static <S extends CharSequence> S foo3(S s) {
         String toString = s.toString();

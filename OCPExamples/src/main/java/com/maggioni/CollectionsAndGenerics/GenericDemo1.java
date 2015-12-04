@@ -20,8 +20,10 @@ public class GenericDemo1 {
         animals.add(new Fish());
         animals.add(new Siamesi());
         doFoo1(animals);
-        doFoo2(animals);
-        doFoo3(animals);
+        List doFoo2 = doFoo2(animals);
+        List<Animal> doFoo3 = doFoo3(animals);
+        List<? extends Animal> doFoo31 = doFoo3(animals);
+        List<? extends Object> doFoo32 = doFoo3(animals);
         doFoo4(animals);
         //doFoo5(li); do not compile Animal cannot be converted to Cat
         List<Siamesi> siamesis = new ArrayList<>();

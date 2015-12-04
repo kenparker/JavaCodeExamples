@@ -34,8 +34,14 @@ public class WildcardsDemo1 {
         List<? super Apple> fruits6 = new ArrayList<Fruit>();
         List<? super Apple> fruits7 = new ArrayList<Object>();
         
-
+        List<? super Fruit> wild1 = new ArrayList<Fruit>();
+        List<? super Fruit> wild2 = new ArrayList<Object>();
+        //List<? super Fruit> wild3 = new ArrayList<Apple>();
         
+        List<? extends Apple> wild5 = new ArrayList<Apple>();
+        List<? extends Apple> wild6 = new ArrayList<Macintosch>();
+        //List<? extends Apple> wild7 = new ArrayList<Object>();
+       
     }
 
 }
