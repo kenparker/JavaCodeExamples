@@ -1,4 +1,4 @@
-package com.maggioni.CollectionsAndGenerics.ExamQuestions_1;
+package com.maggioni.CollectionsAndGenerics.MostDifficults;
 
 import java.util.ArrayList;
 import java.util.Collections;

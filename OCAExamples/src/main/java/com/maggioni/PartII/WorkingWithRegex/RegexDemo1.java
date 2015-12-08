@@ -33,7 +33,6 @@ public class RegexDemo1 {
             regex("(0[xX]){1}([a-fA-F0-9])+", "0xaba0xder11 ");
             regex("proj1([^,])*", "proj3.txt,proj1scheid.pdf,proj1,proj2,proj1.java");
             regex("proj1[^,]*", "proj3.txt,proj1scheid.pdf,proj1,proj2,proj1.java");
-        }
         regex("\\b", "a 1§56 _Z");
         regex("\\B", "a 1§56 _Z");
         regex("\\w", "a 1§56 _Z");
@@ -54,6 +53,12 @@ public class RegexDemo1 {
         regex("cat\\b", "tomcat");
         regex("\\bcat.\\b", "certificate");
         regex("cat.\\b", "certificate");
+        }
+        regex("\\Bthe\\B", "the leather in their coat made her seethe");
+        regex("\\Bthe", "the leather in their coat made her seethe");
+        regex("\\bthe\\B", "the leather in their coat made her seethe");
+        regex("\\Bthe\\b", "the leather in their coat made her seethe");
+        regex("\\bthe|the\\b", "the leather in their coat made her seethe");
 
     }
 
