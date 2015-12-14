@@ -53,12 +53,16 @@ public class RegexDemo1 {
         regex("cat\\b", "tomcat");
         regex("\\bcat.\\b", "certificate");
         regex("cat.\\b", "certificate");
-        }
         regex("\\Bthe\\B", "the leather in their coat made her seethe");
         regex("\\Bthe", "the leather in their coat made her seethe");
         regex("\\bthe\\B", "the leather in their coat made her seethe");
         regex("\\Bthe\\b", "the leather in their coat made her seethe");
         regex("\\bthe|the\\b", "the leather in their coat made her seethe");
+        }
+        regex("(th)?", "ththe leather in their coat made her seethe");
+        regex("(th)*", "ththe leather in their coat made her seethe");
+        regex("(o)?", "food");
+        regex("(o)*", "food");
 
     }
 
@@ -82,7 +86,7 @@ public class RegexDemo1 {
 
         System.out.println("\n\n regex = " + s[0]);
         System.out.println(" text =  " + s[1]);
-        System.out.println(" index = 0123456789012345\n");
+        System.out.println(" index = 0123456789012345678901234567890\n");
         while (m.find()) {
             System.out.print("\n found : " + m.group());
             System.out.print("\t starting at index : " + m.start() + " and ending at index : " + m.end());
