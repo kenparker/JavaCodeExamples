@@ -32,6 +32,11 @@ public class ResolvingPathDemo1 {
         System.out.println("11 : " + relative.resolve(absolute));
      
         
+        
+        Path p1 = Paths.get("\\personal\\readme.txt");
+        Path p2 = Paths.get("\\index.txt");
+        Path p3 = p1.resolve(p2);
+        System.out.println("12: "+p3.toString());
     }
 
 }

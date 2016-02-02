@@ -12,7 +12,7 @@ public class RetrivePathInfo {
 
     public static void main(String[] args) {
         dumpPathInfo(Paths.get("a", "b", "c"));
-        
+        System.out.println("Example 2 ------------");
         FileSystem fs = FileSystems.getDefault();
         Iterable<Path> rootDirectories = fs.getRootDirectories();
         for (Path rootDirectory : rootDirectories) {
