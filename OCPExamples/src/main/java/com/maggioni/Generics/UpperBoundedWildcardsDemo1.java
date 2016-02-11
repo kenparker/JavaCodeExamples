@@ -29,7 +29,11 @@ public class UpperBoundedWildcardsDemo1 {
         System.out.println("->readList2 with listOfGift");
         readList2(listOfGifts); // ok
         
+        
+        List<? extends Book> listEBooks = new ArrayList<Book>();      
         list = listOfBooks;
+        // List<? extends Gift> = List<? extends Book>
+        list = listEBooks;
         System.out.println("->readList with listOfBooks");
         readList1(list);         // ok
         //readList2(listOfBooks); // won't compile

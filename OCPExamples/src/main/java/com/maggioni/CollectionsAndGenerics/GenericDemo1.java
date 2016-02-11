@@ -21,15 +21,17 @@ public class GenericDemo1 {
         animals.add(new Siamesi());
         doFoo1(animals);
         List doFoo2 = doFoo2(animals);
-        List<Animal> doFoo3 = doFoo3(animals);
-        List<? extends Animal> doFoo31 = doFoo3(animals);
-        List<? extends Object> doFoo32 = doFoo3(animals);
+        
+        List<Animal> doFoo3             = doFoo3(animals);
+        List<? extends Animal> doFoo31  = doFoo3(animals);
+        List<? extends Object> doFoo32  = doFoo3(animals);
+        
         doFoo4(animals);
         //doFoo5(li); do not compile Animal cannot be converted to Cat
         List<Siamesi> siamesis = new ArrayList<>();
         siamesis.add(new Siamesi());
         doFoo5(siamesis); // ok no problems
-        List<Cat> cats = new ArrayList<>(Arrays.asList(new Cat(),new Cat()));
+        List<Cat> cats = new ArrayList<>(Arrays.asList(new Cat(),new Cat(), new Siamesi()));
         doFoo5(cats); /// ok no problems
         doFoo6(cats); /// ok no problems
         doFoo7(cats); /// ok no problems
@@ -43,6 +45,8 @@ public class GenericDemo1 {
         List<? extends Animal> animals1 = new ArrayList<Animal>();
         //animals1.add(new Fish()); do not compile
         Animal get = animals1.get(0);
+        List<? extends Animal> animals11 = new ArrayList<>();
+        //animals11.add(new Fish()); //do not compile
         
         List<? super Cat> siamesiList = new ArrayList<Cat>();
         siamesiList.add(new Siamesi());
@@ -50,11 +54,21 @@ public class GenericDemo1 {
         Object get1 = siamesiList.get(0);
         Cat get2 = (Cat) siamesiList.get(0);
         
+        List<? super Siamesi> siamesis1 = new ArrayList<Siamesi>();
+        //siamesiList = siamesis1; // do not compile
+        siamesis1 = siamesiList;
+        List<? super Siamesi> siamesis2 = new ArrayList<Siamesi>();
+        List<? super Cat> cats1= new ArrayList();;
+        List<? super Siamesi> siamesis3 = cats1;
+        
         List<Fish> fishs = new ArrayList<>();
         //doFoo4(fishs); do not compile
         doFoo7(fishs);
         doFoo4b(fishs);
         
+    }
+    public static <E> List<E> doFoo3(Collection<E> c) {            
+        return new ArrayList<>();
     }
 
     public static List doFoo1(List li) {
@@ -64,9 +78,6 @@ public class GenericDemo1 {
         //return li; do not compile collection cannot b converted to List
         ArrayList ar = new ArrayList(li);
         return ar;
-    }
-    public static <E> List<E> doFoo3(Collection<E> c) {            
-        return new ArrayList<>();
     }
     public static List doFoo4(List<Animal> a) {
         return new ArrayList();
