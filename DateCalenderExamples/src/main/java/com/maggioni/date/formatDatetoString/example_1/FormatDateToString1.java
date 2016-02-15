@@ -17,6 +17,7 @@ public class FormatDateToString1
         new FormatDateToString1().simpleFormat(now);
         new FormatDateToString1().formatShort(now);
         new FormatDateToString1().formatLong(now);
+        new FormatDateToString1().parseSimpleFormat();
     }
 
     public String simpleFormat(Date now)
@@ -48,13 +49,19 @@ public class FormatDateToString1
         return dateTimeFormatter.format(now);
     }
     
-    public String parseSimpleFormat()
+    public void parseSimpleFormat()
     {
         // Example with SimpleDateFormat
-        SimpleDateFormat format
-                = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-        String format1 = format.format(new Date());
-        System.out.println(format1);
-        return format1;
+        final Date date = new Date();
+        SimpleDateFormat format1 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+        System.out.println(format1.format(date));
+        SimpleDateFormat format2 = new SimpleDateFormat("zzzz");
+        System.out.println("new SimpleDateFormat(\"zzzz\") "+format2.format(date));
+        SimpleDateFormat format3 = new SimpleDateFormat("ZZZZ");
+        System.out.println("new SimpleDateFormat(\"ZZZZ\") "+format3.format(date));
+        SimpleDateFormat format4 = new SimpleDateFormat("EEEE");
+        System.out.println("new SimpleDateFormat(\"EEEE\") "+format4.format(date)); // Full form
+        SimpleDateFormat format5 = new SimpleDateFormat("E");                       // abbreviation
+        System.out.println("new SimpleDateFormat(\"E\") "+format5.format(date));
     }
 }
