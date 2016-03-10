@@ -31,7 +31,8 @@ Path p1_to_p3 = p1.relativize(p3);
 Path p3_to_p1 = p3.relativize(p1);
 In this example, the two paths share the same node, home. To navigate from home to bar, you first navigate one level down to sally and then one more level down to bar. Navigating from bar to home requires moving up two levels.
 
-A relative path cannot be constructed if only one of the paths includes a root element. If both paths include a root element, the capability to construct a relative path is system dependent.
+A relative path cannot be constructed if only one of the paths includes a root element. 
+If both paths include a root element, the capability to construct a relative path is system dependent.
 */
 
 public class RelativizeDemo1 {
