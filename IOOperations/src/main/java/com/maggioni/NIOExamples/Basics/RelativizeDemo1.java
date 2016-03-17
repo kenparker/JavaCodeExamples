@@ -15,7 +15,9 @@ For example, consider two relative paths defined as joe and sally:
 
 Path p1 = Paths.get("joe");
 Path p2 = Paths.get("sally");
-In the absence of any other information, it is assumed that joe and sally are siblings, meaning nodes that reside at the same level in the tree structure. To navigate from joe to sally, you would expect to first navigate one level up to the parent node and then down to sally:
+In the absence of any other information, it is assumed that joe and sally are siblings, 
+meaning nodes that reside at the same level in the tree structure. 
+To navigate from joe to sally, you would expect to first navigate one level up to the parent node and then down to sally:
 
 // Result is ../sally
 Path p1_to_p2 = p1.relativize(p2);
@@ -29,7 +31,9 @@ Path p3 = Paths.get("home/sally/bar");
 Path p1_to_p3 = p1.relativize(p3);
 // Result is ../..
 Path p3_to_p1 = p3.relativize(p1);
-In this example, the two paths share the same node, home. To navigate from home to bar, you first navigate one level down to sally and then one more level down to bar. Navigating from bar to home requires moving up two levels.
+In this example, the two paths share the same node, home. 
+To navigate from home to bar, you first navigate one level down to sally and then one more level down to bar. 
+Navigating from bar to home requires moving up two levels.
 
 A relative path cannot be constructed if only one of the paths includes a root element. 
 If both paths include a root element, the capability to construct a relative path is system dependent.
