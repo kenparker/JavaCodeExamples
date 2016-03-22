@@ -1,4 +1,4 @@
-package com.maggioni.NIOExamples.Basics;
+package com.maggioni.NIOExamples.Advanced;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

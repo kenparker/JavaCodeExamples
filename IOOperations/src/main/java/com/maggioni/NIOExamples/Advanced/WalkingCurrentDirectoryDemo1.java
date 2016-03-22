@@ -1,4 +1,4 @@
-package com.maggioni.NIOExamples.Basics;
+package com.maggioni.NIOExamples.Advanced;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
