@@ -63,6 +63,8 @@ public class RegexDemo1 {
         regex("(th)*", "ththe leather in their coat made her seethe");
         regex("(o)?", "food");
         regex("(o)*", "food");
+        regex("\\Ss\\S", "she sells sea shells");
+        regex("\\ss\\S", "she sells sea shells");
 
     }
 
