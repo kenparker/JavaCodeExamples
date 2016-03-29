@@ -11,6 +11,7 @@ public class CanonicalPathDemo1 {
         System.out.println(""+f.getPath());                 // .\fileddd.txt
         System.out.println(""+f.getAbsolutePath());         // D:\Java_Aufgaben_old_loeschen\JavaCodeExamples\IOOperations\.\fileddd.txt      
         System.out.println(""+f.getCanonicalPath());        // D:\Java_Aufgaben_old_loeschen\JavaCodeExamples\IOOperations\fileddd.txt
+        System.out.println(""+f.getCanonicalFile());        // D:\Java_Aufgaben_old_loeschen\JavaCodeExamples\IOOperations\fileddd.txt
         System.out.println(""+f.getName());                 // fileddd.txt
         System.out.println(""+f.getParent());               // .
         
@@ -49,6 +50,7 @@ public class CanonicalPathDemo1 {
         System.out.println(""+f.getPath());                 // c:\..\..\bcb.txt
         System.out.println(""+f.getAbsolutePath());         // c:\..\..\bcb.txt
         System.out.println(""+f.getCanonicalPath());        // C:\bcb.txt
+        System.out.println(""+f.getCanonicalFile());        // C:\bcb.txt
     }
 
 }
