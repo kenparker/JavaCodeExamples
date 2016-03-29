@@ -1,4 +1,4 @@
-package com.maggioni.CollectionsAndGenerics.MostDifficults;
+package com.maggioni.MostDifficults;
 
 public class StringProcessingToughDemo1 {
 

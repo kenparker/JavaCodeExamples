@@ -1,4 +1,4 @@
-package com.maggioni.CollectionsAndGenerics.MostDifficults;
+package com.maggioni.MostDifficults;
 
 /*
 Note that + operator is overloaded only for String and not for StringBuilder. 

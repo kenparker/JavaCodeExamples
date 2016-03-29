@@ -1,4 +1,4 @@
-package com.maggioni.CollectionsAndGenerics.MostDifficults;
+package com.maggioni.MostDifficults;
 
 /*
 1. - sign will left justify, + sign will put + because the number is positive, 5 specifies the width which causes an extra space AFTER  (because of left justification) the number. 4 is beyond the format specificate and is printed as is.
