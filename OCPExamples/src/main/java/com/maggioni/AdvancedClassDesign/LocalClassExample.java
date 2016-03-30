@@ -58,7 +58,8 @@ public class LocalClassExample {
             final static String staticString = "he";
 
             PhoneNumber(String phoneNumber){
-                // numberLength = 7; // the Java compiler generates an error message similar to "local variables referenced from an inner class must be final or effectively final"
+                // numberLength = 7; // the Java compiler generates an error message similar to 
+                // "local variables referenced from an inner class must be final or effectively final"
                 String currentNumber = phoneNumber.replaceAll(
                   regularExpression, "");
                 if (currentNumber.length() == numberLength)
