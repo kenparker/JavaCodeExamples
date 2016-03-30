@@ -4,3 +4,5 @@ folgende Beispiele immer anschauen
         HalloWorldAnonymousClass
         https://docs.oracle.com/javase/tutorial/collections/interfaces/index.html
         https://docs.oracle.com/javase/tutorial/collections/interfaces/order.html
+        DateFormatDemo1
+        Localization, Date-Time, Numer Format.pdf
