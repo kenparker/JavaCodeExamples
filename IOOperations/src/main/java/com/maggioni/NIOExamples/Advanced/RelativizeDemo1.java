@@ -9,7 +9,8 @@ https://docs.oracle.com/javase/tutorial/essential/io/pathOps.html#relativize
 
 A common requirement when you are writing file I/O code is the capability to construct a path from one location in the file system to another location. 
 You can meet this using the relativize method. 
-This method constructs a path originating from the original path and ending at the location specified by the passed-in path. The new path is relative to the original path.
+This method constructs a path originating from the original path and ending at the location specified by the passed-in path. 
+The new path is relative to the original path.
 
 For example, consider two relative paths defined as joe and sally:
 
@@ -66,6 +67,10 @@ public class RelativizeDemo1 {
         System.out.println("17: "+p2.relativize(p1)); // ..\personal\readme.txt
         p2 = Paths.get("index.txt");
         //System.out.println("18: "+p2.relativize(p1)); // RunTimeError -> IllegalArgumentException
+        
+        p1 = Paths.get("\\hallo\\hier\\binIch.txt");
+        p2 = Paths.get("\\und\\weg\\bist\\du");
+        System.out.println("18: " + p1.relativize(p2)); /* ../../../und/weg/bist/du */
     }
 
 }

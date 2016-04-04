@@ -31,6 +31,7 @@ class Car2 {
     static int i1 = 5;
     int i2 = 6;
     public static void m1() {System.out.print(i1);}
+    public void m1(String s) {} // valid
     public void m2() {System.out.println(i2);}
 }
 
