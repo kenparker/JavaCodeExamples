@@ -71,6 +71,15 @@ public class RelativizeDemo1 {
         p1 = Paths.get("\\hallo\\hier\\binIch.txt");
         p2 = Paths.get("\\und\\weg\\bist\\du");
         System.out.println("18: " + p1.relativize(p2)); /* ../../../und/weg/bist/du */
+        
+        p1 = Paths.get("c:\\personal\\.\\photos\\..\\readme.txt");
+        p2 = Paths.get("c:\\personal\\index.txt");
+        System.out.println("19: " + p1.relativize(p2)); /* ..\..\..\..\index.txt */
+        
+        p1 = Paths.get("c:\\personal\\photos\\readme.txt");
+        p2 = Paths.get("c:\\personal\\index.txt");
+        System.out.println("20: " + p1.relativize(p2)); /* ..\..\index.txt */
+        
     }
 
 }
