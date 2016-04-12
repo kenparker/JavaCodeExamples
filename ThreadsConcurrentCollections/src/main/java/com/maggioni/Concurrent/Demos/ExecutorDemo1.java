@@ -3,6 +3,8 @@ package com.maggioni.Concurrent.Demos;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 class Order implements Runnable { // implements Runnable
 
@@ -12,10 +14,22 @@ class Order implements Runnable { // implements Runnable
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+    
+    
+
     @Override
     public void run() { // no return value
         String threadName = Thread.currentThread().getName();
         System.out.println("Thread name : " + threadName + " name :" + name);
+        Long duration = (long) (ThreadLocalRandom.current().nextLong(1, 10));
+        try {
+            TimeUnit.SECONDS.sleep(duration);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
     }
 
 }
