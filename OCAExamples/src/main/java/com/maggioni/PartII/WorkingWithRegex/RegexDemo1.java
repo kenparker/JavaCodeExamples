@@ -60,6 +60,7 @@ public class RegexDemo1 {
         regex("\\bthe|the\\b", "the leather in their coat made her seethe");
         }
         regex("(th)?", "ththe leather in their coat made her seethe");
+        regex("[th]*", "ththe leather in their coat made her seethe");
         regex("(th)*", "ththe leather in their coat made her seethe");
         regex("(o)?", "food");
         regex("(o)*", "food");
