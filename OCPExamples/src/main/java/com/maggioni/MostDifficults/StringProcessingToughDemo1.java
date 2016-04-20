@@ -3,6 +3,9 @@ package com.maggioni.MostDifficults;
 public class StringProcessingToughDemo1 {
 
     public static void main(String[] args) {
+        
+        System.out.printf("this is %s %2$s %s \n", "what", "it", "is");
+        
         System.out.printf("%1$s %s %<s %3$s %s","A","B","C");
         // -> A A A C B
         
@@ -34,6 +37,7 @@ public class StringProcessingToughDemo1 {
         d. "," Use locale-specific grouping separators (i.e., the comma in 123,456)  - Applicable only if conversion char is d or f (i.e. for numbers).     
         e. "(" Enclose negative numbers in parentheses  - Applicable only if conversion char is d or f (i.e. for numbers). 
         */
+        
     }
 
 }
