@@ -1,4 +1,4 @@
-package com.maggioni.StringStringBuilderStringBuffer;
+package com.maggioni.StringProcessing;
 
 import java.util.Arrays;
 

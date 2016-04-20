@@ -1,4 +1,4 @@
-package com.maggioni.MostMissed;
+package com.maggioni.StringProcessing;
 
 public class StringProcessingDemo1 {
 

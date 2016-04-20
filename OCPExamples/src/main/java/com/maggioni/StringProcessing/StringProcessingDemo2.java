@@ -1,4 +1,4 @@
-package com.maggioni.MostMissed;
+package com.maggioni.StringProcessing;
 
 import java.util.StringTokenizer;
 

@@ -1,8 +1,8 @@
-package com.maggioni.StringStringBuilderStringBuffer;
+package com.maggioni.StringProcessing;
 
 import java.util.Scanner;
 
-public class ScannerDemo1 {
+public class ScannerDemo3 {
 
     public static void main(String[] args) {
        String s;
@@ -26,6 +26,7 @@ public class ScannerDemo1 {
     }
 
     private static void printScanner(Scanner scanner) {
+        System.out.println("->>>"+scanner.delimiter());
         while (scanner.hasNext()) {
             System.out.println( scanner.next());
             
