@@ -11,10 +11,14 @@ public class OverridingOverloadingBoxingUnboxingDemo1 {
         OverridingOverloadingBoxingUnboxingDemo1 aa = new OverridingOverloadingBoxingUnboxingDemo1();
         
         Integer integer1 = 4; aa.proble(integer1); // print -> In Integer
-        // probe(long) is preferred versus probe(Integer) or probe(int...)
+        
+        //probe(long) is preferred versus probe(Integer) or probe(int...)
         int int1 = 4; aa.proble(int1); // print -> In long
+        
         int int2 = 4; aa.proble(int1,int2); // print -> In ...
         //Integer integer2 = 10; aa.probe(integer1,integer2); // do not compile
+        
+        //double b = 12.3456; aa.proble(b); // do not compile
     }
 
 }
