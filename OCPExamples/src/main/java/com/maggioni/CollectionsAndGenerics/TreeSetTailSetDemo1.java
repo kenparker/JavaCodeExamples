@@ -17,12 +17,19 @@ public class TreeSetTailSetDemo1 {
         treeset.add(114);
         treeset.add(423);
         System.out.println(" size : " + treeset.size());
-        final NavigableSet<Integer> tailSet = treeset.tailSet(5, true);
-        NavigableSet<Integer> headSet = treeset.headSet(5, true);
+        final NavigableSet<Integer> tailSet = treeset.tailSet(5, true); // all element greter then or equal to depending of true/false
+        NavigableSet<Integer>       headSet = treeset.headSet(5, true); // all elements less then or equal to depending of true/false
         Integer lower = treeset.lower(4);
         System.out.println(" tailset :" + tailSet);
         System.out.println(" headset :" + headSet);
         System.out.println(" " + lower);
+        
+        // element added to the backed set is also seen in the tailSet
+        treeset.add(500);
+        System.out.println(" tailset :" + tailSet);
+        
+        // will throw "java.lang.IllegalArgumentException: key out of range"
+        //tailSet.add(4);
     }
 
 }
