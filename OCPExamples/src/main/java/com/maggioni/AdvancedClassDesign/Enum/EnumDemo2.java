@@ -1,4 +1,4 @@
-package com.maggioni.AdvancedClassDesign;
+package com.maggioni.AdvancedClassDesign.Enum;
 
 /*
     OCP Objective 2.5

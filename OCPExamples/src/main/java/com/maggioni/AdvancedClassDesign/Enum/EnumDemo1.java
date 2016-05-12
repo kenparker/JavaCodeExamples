@@ -1,7 +1,7 @@
-package com.maggioni.AdvancedClassDesign;
+package com.maggioni.AdvancedClassDesign.Enum;
 
-import   com.maggioni.AdvancedClassDesign.Better.Faster;
-import static com.maggioni.AdvancedClassDesign.Better.Faster.Longer;
+import   com.maggioni.AdvancedClassDesign.Enum.Better.Faster;
+import static com.maggioni.AdvancedClassDesign.Enum.Better.Faster.Longer;
 public class EnumDemo1 {
 
     public static void main(String[] args) {
