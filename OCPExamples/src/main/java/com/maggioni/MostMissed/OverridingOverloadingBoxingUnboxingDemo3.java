@@ -23,7 +23,7 @@ public class OverridingOverloadingBoxingUnboxingDemo3 {
         OverridingOverloadingBoxingUnboxingDemo3 o = new OverridingOverloadingBoxingUnboxingDemo3();
         o.probe(d); // casted to Double and Double ca be passed to Number
         int[] i = {1,25,36};
-        //o.probe(i); // cdo not compile
+        //o.probe(i); // do not compile, it is not casted to Integer ...
         char c = 'v';
         //o.probe(c); // do not compile
         Double double1 = new Double(15.25);
