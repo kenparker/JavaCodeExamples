@@ -1,5 +1,8 @@
 package com.maggioni.Generics;
 
+import com.maggioni.Generics.TestClasses.Phone;
+import com.maggioni.Generics.TestClasses.Gift;
+import com.maggioni.Generics.TestClasses.Book;
 import java.util.ArrayList;
 import java.util.List;
 
