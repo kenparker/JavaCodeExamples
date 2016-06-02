@@ -2,6 +2,8 @@ package com.maggioni.MostDifficults;
 
 class ACloneable implements Cloneable {
     public int i = 20;
+    
+    protected void protMeth() {}
 }
 
 class BCloneable extends ACloneable {
@@ -28,6 +30,7 @@ public class ClonableDemo1 {
     public static void main(String[] args) {
        BCloneable b1 = new BCloneable();
        //BCloneable b2 = b1.clone(); // do not compile because clone() is protected
+       b1.protMeth();
        //BCloneable b2 = (BCloneable)b1.clone(); // do not compile because clone() is protected
        CCloneable c1 = new CCloneable();
        CCloneable c2 = c1.clone();

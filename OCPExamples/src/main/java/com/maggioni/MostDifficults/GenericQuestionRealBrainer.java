@@ -31,8 +31,10 @@ public class GenericQuestionRealBrainer {
     }
     private static void option41() {
         List<CharSequence> in = new ArrayList();
-        List<? super String> result;
-        result = doIt(in);
+        List<? super String> result1;
+        List<? super CharSequence> result2;
+        result1 = doIt(in);
+        result2 = doIt(in);
     }
     private static void option5() {
         List<CharSequence> in = new ArrayList();

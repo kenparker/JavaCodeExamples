@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import com.maggioni.Generics.Book;
-import com.maggioni.Generics.Gift;
+import com.maggioni.Generics.TestClasses.Book;
+import com.maggioni.Generics.TestClasses.Gift;
 
 public class GenericQuestionPractice1 {
 
@@ -73,6 +73,7 @@ public class GenericQuestionPractice1 {
         List<Book> backwards62 = backwards6(listOfBooks);
         List<Gift> backwards63 = backwards6(listOfGifts);
         List<Gift> backwards64 = backwards6(listOfBooks);
+        //List<Gift> ll = new ArrayList<Book>();
     }
     public static <T> List<T> backwards6(List<? extends T> input) {
         LinkedList<T> output = new LinkedList<>();

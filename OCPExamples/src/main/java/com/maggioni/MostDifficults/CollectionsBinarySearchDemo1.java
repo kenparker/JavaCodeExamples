@@ -23,7 +23,7 @@ Furthermore, all elements in the list must be mutually comparable (that is, e1.c
 
 */
 
-public class CollectionsMethodsDemo1 {
+public class CollectionsBinarySearchDemo1 {
 
     public static void main(String[] args) {
        List<Quote> quotes = new ArrayList();
@@ -39,7 +39,7 @@ public class CollectionsMethodsDemo1 {
        
        System.out.println(" List unordered"+quotes);
         int binarySearch = Collections.binarySearch(quotes, quote2); // no need of a Comparator
-        System.out.println(" Collections.binarySearch(quotes, quote3) "+binarySearch);
+        System.out.println(" Collections.binarySearch(quotes, quote2) "+binarySearch);
         
        Comparator comp = new Comparator<Quote>() {
 
@@ -66,11 +66,14 @@ public class CollectionsMethodsDemo1 {
        Comparator<Quote> reverseOrder2 = Collections.reverseOrder();
        Collections.sort(quotes, reverseOrder2);
        System.out.println(" List Comparator<Quote>"+quotes);
+       // The array must be sorted into ascending order according to the specified comparator before making this call. 
+       // If it is not sorted, the results are undefined.
         binarySearch = Collections.binarySearch(quotes, quote3, reverseOrder2); // Achtung: hier ist der gleiche Comparator wie beim sort
         System.out.println(" Collections.binarySearch(quotes, quote3) "+binarySearch);
        
        Collections.sort(quotes); // require a default compareTo
        System.out.println(" List ordered"+quotes);
+       // A null value indicates that the elements natural ordering should be used.
         binarySearch = Collections.binarySearch(quotes, quote3); // no need of a Comparator
         System.out.println(" Collections.binarySearch(quotes, quote3) "+binarySearch);
     }

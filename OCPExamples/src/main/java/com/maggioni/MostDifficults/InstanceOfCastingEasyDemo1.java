@@ -6,8 +6,12 @@ public class InstanceOfCastingEasyDemo1 {
         
         A o1 = new C();
         B o2 = (B) o1;
-        System.out.println(o1.m1());
-        System.out.println(o2.i);
+        B o3 = new B();
+        System.out.println(o1.m1()); // 30
+        System.out.println(o1.i); // 10
+        System.out.println(o2.i);   // 20
+        System.out.println(o2.m1());   // 30
+        System.out.println(o3.m1());   // 20
     }
 
 }
