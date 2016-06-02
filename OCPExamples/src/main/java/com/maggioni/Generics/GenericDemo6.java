@@ -19,8 +19,9 @@ public class GenericDemo6 {
         listOfFruits1.addAll(listOfFruits2);
         
         List<Fruit> listOfFruits3 = new ArrayList<Fruit>();
-        //ArrayList <Fruit> listOfFruits4 = new ArrayList<Apple>(); // do not compile
         methodList(listOfFruits3);  // works
+        
+        //ArrayList <Fruit> listOfFruits4 = new ArrayList<Apple>(); // do not compile
         
         List<Fish> listOFishs = new ArrayList<>();
         methodList(listOFishs);     // works
@@ -53,6 +54,7 @@ public class GenericDemo6 {
         methodList(listOfQu1);
         
         List<?> listOfQu2 = new ArrayList<Fish>();
+        Object get = listOfQu2.get(0);
         
     }
     

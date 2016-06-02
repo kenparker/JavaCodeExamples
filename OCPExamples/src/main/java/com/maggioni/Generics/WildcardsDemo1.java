@@ -1,8 +1,5 @@
 package com.maggioni.Generics;
 
-import com.maggioni.Generics.Macintosch;
-import com.maggioni.Generics.Fruit;
-import com.maggioni.Generics.Apple;
 import java.util.ArrayList;
 import java.util.List;
 
