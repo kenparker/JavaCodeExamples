@@ -93,7 +93,9 @@ public class GenericQuestionPractice1 {
     private static void m8Demo(List<Book> listOfBooks, List<Gift> listOfGifts) {
         List<? extends Book> backwards81 = backwards8(listOfBooks);
         //List<Book> backwards811 = backwards8(listOfBooks); // do not compile
-        List<? extends Gift> backwards82 = backwards8(listOfBooks);
+        List<? extends Gift> backwards82 = backwards8(listOfBooks); 
+        List<? extends Book> backwards821 = null;
+        backwards82 = backwards821;
         List<? extends Gift> backwards83 = backwards8(listOfGifts);
         List<? extends Gift> e1 = new ArrayList<Gift>();
         List<? extends Gift> e2 = new ArrayList<>();
