@@ -19,6 +19,8 @@ class InnerClassDemo3 extends OuterClassDemo1{
     
     void doThat() {
         OuterClassDemo1 oc = new OuterClassDemo1();
+        //System.out.println(" " + oc.p);
+        //oc.proteMemb();
         OuterClassDemo1.PublicInnerClass ic = oc.new PublicInnerClass();
         ic.publicInnerClassMember();
         super.p = "protected variable access with super";
