@@ -1,5 +1,6 @@
 package com.maggioni.JavaClassDesign;
 
+import com.maggioni.Generics.TestClasses.Book;
 import java.util.Comparator;
 
 public class MyClassImplementComparatorDemo2 implements Comparator<Book>{
