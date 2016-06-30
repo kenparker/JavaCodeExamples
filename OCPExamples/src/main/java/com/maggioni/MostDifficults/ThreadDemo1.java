@@ -4,7 +4,9 @@ public class ThreadDemo1 {
 
     public static void main(String[] args) {
         Thread t = new Thread(new MyClass1());
+        t.start();
         t = new Thread(new MyClass2());
+        t.start();
     }
 
     
