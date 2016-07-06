@@ -3,8 +3,6 @@ package com.maggioni.Threads;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class WaitTimeoutDemo1 {
 
@@ -26,7 +24,9 @@ public class WaitTimeoutDemo1 {
                 synchedList.wait(10000);        // InterruptedException is needed
                 System.out.println("still waiting ... ");
             }
-        String remove = (String) synchedList.remove(0);
+        String remove = (String) synchedList.remove(0);     // this staemend do not throw a runtimeerror
+                                                            // the reason is that the list ist synchronized
+                                                            // if the list is not synchronized, that that would habe led to an error
         System.out.println(Thread.currentThread().getName() + " Closing ...");
         return remove;
         }
@@ -48,7 +48,7 @@ public class WaitTimeoutDemo1 {
     public static void main(String[] args) {
         final WaitTimeoutDemo1 wt = new WaitTimeoutDemo1();
         
-        Runnable runa = new Runnable() {
+        Runnable runRemove = new Runnable() {
 
             @Override
             public void run() {
@@ -62,14 +62,18 @@ public class WaitTimeoutDemo1 {
                 }
             }
         };
-        Runnable runb = new Runnable() {
+        Runnable runAdd = new Runnable() {
             public void run() {
                 wt.addElement("hello " + Thread.currentThread().getName());     // wt is a local variable and it need to be declared final
             }
         };
         
-        Thread ta = new Thread(runa, "A");
-        ta.start();
+        Thread ta1 = new Thread(runRemove, "Remove1");
+        ta1.start();
+        Thread ta2 = new Thread(runRemove, "Remove2");
+        ta2.start();
+        Thread ta3 = new Thread(runRemove, "Remove3");
+        ta3.start();
         
         try {
             System.out.println(Thread.currentThread().getName() + " sleeping ...");
@@ -79,17 +83,19 @@ public class WaitTimeoutDemo1 {
             //
         }
         
-        Thread tb = new Thread(runb, "B");
-        Thread tc = new Thread(runb, "C");
+        Thread tb = new Thread(runAdd, "B");
+        Thread tc = new Thread(runAdd, "C");
         tb.start(); tc.start();
         
         try {
             Thread.sleep(10000);
-            ta.interrupt();
-            ta.interrupt(); // no error
+            ta1.interrupt();
+            ta2.interrupt();
+            ta3.interrupt();
+            ta1.interrupt(); // no error
             Thread.sleep(1000);
-            System.out.println("State : " +  ta.getState());
-            System.out.println("State : " +  ta.getState());
+            System.out.println("State : " +  ta1.getState());
+            System.out.println("State : " +  ta1.getState());
         } catch (InterruptedException ex) {
             System.out.println("error");
         }

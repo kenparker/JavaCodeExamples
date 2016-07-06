@@ -17,10 +17,30 @@ public class ThreadRunOverrideDemo1 extends Thread{
         t2.join();          
         t3.start();         // original run
         
+        Thread t4 = new Thread(new MyRunOverride());
+        t4.start();
+        
+        Thread t5 = new Thread(new MyRunOverride()) {
+            public void run() {
+                System.out.println("I'm from anonymus t5");
+            }
+        };
+        t5.start();
+                
+        
     }
 
     @Override
     public void run() {
         System.out.println("original run");
     }
+}
+
+class MyRunOverride implements Runnable {
+
+    @Override
+    public void run() {
+        System.out.println("I'm from MyRunOverride");
+    }
+    
 }
