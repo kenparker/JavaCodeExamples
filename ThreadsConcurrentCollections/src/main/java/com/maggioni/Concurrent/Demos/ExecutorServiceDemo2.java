@@ -26,7 +26,7 @@ class Hotel2 {
     ExecutorService service = Executors.newFixedThreadPool(5);
 
     public void orderFood(Order2 order) {
-        service.submit(order);
+        service.submit(order); // the order is submitted for execution 
     }
     
     public void closeHotel() {

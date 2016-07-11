@@ -33,13 +33,13 @@ class Hotel3 {
     ExecutorService service = Executors.newFixedThreadPool(5);
 
     public void orderFood(Order3 order) {
-        orders.offer(order);
+        orders.offer(order);    // the order is first added to a queue
         //System.out.println(orders.size());
     }
     
     public void doIt() {
         try {
-            List<Future<Void>> invokeAll = service.invokeAll(orders);
+            List<Future<Void>> invokeAll = service.invokeAll(orders); // invoke all orders for execution
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
@@ -56,12 +56,18 @@ public class ExecutorServiceDemo3 {
     public static void main(String[] args) {
         Hotel3 hotel = new Hotel3();
 
+        /*
+        all order as added first to a queue
+        */
         hotel.orderFood(new Order3("tea"));
         hotel.orderFood(new Order3("coffe"));
         for (int i = 0; i < 10; i++) {
             hotel.orderFood(new Order3("burger"+i));
         }
         
+        /*
+        orders are submitted for execution all together
+        */
         hotel.doIt();
         hotel.closeHotel();
     }

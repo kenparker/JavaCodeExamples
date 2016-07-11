@@ -4,7 +4,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
 
-public class BasicThreadPoolExecutorDemo1 {
+public class BasicThreadPoolExecutorWithSubmitDemo2 {
 
     public static void main(String[] args) {
 
@@ -14,11 +14,11 @@ public class BasicThreadPoolExecutorDemo1 {
         System.out.println("executor.getMaximumPoolSize() :" + executor.getMaximumPoolSize());
         
         
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             Order order = new Order("Order "+i);
             System.out.println("new order has been added : " + order.getName());
             try {
-                executor.execute(order);
+                executor.submit(order); // in the previous example we have used execute() here
             } catch (RejectedExecutionException e) { // beginning with thread number 6 throw RejectedExecutionException
                 e.printStackTrace();
             }
