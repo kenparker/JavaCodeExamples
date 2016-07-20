@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.attribute.BasicFileAttributeView;
 
 /*
 http://andreinc.net/2013/12/05/java-7-nio-2-tutorial-file-attributes/
