@@ -1,4 +1,9 @@
-package com.maggioni.IOOperations.BufferedReaderExamples;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.maggioni.iooperations.BufferedReaderExamples;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,15 +13,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * http://examples.javacodegeeks.com/core-java/io/bufferedreader/java-bufferedreader-example/?utm_source=feedburner&utm_medium=email&utm_campaign=Feed%3A+JavaCodeGeeks+%28Java+Code+Geeks%29
+ *
+ * @author magang
  */
-public class BufferedReaderExample_1
-{
+public class BufferedReaderDemo4 {
 
     private static final String OUTPUT_FILE = "C:\\Users\\nikos\\Desktop\\TestFiles\\testFilenotexist.txt";
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
 
         String str = "";
 
@@ -33,5 +37,4 @@ public class BufferedReaderExample_1
             e.printStackTrace();
         }
     }
-
 }
