@@ -5,11 +5,11 @@ boxing test
 
 | Type    | boxing sequence                     |
 | char    | 1. char     2. int    3. long
-| byte    | 1. byte     2. short  3. int     4. long    5. Byte   6. Number
-| short   | 1. short    2. int    3. long    4. Short   5. Number
-| int     | 1. int      2. long   3. Integer 4. Number
-| long    | 1. long     2. Long   3. Number
-| Byte    | 1. Byte     2. Number 3. byte    4. short   5. int    6. long
+| byte    | 1. byte     2. short  3. int     4. long    5. Byte    6. Number
+| short   | 1. short    2. int    3. long    2. float  3. double    4. Short   5. Number
+| int     | 1. int      2. long   3. float   4. double  5. Integer 6. Number
+| long    | 1. long     2. float  3. double  4. Long    5. Number
+| Byte    | 1. Byte     2. Number 3. byte    4. short   5. int     6. long
 | Short   | 1. Short    2. Number 3. short   4. int     5. long
 | Integer | 1. Integer  2. Number 3. int     4. long
 | Long    | 1. Long     2. Number 3. long
@@ -23,11 +23,13 @@ public class BoxingDemo2 {
         //b.boxMethod1(l); // do not compile
         
         b.boxMethod4(l);    // boxing sequence 1. long, 2. Long 3. Number
+        b.boxMethod5(l); // ??
         
         
         int i = 12345;
         b.boxMethod2(i); // from long
         b.boxMethod2(l); // from long
+        b.boxMethod5(i); // boxMethod 5 - from float
         
         b.boxMethod4(i); //  boxing sequence: 1. int 2. long 3. Integer 4. Number
         
@@ -84,10 +86,12 @@ public class BoxingDemo2 {
     
     void boxMethod5(short i) {System.out.println("boxMethod 5 - from short");}
     void boxMethod5(char i) {System.out.println("boxMethod 5 - from char");}
-    void boxMethod5(int i) {System.out.println("boxMethod 5 - from int");}
-    void boxMethod5(long i) {System.out.println("boxMethod 5 - from long");}
+    //void boxMethod5(int i) {System.out.println("boxMethod 5 - from int");}
+    //void boxMethod5(long i) {System.out.println("boxMethod 5 - from long");}
     void boxMethod5(Long i) {System.out.println("boxMethod 5 - from Long");}
     void boxMethod5(Short i) {System.out.println("boxMethod 5 - from Short");}
+    void boxMethod5(double i) {System.out.println("boxMethod 5 - from double");}
+    void boxMethod5(float i) {System.out.println("boxMethod 5 - from float");}
     void boxMethod5(Integer i) {System.out.println("boxMethod 5 - from Integer");}
     void boxMethod5(Number i) {System.out.println("boxMethod 5 - from Number");}
 }
