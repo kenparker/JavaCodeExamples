@@ -18,10 +18,16 @@ public class ScannerDemo3 {
         scanner = new Scanner(s);
        scanner.useDelimiter("[\\sA-Za-z]+");
        printScanner(scanner);
-        System.out.println("");
+       // System.out.println("");
        s = "ABC 223.2343 Paul 10";
         scanner = new Scanner(s);
-       scanner.findInLine("(ABC)+[\\d]+\\.[\\d]+");
+        System.out.println("find in line "+scanner.findInLine("(ABC)+[\\d]+\\.[\\d]+"));
+       printScanner(scanner);
+        scanner = new Scanner(s);
+        System.out.println("find in line "+scanner.findInLine("ABC+[\\d]+\\.[\\d]+"));
+       printScanner(scanner);
+        scanner = new Scanner(s);
+        System.out.println("find in line "+scanner.findInLine("[\\d]+\\.[\\d]+"));
        printScanner(scanner);
     }
 

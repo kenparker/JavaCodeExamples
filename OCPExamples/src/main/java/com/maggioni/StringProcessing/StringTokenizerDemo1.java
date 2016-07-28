@@ -14,10 +14,13 @@ public class StringTokenizerDemo1 {
         st = new StringTokenizer(line,";,[]");
         printTokens(st); // output: Harry / 8765 / Per / fect
         
+        System.out.println("split is ;");
         String[] split = line.split(";");
         printArrayTokens(split);
+        System.out.println("split is \\d");
         split = line.split("\\d");
         printArrayTokens(split);
+        System.out.println("split is \\d+");
         split = line.split("\\d+");
         printArrayTokens(split);
     }
