@@ -32,6 +32,13 @@ public class StringSplittingDemo1 {
             System.out.println("\"" + nextElement + "\"");
         }
 
+        System.out.println("\nPattern example:\n"+s);
+        Pattern p = Pattern.compile("hi");
+        Matcher m = p.matcher(s);
+        while (m.find()) {            
+            System.out.printf("Matcher %s beginning: %d end: %d \n",m.group(),m.start(),m.end());
+        }
+        
         System.out.println("\nSplit example:");
 
         String[] split = s.split("hi");
@@ -40,11 +47,10 @@ public class StringSplittingDemo1 {
 
         }
         
-        System.out.println("\nPattern example:\n"+s);
-        Pattern p = Pattern.compile("hi");
-        Matcher m = p.matcher(s);
-        while (m.find()) {            
-            System.out.printf("Matcher %s beginning: %d end: %d \n",m.group(),m.start(),m.end());
+        split = s.split(p.toString());
+        for (String split1 : split) {
+            System.out.println("\"" + split1 + "\"");
+
         }
     }
 
