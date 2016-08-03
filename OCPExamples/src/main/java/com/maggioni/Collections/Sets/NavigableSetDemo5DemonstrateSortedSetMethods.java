@@ -5,7 +5,7 @@ import java.util.NavigableSet;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public class NavigableSetDemo5 {
+public class NavigableSetDemo5DemonstrateSortedSetMethods {
 
     public static void main(String[] args) {
         

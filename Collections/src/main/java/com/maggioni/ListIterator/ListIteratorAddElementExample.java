@@ -28,6 +28,14 @@ public class ListIteratorAddElementExample {
         for (String str : aList) {
             System.out.println(str);
         }
+        /*
+        1
+        Added Element
+        2
+        3
+        4
+        5
+        */
     }
 
 }

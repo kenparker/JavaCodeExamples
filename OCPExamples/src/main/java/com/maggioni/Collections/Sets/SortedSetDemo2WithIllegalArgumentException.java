@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public class SortedSetDemo2 {
+public class SortedSetDemo2WithIllegalArgumentException {
 
     public static void main(String[] args) {
         String[] arr = {"dfrt", "ascde", "AAA", "Bc", "bc", "bcdd", "zhtgt", "hzhhh", "fffggg", "tut"};

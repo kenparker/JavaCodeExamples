@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public class SortedSetDemo1 {
+public class SortedSetDemo1WithTreeSetConstructedFromArray {
 
     public static void main(String[] args) {
         

@@ -9,6 +9,8 @@ public class HashSetDemo1 extends HashSet<Person>{
        
         HashSetDemo1 hsd = new HashSetDemo1();
         hsd.add(new Person("Angelo"));
+        hsd.add(new Person("Angelo"));
+        System.out.println(""+hsd.size());
     }
     
     @Override
