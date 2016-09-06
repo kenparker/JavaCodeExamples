@@ -8,7 +8,7 @@ import java.util.List;
 public class SyncronizedArrayListDemo1  {
 
     List<String> listOfThings = new ArrayList<>();
-
+    
     public class ThreadIterate implements Runnable{
         @Override
         public void run() {
