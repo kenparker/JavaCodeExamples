@@ -1,7 +1,7 @@
 package com.maggioni.otherexamples;
 
 // http://www.programcreek.com/2011/08/so-java-passes-object-by-reference-or-by-value/
-public class SwapDemo1 {
+public class PassByValueDemo2 {
 
     public static void main(String[] args) {
         Type t1 = new Type();
