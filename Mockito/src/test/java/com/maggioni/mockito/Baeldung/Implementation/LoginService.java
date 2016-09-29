@@ -21,4 +21,8 @@ public class LoginService {
             this.currentUser = username;
         }
     }
+    
+    public void validate(UserForm uf) throws Exception{
+        
+    }
 }

@@ -173,15 +173,5 @@ public class LoginControllerTestDemo1 {
         assertEquals("NO", login);
     }
     
-    @Test
-    public void assertExceptionThrowing() {
-        when(loginServiceMock.login(userForm3)).thenThrow(Exception.class);
-        
-        String login = loginController.login(userForm3);
-        
-        verify(loginServiceMock).login(userForm3);
-        verifyNoMoreInteractions(loginServiceMock);
-        assertEquals("ERROR", login);
-        
-    }
+    
 }

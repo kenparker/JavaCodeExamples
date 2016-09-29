@@ -30,4 +30,15 @@ public class LoginController {
             }
         }
     }
+    
+    public String validateUserForm(UserForm uf) throws Exception {
+        if (uf.username.equals(null)) {
+            throw new Exception("Username is empty");
+        }
+        return "OK";
+    }
+    
+    public void voidMethodToTest(UserForm uf) throws Exception{
+        loginService.validate(uf);
+    }
 }
