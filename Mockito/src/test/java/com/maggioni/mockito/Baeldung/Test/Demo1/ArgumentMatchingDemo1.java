@@ -90,7 +90,43 @@ public class ArgumentMatchingDemo1 {
         
         verify(loginServiceMock, Mockito.never()).login(Matchers.argThat(new UserFormMatcher()));
     }
+    
+    @Test
+    public void assertArgumentMatchArgThatVerify() {
+        UserForm u1 = new UserForm();
+        u1.username = "carlo";
+                
+        //when(loginServiceMock.login(u1)).thenReturn(true);
+        
+        String login = loginController.login(u1);
+        
+        Assert.assertEquals("NO", login);
+        
+        verify(loginServiceMock,Mockito.never()).login(userFormEq(new UserForm()));
+    }
 
+
+    static UserForm userFormEq(UserForm uf) {
+        return Matchers.argThat(new UserFormMatcherforMethod(uf));
+    }
+    
+}
+
+class UserFormMatcherforMethod extends ArgumentMatcher<UserForm> {
+
+    private final UserForm expected;
+
+    public UserFormMatcherforMethod(UserForm expected) {
+        this.expected = expected;
+    }
+    
+    @Override
+    public boolean matches(Object argument) {
+        final String username = ((UserForm) argument).getUsername();
+        System.out.println(""+username + " expected " +expected.getUsername()  );
+        return username.equals(expected.getUsername());
+    }
+       
 }
 
 class UserFormMatcher extends ArgumentMatcher<UserForm> {
