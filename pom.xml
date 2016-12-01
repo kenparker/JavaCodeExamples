@@ -25,6 +25,7 @@
         <module>DateCalenderExamples</module>
         <module>LambdaExamples</module>
         <module>OCPExamples</module>
+        <module>Algorithms</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
