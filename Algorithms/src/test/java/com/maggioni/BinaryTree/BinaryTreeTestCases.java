@@ -24,27 +24,48 @@ public class BinaryTreeTestCases {
     }
 
     public BinaryTree setupCase1() {
+        /*
+         * root
+         * ├── B
+         * │   ├── D
+         * │   └── Null
+         * └── A
+         */
         B.setRight(D);
         setupCase4();
         return tree;
     }
-    
+
     public BinaryTree setupCase2() {
+        /*
+         * root
+         * ├── D
+         * └── A
+         *       ├── C
+         *       └── B      
+         */
         root.setLeft(A);
         root.setRight(D);
         A.setLeft(B);
         A.setRight(C);
         return tree;
     }
-    
+
     public BinaryTree setupCase3() {
+        /*
+         * root
+         * ├── D
+         * │    ├── C
+         * │    └── B   
+         * └── A 
+         */
         root.setLeft(A);
         root.setRight(D);
         D.setLeft(B);
         D.setRight(C);
         return tree;
     }
-    
+
     public BinaryTree setupCase4() {
         root.setLeft(A);
         root.setRight(B);
@@ -56,8 +77,19 @@ public class BinaryTreeTestCases {
         setupCase4();
         return tree;
     }
-    
+
     public BinaryTree setupCase7() {
+        /*
+         * root
+         * ├── E
+         * └── A
+         *      ├── D
+         *      │    ├── Null
+         *      │    └── B
+         *      │         ├── C
+         *      │         └── Null
+         *      └── Null  
+         */
         root.setLeft(A);
         root.setRight(E);
         A.setRight(D);

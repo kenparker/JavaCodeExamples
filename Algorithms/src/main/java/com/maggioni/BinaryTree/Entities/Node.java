@@ -82,4 +82,10 @@ public class Node {
         return true;
     }
 
+    public boolean isParent(Node previous) {
+        return (previous.equals(this) || 
+                (previous.getLeft() != null && previous.getLeft().equals(this)) || 
+                (previous.getRight() != null && previous.getRight().equals(this)));
+    }
+
 }

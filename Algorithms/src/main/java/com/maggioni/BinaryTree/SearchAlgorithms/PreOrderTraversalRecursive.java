@@ -1,18 +1,16 @@
 package com.maggioni.BinaryTree.SearchAlgorithms;
 
-import com.maggioni.BinaryTree.Entities.Node;
 import com.maggioni.BinaryTree.Entities.BinaryTree;
+import com.maggioni.BinaryTree.Entities.Node;
 
-public class PreOrderSearch {
-
-    private final BinaryTree binaryTree;
-    private final SearchAttribute binaryTreeSearchAttribute = new SearchAttribute();
-
-    public PreOrderSearch(BinaryTree binaryTree) {
-        this.binaryTree = binaryTree;
+public class PreOrderTraversalRecursive extends Traversal{
+    
+    public PreOrderTraversalRecursive(BinaryTree binaryTree) {
+        super(binaryTree);
     }
-
-    public String walkTreePreOrder() {
+       
+    @Override
+    public String BTTraversal() {
         preOrder(binaryTree.getRoot());
         return binaryTreeSearchAttribute.getWalkTheTreeString();
     }
@@ -24,7 +22,5 @@ public class PreOrderSearch {
         binaryTreeSearchAttribute.addNodeToString(node);
         preOrder(node.getLeft());
         preOrder(node.getRight());
-    }
-    
-    
+    }   
 }

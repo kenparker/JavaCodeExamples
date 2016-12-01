@@ -1,19 +1,16 @@
 package com.maggioni.BinaryTree.SearchAlgorithms;
 
-import com.maggioni.BinaryTree.Entities.Node;
 import com.maggioni.BinaryTree.Entities.BinaryTree;
+import com.maggioni.BinaryTree.Entities.Node;
 
-public class PostOrderSearch {
-    
-    final private BinaryTree binaryTree;
-    private SearchAttribute binaryTreeSearchAttribute = new SearchAttribute();
+public class PostOrderTraversalRecursive extends Traversal{
 
-    public PostOrderSearch(BinaryTree binaryTree) {
-        this.binaryTree = binaryTree;
-        binaryTreeSearchAttribute.setWalkOrSearch(true);
+    public PostOrderTraversalRecursive(BinaryTree binaryTree) {
+        super(binaryTree);
     }
-    
-    public String walkTreePostOrder() {
+      
+    @Override
+    public String BTTraversal() {
         postOrder(binaryTree.getRoot());
         return binaryTreeSearchAttribute.getWalkTheTreeString();
     }
@@ -26,7 +23,4 @@ public class PostOrderSearch {
         postOrder(node.getRight());
         binaryTreeSearchAttribute.addNodeToString(node);
     }
-    
-    
-    
 }
