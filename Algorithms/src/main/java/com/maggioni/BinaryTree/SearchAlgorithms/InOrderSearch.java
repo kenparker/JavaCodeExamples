@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public class InOrderSearch {
     
     final private BinaryTree binaryTree;
-    private final SearchAttribute binaryTreeSearchAttribute = new SearchAttribute();
+    private final WalkAttribute binaryTreeSearchAttribute = new WalkAttribute();
     private final Deque<Node> stack = new LinkedList<>();
 
     public InOrderSearch(BinaryTree binaryTree) {
@@ -22,7 +22,7 @@ public class InOrderSearch {
             node = walkUpTheTree(node);
         } while (node != null || !stack.isEmpty());
 
-        return binaryTreeSearchAttribute.getWalkTheTreeString();
+        return binaryTreeSearchAttribute.getWalkString();
     }
 
     private Node walkUpTheTree(Node node) {

@@ -12,7 +12,7 @@ public class PostOrderTraversalRecursive extends Traversal{
     @Override
     public String BTTraversal() {
         postOrder(binaryTree.getRoot());
-        return binaryTreeSearchAttribute.getWalkTheTreeString();
+        return binaryTreeWalkAttribute.getWalkString();
     }
      
     private void postOrder(Node node) {
@@ -21,6 +21,6 @@ public class PostOrderTraversalRecursive extends Traversal{
         }
         postOrder(node.getLeft());
         postOrder(node.getRight());
-        binaryTreeSearchAttribute.addNodeToString(node);
+        binaryTreeWalkAttribute.addNodeToString(node);
     }
 }

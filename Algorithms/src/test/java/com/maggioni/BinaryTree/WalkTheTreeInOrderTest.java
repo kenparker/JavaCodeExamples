@@ -30,7 +30,7 @@ public class WalkTheTreeInOrderTest {
     
     @Test
     public void walkTheTreeCase7() {
-        BinaryTree tree = new BinaryTreeTestCases().setupCase7();
+        BinaryTree tree = new BinaryTreeTestCases().setupCase4();
 
         String walkTree = new InOrderSearch(tree).walkTreeInOrder();
 

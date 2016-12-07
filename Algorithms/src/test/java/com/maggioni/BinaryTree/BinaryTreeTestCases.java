@@ -32,7 +32,8 @@ public class BinaryTreeTestCases {
          * └── A
          */
         B.setRight(D);
-        setupCase4();
+        root.setLeft(A);
+        root.setRight(B);
         return tree;
     }
 
@@ -67,18 +68,6 @@ public class BinaryTreeTestCases {
     }
 
     public BinaryTree setupCase4() {
-        root.setLeft(A);
-        root.setRight(B);
-        return tree;
-    }
-
-    public BinaryTree setupCase6() {
-        B.setLeft(C);
-        setupCase4();
-        return tree;
-    }
-
-    public BinaryTree setupCase7() {
         /*
          * root
          * ├── E

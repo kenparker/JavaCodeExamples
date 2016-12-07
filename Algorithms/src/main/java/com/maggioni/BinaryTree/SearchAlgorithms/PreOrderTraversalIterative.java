@@ -14,7 +14,7 @@ public class PreOrderTraversalIterative extends Traversal{
     @Override
     public String BTTraversal() {
         preOrder(binaryTree.getRoot());
-        return binaryTreeSearchAttribute.getWalkTheTreeString();
+        return binaryTreeWalkAttribute.getWalkString();
     }
     
     private void preOrder(Node node) {
@@ -27,7 +27,7 @@ public class PreOrderTraversalIterative extends Traversal{
         
         while (!stack.isEmpty()) {
             node = stack.poll();
-            binaryTreeSearchAttribute.addNodeToString(node);
+            binaryTreeWalkAttribute.addNodeToString(node);
             if (!node.isNodeRightEmpty()) {
                 stack.push(node.getRight());
             }

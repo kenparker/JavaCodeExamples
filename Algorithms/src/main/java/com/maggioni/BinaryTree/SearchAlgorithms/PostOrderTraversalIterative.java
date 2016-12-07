@@ -18,7 +18,7 @@ public class PostOrderTraversalIterative extends Traversal {
     @Override
     public String BTTraversal() {
         preOrderTraversalIterative(binaryTree.getRoot());
-        return binaryTreeSearchAttribute.getWalkTheTreeString();
+        return binaryTreeWalkAttribute.getWalkString();
     }
 
     private void preOrderTraversalIterative(Node root) {
@@ -71,7 +71,7 @@ public class PostOrderTraversalIterative extends Traversal {
     }
 
     private void addNodeToString() {
-        this.binaryTreeSearchAttribute.addNodeToString(current);
+        this.binaryTreeWalkAttribute.addNodeToString(current);
         stack.pop();
     }
     

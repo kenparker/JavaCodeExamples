@@ -4,7 +4,7 @@ import com.maggioni.BinaryTree.Entities.BinaryTree;
 
 public abstract class Traversal {
     public final BinaryTree binaryTree;
-    public final SearchAttribute binaryTreeSearchAttribute = new SearchAttribute();
+    public final WalkAttribute binaryTreeWalkAttribute = new WalkAttribute();
 
     public Traversal(BinaryTree binaryTree) {
         this.binaryTree = binaryTree;

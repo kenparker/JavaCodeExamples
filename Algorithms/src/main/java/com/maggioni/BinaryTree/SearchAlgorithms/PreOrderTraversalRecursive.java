@@ -12,14 +12,14 @@ public class PreOrderTraversalRecursive extends Traversal{
     @Override
     public String BTTraversal() {
         preOrder(binaryTree.getRoot());
-        return binaryTreeSearchAttribute.getWalkTheTreeString();
+        return binaryTreeWalkAttribute.getWalkString();
     }
 
     private void preOrder(Node node) {
         if (node == null) {
             return;
         }
-        binaryTreeSearchAttribute.addNodeToString(node);
+        binaryTreeWalkAttribute.addNodeToString(node);
         preOrder(node.getLeft());
         preOrder(node.getRight());
     }   

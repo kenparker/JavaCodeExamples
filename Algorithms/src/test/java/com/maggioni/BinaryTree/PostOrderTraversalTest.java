@@ -50,7 +50,7 @@ public class PostOrderTraversalTest {
     //@Ignore
     @Test
     public void testCase7Traversal() {
-        tree = new BinaryTreeTestCases().setupCase7();
+        tree = new BinaryTreeTestCases().setupCase4();
 
         walkTreeTarget = "C B D A E root";
         runTraversals();
