@@ -1,4 +1,4 @@
-package com.maggioni.BinaryTree.Entities;
+package com.maggioni.BinaryTree.DataStructures;
 
 import java.util.Objects;
 

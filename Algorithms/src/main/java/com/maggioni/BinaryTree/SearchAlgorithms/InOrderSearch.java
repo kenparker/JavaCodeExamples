@@ -1,14 +1,14 @@
 package com.maggioni.BinaryTree.SearchAlgorithms;
 
-import com.maggioni.BinaryTree.Entities.Node;
-import com.maggioni.BinaryTree.Entities.BinaryTree;
+import com.maggioni.BinaryTree.DataStructures.Node;
+import com.maggioni.BinaryTree.DataStructures.BinaryTree;
 import java.util.Deque;
 import java.util.LinkedList;
 
 public class InOrderSearch {
     
     final private BinaryTree binaryTree;
-    private final WalkAttribute binaryTreeSearchAttribute = new WalkAttribute();
+    private final TraversalAttribute binaryTreeSearchAttribute = new TraversalAttribute();
     private final Deque<Node> stack = new LinkedList<>();
 
     public InOrderSearch(BinaryTree binaryTree) {
@@ -22,7 +22,7 @@ public class InOrderSearch {
             node = walkUpTheTree(node);
         } while (node != null || !stack.isEmpty());
 
-        return binaryTreeSearchAttribute.getWalkString();
+        return binaryTreeSearchAttribute.getTraversalString();
     }
 
     private Node walkUpTheTree(Node node) {

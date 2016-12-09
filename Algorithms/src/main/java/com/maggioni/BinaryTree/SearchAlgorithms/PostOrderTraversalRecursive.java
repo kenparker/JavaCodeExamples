@@ -1,7 +1,7 @@
 package com.maggioni.BinaryTree.SearchAlgorithms;
 
-import com.maggioni.BinaryTree.Entities.BinaryTree;
-import com.maggioni.BinaryTree.Entities.Node;
+import com.maggioni.BinaryTree.DataStructures.BinaryTree;
+import com.maggioni.BinaryTree.DataStructures.Node;
 
 public class PostOrderTraversalRecursive extends Traversal{
 
@@ -12,7 +12,7 @@ public class PostOrderTraversalRecursive extends Traversal{
     @Override
     public String BTTraversal() {
         postOrder(binaryTree.getRoot());
-        return binaryTreeWalkAttribute.getWalkString();
+        return traversalAttribute.getTraversalString();
     }
      
     private void postOrder(Node node) {
@@ -21,6 +21,6 @@ public class PostOrderTraversalRecursive extends Traversal{
         }
         postOrder(node.getLeft());
         postOrder(node.getRight());
-        binaryTreeWalkAttribute.addNodeToString(node);
+        traversalAttribute.addNodeToString(node);
     }
 }

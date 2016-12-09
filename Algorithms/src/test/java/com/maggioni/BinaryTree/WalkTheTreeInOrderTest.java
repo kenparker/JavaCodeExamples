@@ -1,7 +1,7 @@
 package com.maggioni.BinaryTree;
 
 import com.maggioni.BinaryTree.SearchAlgorithms.InOrderSearch;
-import com.maggioni.BinaryTree.Entities.BinaryTree;
+import com.maggioni.BinaryTree.DataStructures.BinaryTree;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;

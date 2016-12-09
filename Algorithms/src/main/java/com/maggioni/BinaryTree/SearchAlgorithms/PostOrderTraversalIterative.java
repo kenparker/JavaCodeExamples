@@ -1,7 +1,7 @@
 package com.maggioni.BinaryTree.SearchAlgorithms;
 
-import com.maggioni.BinaryTree.Entities.BinaryTree;
-import com.maggioni.BinaryTree.Entities.Node;
+import com.maggioni.BinaryTree.DataStructures.BinaryTree;
+import com.maggioni.BinaryTree.DataStructures.Node;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -18,7 +18,7 @@ public class PostOrderTraversalIterative extends Traversal {
     @Override
     public String BTTraversal() {
         preOrderTraversalIterative(binaryTree.getRoot());
-        return binaryTreeWalkAttribute.getWalkString();
+        return traversalAttribute.getTraversalString();
     }
 
     private void preOrderTraversalIterative(Node root) {
@@ -71,7 +71,7 @@ public class PostOrderTraversalIterative extends Traversal {
     }
 
     private void addNodeToString() {
-        this.binaryTreeWalkAttribute.addNodeToString(current);
+        this.traversalAttribute.addNodeToString(current);
         stack.pop();
     }
     

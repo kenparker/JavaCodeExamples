@@ -1,6 +1,6 @@
 package com.maggioni.BinaryTree;
 
-import com.maggioni.BinaryTree.Entities.BinaryTree;
+import com.maggioni.BinaryTree.DataStructures.BinaryTree;
 import com.maggioni.BinaryTree.SearchAlgorithms.PostOrderTraversalIterative;
 import com.maggioni.BinaryTree.SearchAlgorithms.PostOrderTraversalRecursive;
 import org.junit.Test;

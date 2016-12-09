@@ -1,7 +1,7 @@
 package com.maggioni.BinaryTree;
 
-import com.maggioni.BinaryTree.Entities.Node;
-import com.maggioni.BinaryTree.Entities.BinaryTree;
+import com.maggioni.BinaryTree.DataStructures.Node;
+import com.maggioni.BinaryTree.DataStructures.BinaryTree;
 
 public class BinaryTreeTestCases {
 
