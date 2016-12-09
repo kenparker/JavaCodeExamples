@@ -39,7 +39,7 @@ class WidgetMaker extends Thread{
                     finishedWidgets.notify();   // we could also use notifyAll() here
                                                 // but in this case one of the waiting thread will success
                                                 // returning a widget (remove(0))
-                                                // bit the other two will also try to get a widget
+                                                // but the other two will also try to get a widget
                                                 // which is not there anymore and throwing a runtimeerror
                 }
             }

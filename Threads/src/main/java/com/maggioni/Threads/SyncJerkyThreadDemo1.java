@@ -13,6 +13,7 @@ public class SyncJerkyThreadDemo1 extends Thread{
         return data;
     }
     public synchronized boolean isDone() {return done;}
+    @Override
     public synchronized void run() {
         data += data;
         done = true;
