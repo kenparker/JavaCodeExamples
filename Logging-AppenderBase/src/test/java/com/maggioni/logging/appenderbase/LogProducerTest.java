@@ -1,26 +1,29 @@
 package com.maggioni.logging.appenderbase;
 
+import com.maggioni.logging.appenderbase.Launcher.LogInfoLauncher;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import java.util.LinkedList;
 import java.util.List;
-import org.junit.AfterClass;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.BeforeClass;
 import org.slf4j.LoggerFactory;
 
 public class LogProducerTest {
-    private static final InMemoryAppender appender = new InMemoryAppender();
+
+    private final InMemoryAppender appender = new InMemoryAppender();
     private static LogProducer instance = new LogProducer();
 
-    @BeforeClass
-    public static void setUp() {
+    @Before
+    public void setUp() {
         appender.start();
     }
 
-    @AfterClass
-    public static void tearDown() {
+    @After
+    public void tearDown() {
         System.out.println(appender.toString());
         appender.stop();
     }
@@ -28,11 +31,13 @@ public class LogProducerTest {
     @Test
     public void testLogInfo() {
         instance.logInfo();
+        Assert.assertEquals(2, appender.getLogSize());
     }
 
     @Test
     public void testLogDebug() {
         instance.logDebug();
+        Assert.assertEquals(1, appender.getLogSize());
     }
 
     private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
@@ -52,6 +57,10 @@ public class LogProducerTest {
         @Override
         public String toString() {
             return "InMemoryAppender{" + "log=" + log + '}';
+        }
+
+        public int getLogSize() {
+            return log.size();
         }
 
     }
