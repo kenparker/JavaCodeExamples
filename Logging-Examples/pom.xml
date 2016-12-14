@@ -12,5 +12,6 @@
         <module>../Logging-AppenderBase</module>
         <module>../Logger-AppenderBase-Threads</module>
         <module>../Logging</module>
+        <module>../Logging-AppenderBase-Threads-WaitForCompletion</module>
     </modules>
 </project>
