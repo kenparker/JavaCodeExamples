@@ -13,5 +13,6 @@
         <module>../Logger-AppenderBase-Threads</module>
         <module>../Logging</module>
         <module>../Logging-AppenderBase-Threads-WaitForCompletion</module>
+        <module>java.util.logging</module>
     </modules>
 </project>
