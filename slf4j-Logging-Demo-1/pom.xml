@@ -6,7 +6,7 @@
     <groupId>com.maggioni.logging</groupId>
     <artifactId>slf4j-Logging-Demo-1</artifactId>
     <version>1.0</version>
-    <name>slf4j Logging Demo</name>
+    <name>slf4j-Logging-Demo-1</name>
     <url>http://maven.apache.org</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
