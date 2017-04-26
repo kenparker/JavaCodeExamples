@@ -16,5 +16,7 @@
         <module>../slf4jconfig-javalogging</module>
         <module>../slf4jconfig-log4j</module>
         <module>../slf4jconfig-logback</module>
+        <module>../Apache-Commons-Logging-Demo-1</module>
+        <module>../slf4j-Logging-Demo-1</module>
     </modules>
 </project>
