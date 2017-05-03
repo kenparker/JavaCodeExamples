@@ -9,10 +9,11 @@ public class Soundcard {
     public Soundcard() {
         usb = Optional.empty();
     }
+    
     public Soundcard(Optional<USB> usb) {
         this.usb = usb;
     }
-
+    
     public Optional<USB> getUSB() {
         return usb;
     }

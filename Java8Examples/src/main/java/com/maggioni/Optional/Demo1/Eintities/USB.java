@@ -14,6 +14,10 @@ public class USB {
         this.version = version;
     }
 
+    public USB(String version) {
+        this.version = Optional.ofNullable(version);
+    }
+    
     public String getVersion() {
         return version.get();
     }
