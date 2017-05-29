@@ -5,38 +5,39 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class RejectingCertainValuesDemo1Test {
-    
+
     private USB usb;
-    
+    private String expectedValue ;
     private RejectingCertainValuesDemo1 rej = new RejectingCertainValuesDemo1();
-    
-    
+
+
     @Test
-    public void testUSBEqual20() {
-        usb = new USB("2.0");
-        String rejectCertainValues = rej.rejectCertainValuesOldWay(usb);
-        assertEquals(null, rejectCertainValues);
+    public void doing_nothing_because_USB_is_20_test() {
+        expectedValue = "2.0";
+        usb = new USB(expectedValue);
+        rej.rejectCertainValuesOldWay(usb);
+        assertEquals(expectedValue, usb.getVersion());
+        rej.rejectCertainValuesJava8(usb);
+        assertEquals(expectedValue, usb.getVersion());
     }
-    
+
     @Test
-    public void testUSBEqual20Java8() {
-        usb = new USB("2.0");
-        String rejectCertainValues = rej.rejectCertainValuesJava8(usb);
-        assertEquals(null, rejectCertainValues);
-    }
-    
-    @Test
-    public void testUSBEqual30() {
+    public void doing_something_because_USB_is_30_test() {
+        expectedValue = "125";
         usb = new USB("3.0");
-        String rejectCertainValues = rej.rejectCertainValuesOldWay(usb);
-        assertEquals("3.0", rejectCertainValues);
+        rej.rejectCertainValuesOldWay(usb);
+        assertEquals(expectedValue, usb.getVersion());
+        usb = new USB("3.0");
+        rej.rejectCertainValuesJava8(usb);
+        assertEquals(expectedValue, usb.getVersion());
     }
     
     @Test
-    public void testUSBEqualNull() {
+    public void doing_nothing_with_USB_equal_null_test() {
         usb = null;
-        String rejectCertainValues = rej.rejectCertainValuesOldWay(usb);
-        assertEquals(null, rejectCertainValues);
+        rej.rejectCertainValuesOldWay(usb);
+        assertEquals(null, usb);
+        rej.rejectCertainValuesJava8(usb);
+        assertEquals(null, usb);
     }
-    
 }
