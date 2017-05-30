@@ -4,9 +4,9 @@ import com.maggioni.Optional.Demo1.Eintities.Soundcard;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class CheckIfSoundcardIsPresentTest {
+public class DoSomethingWithSoundcardIfValueIsPresentTest {
         
-    CheckIfSoundcardIsPresent checkIfSoundcardIsPresent = new CheckIfSoundcardIsPresent();
+    DoSomethingWithSoundcardIfValueIsPresent checkIfSoundcardIsPresent = new DoSomethingWithSoundcardIfValueIsPresent();
     
     @Test
     public void testSoundcardIsEmpty() {
