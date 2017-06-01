@@ -13,16 +13,16 @@ public class DoSomethingWithCounterIfValueIsPresent {
     
     public void doSomethingOldWay() {
         if (counter != null) {
-            incrementCounter();
+            doSomething();
         }
     }
     
     public void doSomethingJava8() {
         Optional<Counter> counterOfNullable = Optional.ofNullable(counter);
-        counterOfNullable.ifPresent(a-> incrementCounter());
+        counterOfNullable.ifPresent(a-> doSomething());
     }
 
-    private void incrementCounter() {
+    private void doSomething() {
         counter.increment(1);
     }    
 }
