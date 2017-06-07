@@ -23,9 +23,11 @@ public class CounterClassic {
         this.currentValue = currentValue;
     }
 
-    public void increment(Integer value) {
-        if (currentValue != null && endValue != null && currentValue < (endValue - value)) {
-            currentValue+=value;
-        }
+    public void increment(Integer incrementValue) {
+        if (currentValue != null && endValue != null && incrementValue !=null // if-not-equal-null
+                && currentValue < (endValue - incrementValue)  // Rejecting-some-values
+                ) {
+            currentValue+=incrementValue; // do-something
+        } 
     }
 }

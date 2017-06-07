@@ -20,12 +20,16 @@ public class CounterJava8 {
         return currentValue.get();
     }
 
-    public void increment(Integer value) {
+    public void increment(Optional<Integer> incrementValue) {
         
         currentValue = currentValue
-                .filter(a -> a < endValue.get() - value)
-                .map(a -> Optional.of(a + value))
-                .orElse(currentValue);    
+                .filter(a -> incrementValue.isPresent()) // the only If-Not-Null pattern
+                .filter(currentValue -> currentValue < endValue.get() - incrementValue.get()) // Rejecting-some-values
+                .map(currentValue -> currentValue + incrementValue.get()) // do-something
+                
+                //.map(a -> Optional.of(a + incrementValue.get())) // do-something
+                //.orElse(currentValue)
+                ;    
     }
     
 }
