@@ -1,11 +1,11 @@
 package com.maggioni.Optional.Demo1.Eintities;
 
-public class CounterClassic {
+public class CounterJava7 {
 
     private Integer endValue;
     private Integer currentValue;
 
-    public CounterClassic() {
+    public CounterJava7() {
         this(10, 0);
     }
 
@@ -18,7 +18,10 @@ public class CounterClassic {
     }
 
     
-    public CounterClassic(Integer endValue, Integer currentValue) {
+    public CounterJava7(Integer endValue, Integer currentValue) {
+        if (endValue == null | currentValue == null) {
+            throw new IllegalArgumentException();
+        }
         this.endValue = endValue;
         this.currentValue = currentValue;
     }
