@@ -5,9 +5,8 @@ import com.maggioni.Optional.Demo1.Eintities.CounterJava8;
 import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import org.junit.Rule;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 public class CounterTest {
 
@@ -28,7 +27,7 @@ public class CounterTest {
         assertEquals(target, counterJava8.getCurrentValue());
     }
 
-    @Test
+    @Test  
     public void currentValue_plus_value_is_above_endValue_test() {
 
         final Integer incrementValue = 20;
@@ -42,7 +41,7 @@ public class CounterTest {
         assertEquals(target, counterJava8.getCurrentValue());
     }
 
-    @Test
+    @Test 
     public void currentValue_plus_value_is_below_endValue_test() {
 
         final Integer target = (Integer) 11;
@@ -56,7 +55,7 @@ public class CounterTest {
         assertEquals(target, counterJava8.getCurrentValue());
     }
 
-    @Test
+    @Test  
     public void currentValue_and_endValue_are_default_test() {
 
         final Integer target = (Integer) 5;
@@ -70,7 +69,7 @@ public class CounterTest {
         assertEquals(target, counterJava8.getCurrentValue());
     }
 
-    @Test
+    @Test 
     public void currentValue_and_incrementValue_is_Null_test() {
 
         final Integer target = (Integer) 15;
@@ -83,18 +82,6 @@ public class CounterTest {
         counterJava8.incrementOldPatternWithJava8(Optional.ofNullable(incrementValue));
         assertEquals(target, counterJava8.getCurrentValue());
     }
-
-    @Test
-    public void currentValue_is_null_classic_test() {
-
-        final Integer target = null;
-        counterJava7 = new CounterJava7(20, null);
-        counterJava7.increment(10);
-        assertEquals(target, counterJava7.getCurrentValue());
-    }
-
-    @Rule
-    public final ExpectedException exception = ExpectedException.none();
 
     @Test
     public void currentValue_is_null_test() {
