@@ -31,7 +31,7 @@ public class CounterJava8 {
                 ;
     }
     
-    public void incrementOldPatternWithJava8(Optional<Integer> incrementValue) {
+    public void increment(Optional<Integer> incrementValue) {
         
         if (currentValue.isPresent() && endValue.isPresent() && incrementValue.isPresent()
                 && currentValue.get() < (endValue.get() - incrementValue.get())) {

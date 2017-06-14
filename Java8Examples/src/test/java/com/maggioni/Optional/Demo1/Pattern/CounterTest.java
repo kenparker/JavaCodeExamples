@@ -10,76 +10,79 @@ import org.junit.Test;
 
 public class CounterTest {
 
-    CounterJava7 counterJava7;
-    CounterJava8 counterJava8;
+    private CounterJava7 counterJava7;
+    private CounterJava8 counterJava8;
+    
+    private Integer target;
+    private Integer incrementValue;
 
     @Test
     public void currentValue_is_one_increment_is_two_test() {
 
-        final Integer target = (Integer) 3;
-        final Integer incrementValue = 2;
+        target = (Integer) 3;
+        incrementValue = 2;
         counterJava7 = new CounterJava7(20, 1);
         counterJava7.increment(incrementValue);
         assertEquals(target, counterJava7.getCurrentValue());
 
         counterJava8 = new CounterJava8(20, 1);
-        counterJava8.incrementOldPatternWithJava8(Optional.of(incrementValue));
+        counterJava8.increment(Optional.of(incrementValue));
         assertEquals(target, counterJava8.getCurrentValue());
     }
 
     @Test  
-    public void currentValue_plus_value_is_above_endValue_test() {
+    public void currentValue_plus_incrementValue_is_above_endValue_test() {
 
-        final Integer incrementValue = 20;
-        final Integer target = (Integer) 1;
-        counterJava7 = new CounterJava7(incrementValue, 1);
-        counterJava7.increment(incrementValue);
-        assertEquals(target, counterJava7.getCurrentValue());
-
-        counterJava8 = new CounterJava8(incrementValue, 1);
-        counterJava8.incrementOldPatternWithJava8(Optional.of(incrementValue));
-        assertEquals(target, counterJava8.getCurrentValue());
-    }
-
-    @Test 
-    public void currentValue_plus_value_is_below_endValue_test() {
-
-        final Integer target = (Integer) 11;
-        final Integer incrementValue = 10;
+        target = (Integer) 1;
+        incrementValue = 20;
         counterJava7 = new CounterJava7(20, 1);
         counterJava7.increment(incrementValue);
         assertEquals(target, counterJava7.getCurrentValue());
 
         counterJava8 = new CounterJava8(20, 1);
-        counterJava8.incrementOldPatternWithJava8(Optional.of(incrementValue));
+        counterJava8.increment(Optional.of(incrementValue));
+        assertEquals(target, counterJava8.getCurrentValue());
+    }
+
+    @Test 
+    public void currentValue_plus_incrementValue_is_below_endValue_test() {
+
+        target = (Integer) 11;
+        incrementValue = 10;
+        counterJava7 = new CounterJava7(20, 1);
+        counterJava7.increment(incrementValue);
+        assertEquals(target, counterJava7.getCurrentValue());
+
+        counterJava8 = new CounterJava8(20, 1);
+        counterJava8.increment(Optional.of(incrementValue));
         assertEquals(target, counterJava8.getCurrentValue());
     }
 
     @Test  
     public void currentValue_and_endValue_are_default_test() {
 
-        final Integer target = (Integer) 5;
-        final Integer incrementValue = 5;
+        target = (Integer) 5;
+        incrementValue = 5;
         counterJava7 = new CounterJava7();
         counterJava7.increment(incrementValue);
         assertEquals(target, counterJava7.getCurrentValue());
 
         counterJava8 = new CounterJava8();
-        counterJava8.incrementOldPatternWithJava8(Optional.of(incrementValue));
+        counterJava8.increment(Optional.of(incrementValue));
         assertEquals(target, counterJava8.getCurrentValue());
     }
 
     @Test 
     public void currentValue_and_incrementValue_is_Null_test() {
 
-        final Integer target = (Integer) 15;
-        final Integer incrementValue = null;
+        target = (Integer) 15;
+        incrementValue = null;
         counterJava7 = new CounterJava7(10, 15);
         counterJava7.increment(incrementValue);
         assertEquals(target, counterJava7.getCurrentValue());
 
         counterJava8 = new CounterJava8(10, 15);
-        counterJava8.incrementOldPatternWithJava8(Optional.ofNullable(incrementValue));
+        counterJava8.increment(Optional.ofNullable(incrementValue));
         assertEquals(target, counterJava8.getCurrentValue());
     }
 
