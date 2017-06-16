@@ -27,10 +27,11 @@ public class CounterJava7 {
     }
 
     public void increment(Integer incrementValue) {
-        if (currentValue != null && endValue != null && incrementValue !=null // if-not-equal-null
+        if (currentValue != null && endValue != null 
+                && incrementValue !=null                        // if-not-equal-null
                 && currentValue < (endValue - incrementValue)  // Rejecting-some-values
                 ) {
-            currentValue+=incrementValue; // do-something
-        } 
+                    currentValue+=incrementValue;             // do-something
+                  } 
     }
 }

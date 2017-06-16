@@ -73,7 +73,7 @@ public class CounterTest {
     }
 
     @Test 
-    public void currentValue_and_incrementValue_is_Null_test() {
+    public void incrementValue_is_Null_test() {
 
         target = (Integer) 15;
         incrementValue = null;
