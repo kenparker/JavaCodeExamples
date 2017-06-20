@@ -4,11 +4,10 @@ import java.util.Optional;
 
 public class CounterJava8 {
     
-    private Optional<Integer> endValue;
-    private Optional<Integer> currentValue;
+    Optional<Integer> endValue = Optional.of(10);
+    Optional<Integer> currentValue = Optional.of(0);
     
     public CounterJava8() {
-        this(10, 0);
     }
     
     public CounterJava8(Integer endValue, Integer currentValue) {
@@ -16,21 +15,15 @@ public class CounterJava8 {
         this.currentValue = Optional.of(currentValue);
     }
     
+    public void setValues(Integer endValue, Integer currentValue) {
+        this.endValue = Optional.of(endValue);
+        this.currentValue = Optional.of(currentValue);
+    }
+    
     public Integer getCurrentValue() {
         return currentValue.get();
     }
-    
-    public void increment3(Optional<Integer> incrementValue) {
         
-        currentValue = currentValue
-                .filter(a -> incrementValue.isPresent()) // the only If-Not-Null pattern
-                .filter(currentValue -> currentValue < endValue.get() - incrementValue.get()) // Rejecting-some-values
-                .map(currentValue -> currentValue + incrementValue.get()) // do-something
-                //.map(a -> Optional.of(a + incrementValue.get())) // do-something
-                //.orElse(currentValue)
-                ;
-    }
-    
     public void increment(Optional<Integer> incrementValue) {
         
         if (currentValue.isPresent() && endValue.isPresent() && incrementValue.isPresent()
