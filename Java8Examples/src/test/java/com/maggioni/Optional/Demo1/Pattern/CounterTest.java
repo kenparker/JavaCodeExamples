@@ -14,7 +14,7 @@ import org.junit.Test;
 public class CounterTest {
 
     private CounterJava7 counterJava7;
-    private CounterJava8 counterJava8 = new CounterJava8AndIsPresent();
+    private CounterJava8 counterJava8 = new CounterJava8WithFilterAndMap();
     
     private Integer target;
     private Integer incrementValue;

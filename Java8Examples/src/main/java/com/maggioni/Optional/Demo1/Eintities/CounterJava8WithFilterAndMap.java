@@ -8,9 +8,9 @@ public class CounterJava8WithFilterAndMap extends CounterJava8{
     public void increment(Optional<Integer> incrementValue) {
         if (endValue.isPresent() && incrementValue.isPresent()) {
             currentValue = 
-                    currentValue.filter(a -> (a < (endValue.get() - incrementValue.get())))
+                    currentValue
+                    .filter(a -> (a < (endValue.get() - incrementValue.get())))
                     .map(a -> a + incrementValue.get());   
         }
-    }
-    
+    }   
 }
