@@ -1,6 +1,6 @@
 package com.maggioni.Optional.Demo1.Pattern;
 
-import com.maggioni.Optional.Demo1.Eintities.Counter;
+import com.maggioni.Optional.Demo1.Entities.Counter;
 import java.util.Optional;
 
 public class DoSomethingWithCounterIfValueIsPresent {

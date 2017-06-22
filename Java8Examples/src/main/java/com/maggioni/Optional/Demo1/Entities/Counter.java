@@ -1,4 +1,4 @@
-package com.maggioni.Optional.Demo1.Eintities;
+package com.maggioni.Optional.Demo1.Entities;
 
 import java.util.Optional;
 import java.util.function.Consumer;

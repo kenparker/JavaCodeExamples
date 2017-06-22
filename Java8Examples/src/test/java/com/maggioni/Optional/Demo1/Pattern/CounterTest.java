@@ -1,10 +1,10 @@
 package com.maggioni.Optional.Demo1.Pattern;
 
-import com.maggioni.Optional.Demo1.Eintities.CounterJava7;
-import com.maggioni.Optional.Demo1.Eintities.CounterJava8;
-import com.maggioni.Optional.Demo1.Eintities.CounterJava8AndIsPresent;
-import com.maggioni.Optional.Demo1.Eintities.CounterJava8WithFilterAndMap;
-import com.maggioni.Optional.Demo1.Eintities.CounterJava8WithFilterMapAndOrElse;
+import com.maggioni.Optional.Demo1.Entities.CounterJava7;
+import com.maggioni.Optional.Demo1.Entities.CounterJava8;
+import com.maggioni.Optional.Demo1.Entities.CounterJava8AndIsPresent;
+import com.maggioni.Optional.Demo1.Entities.CounterJava8WithFilterAndMap;
+import com.maggioni.Optional.Demo1.Entities.CounterJava8WithFilterMapAndOrElse;
 import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;

@@ -1,6 +1,6 @@
 package com.maggioni.Optional.Demo1.Pattern;
 
-import com.maggioni.Optional.Demo1.Eintities.USB;
+import com.maggioni.Optional.Demo1.Entities.USB;
 import java.util.Optional;
 
 public class RejectingCertainValuesDemo1 {

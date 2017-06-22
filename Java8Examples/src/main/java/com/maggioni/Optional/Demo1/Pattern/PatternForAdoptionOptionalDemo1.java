@@ -1,8 +1,8 @@
 package com.maggioni.Optional.Demo1.Pattern;
 
-import com.maggioni.Optional.Demo1.Eintities.Computer;
-import com.maggioni.Optional.Demo1.Eintities.Soundcard;
-import com.maggioni.Optional.Demo1.Eintities.USB;
+import com.maggioni.Optional.Demo1.Entities.Computer;
+import com.maggioni.Optional.Demo1.Entities.Soundcard;
+import com.maggioni.Optional.Demo1.Entities.USB;
 import java.util.Optional;
 
 public class PatternForAdoptionOptionalDemo1 {

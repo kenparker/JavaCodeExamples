@@ -1,7 +1,7 @@
 package com.maggioni.Optional.Demo1.Pattern;
 
-import com.maggioni.Optional.Demo1.Eintities.Car;
-import com.maggioni.Optional.Demo1.Eintities.Soundcard;
+import com.maggioni.Optional.Demo1.Entities.Car;
+import com.maggioni.Optional.Demo1.Entities.Soundcard;
 import java.util.Optional;
 
 public class DefaultValuesAndActionsDemo1 {

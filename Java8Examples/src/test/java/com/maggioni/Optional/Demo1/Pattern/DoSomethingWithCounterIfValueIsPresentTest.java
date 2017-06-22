@@ -1,6 +1,6 @@
 package com.maggioni.Optional.Demo1.Pattern;
 
-import com.maggioni.Optional.Demo1.Eintities.Counter;
+import com.maggioni.Optional.Demo1.Entities.Counter;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;

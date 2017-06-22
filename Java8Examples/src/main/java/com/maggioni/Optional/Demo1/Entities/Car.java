@@ -1,5 +1,5 @@
 
-package com.maggioni.Optional.Demo1.Eintities;
+package com.maggioni.Optional.Demo1.Entities;
 
 public class Car {
     
