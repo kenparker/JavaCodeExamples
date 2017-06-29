@@ -66,4 +66,16 @@ public class OptionalTest {
         Integer orElse = optional.orElse(555);
         assertEquals((Integer) 15, orElse);
     }
+    
+    @Test
+    public void result_is_not_empty_with_orElse_Test() {
+
+        Optional<Integer> currentValue = Optional.of(20);
+
+        Optional<Integer> result = currentValue.filter(a -> a < 30)
+                                            .map(a -> a+1);
+
+        Integer orElse = result.orElse(555);
+        assertEquals((Integer) 21, orElse);
+    }
 }
