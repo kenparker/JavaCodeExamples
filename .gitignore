@@ -1,5 +1,8 @@
 # Created by https://www.gitignore.io
 
+### IntelliJ
+*.iml
+
 ### NetBeans ###
 nbproject/private/
 build/
@@ -18,3 +21,14 @@ pom.xml.versionsBackup
 pom.xml.next
 release.properties
 
+/Java8Examples/nbproject/
+/.idea/
+/Log4jDemo1/.idea/
+/.classpath
+/.project
+/slf4jconfig-logback/.classpath
+/slf4jconfig-logback/.project
+/slf4jconfig-logback/.settings/
+/slf4jconfig-log4j/.settings/
+/slf4jconfig-log4j/.classpath
+/slf4jconfig-log4j/.project

@@ -26,7 +26,6 @@
         <module>OCPExamples</module>
         <module>Algorithms</module>
         <module>Logging-Examples</module>
-    <module>Apache-Commons-Logging-Demo-1</module>
   </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
