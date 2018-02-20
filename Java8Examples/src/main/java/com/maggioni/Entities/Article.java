@@ -2,20 +2,27 @@ package com.maggioni.Entities;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Article {
 
     private String ISBN;
     private String author;
-    private List<String> tags;
+    private Optional<List<String>> tags;
 
     public Article() {
+    }
+
+    public Article(String ISBN, String author) {
+        this.ISBN = ISBN;
+        this.author = author;
+        tags = Optional.empty();
     }
 
     public Article(String ISBN, String author, List<String> tags) {
         this.ISBN = ISBN;
         this.author = author;
-        this.tags = tags;
+        this.tags = Optional.ofNullable(tags);
     }
 
     public String getISBN() {
@@ -34,12 +41,12 @@ public class Article {
         this.author = author;
     }
 
-    public List<String> getTags() {
+    public Optional<List<String>> getTags() {
         return tags;
     }
 
     public void setTags(List<String> tags) {
-        this.tags = tags;
+        this.tags = Optional.of(tags);
     }
 
     @Override
