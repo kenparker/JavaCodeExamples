@@ -27,8 +27,9 @@ public class TestExceptionChild1 extends Parent1 {
     //3) Rule: If the superclass method declares an exception, 
     //        subclass overridden method can declare same, subclass exception or no exception but cannot declare parent exception.
     // in the example below Exception is parent of ArithmethicException
+    /*
     @Override
     void msg1() throws Exception {
         System.out.println("testexceptionchild");
-    }
+    }*/
 }

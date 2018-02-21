@@ -14,9 +14,10 @@ public class TestExceptionChild extends Parent{
         p.msg();
     }
     
-    // 1) Rule: If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception.
+    /* 1) Rule: If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception.
     @Override
     void msg()throws IOException { 
         System.out.println("testexceptionchild");
     }
+    */
 }

@@ -23,7 +23,9 @@ public class Retread extends Tire{
      void doStuff2() throws Exception{          // fine as overriding method throws same checked exception
          System.out.println(7/0);
      }
+     /*
      void doStuff3() throws MyExc1{             // compile error as overriding method throws checked exception not in overridden method
          System.out.println(7/0);
      }
+     */
 }
