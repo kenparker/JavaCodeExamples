@@ -1,14 +1,12 @@
 package com.maggioni.Entities;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class ArticlePredicate {
 
-    public static Predicate<Article> isAuthorEqual(String author) {
+    public  static Predicate<Article> isAuthorEqual(String author) {
         return article -> article.getAuthor().equals(author);
     }
 

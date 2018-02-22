@@ -59,7 +59,14 @@ public class Article {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(ISBN);
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "ISBN='" + ISBN + '\'' +
+                ", author='" + author + '\'' +
+                '}';
     }
 }

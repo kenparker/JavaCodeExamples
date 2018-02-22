@@ -19,11 +19,11 @@ public class ArticlePredicateTest extends ArticleTest{
     public void testSelectAuthor() {
         String authorToSearch = "Argento";
         Integer expected = 1;
-        List<Article> authors = ArticlePredicate.filterArticles(this.articles, ArticlePredicate.isAuthorEqual(authorToSearch));
+        List<Article> authors = ArticlePredicate.filterArticles(articles, ArticlePredicate.isAuthorEqual(authorToSearch));
         Integer size = authors.size();
         assertEquals(expected, size);
         Predicate<Article> predicate = ArticlePredicate.isAuthorEmpty().negate().and(ArticlePredicate.isAuthorEqual(authorToSearch));
-        authors = ArticlePredicate.filterArticles(this.articles, predicate);
+        authors = ArticlePredicate.filterArticles(articles, predicate);
         size = authors.size();
         assertEquals(expected,size);
     }
@@ -32,20 +32,20 @@ public class ArticlePredicateTest extends ArticleTest{
     public void testSelectAuthorNoAuthorsfound() {
         String authorToSearch = "Argento";
         Integer expected = 0;
-        List<Article> authors = ArticlePredicate.filterArticles(this.articles, ArticlePredicate.isAuthorEmpty().and(ArticlePredicate.isAuthorEqual(authorToSearch)));
+        List<Article> authors = ArticlePredicate.filterArticles(articles, ArticlePredicate.isAuthorEmpty().and(ArticlePredicate.isAuthorEqual(authorToSearch)));
         Integer size = authors.size();
         assertEquals(expected, size);
     }
 
     @Test
     public void testTags() {
-        List<Article> tags = ArticlePredicate.filterArticles(this.articles, ArticlePredicate.isTagEqual("Horror"));
+        List<Article> tags = ArticlePredicate.filterArticles(articles, ArticlePredicate.isTagEqual("Horror"));
         assertEquals((Integer) 3, (Integer) tags.size());
     }
 
     @Test
     public void testAuthorAndTag() {
-        List<Article> tags = ArticlePredicate.filterArticles(this.articles, ArticlePredicate.isAuthorAndTag("Zitty", "Horror"));
+        List<Article> tags = ArticlePredicate.filterArticles(articles, ArticlePredicate.isAuthorAndTag("Zitty", "Horror"));
         assertEquals((Integer) 1, (Integer) tags.size());
     }
 }
