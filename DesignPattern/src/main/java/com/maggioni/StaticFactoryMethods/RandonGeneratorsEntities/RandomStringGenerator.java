@@ -1,16 +1,16 @@
 package com.maggioni.StaticFactoryMethods.RandonGeneratorsEntities;
 
-import com.maggioni.StaticFactoryMethods.RandonGeneratorsEntities.RandomGenerator;
+import java.util.Optional;
 
 class RandomStringGenerator implements RandomGenerator<String> {
-    private final String prefix;
+    private final Optional<String> prefix;
 
     RandomStringGenerator(String prefix) {
-        this.prefix = prefix;
+        this.prefix = Optional.of(prefix);
     }
 
     @Override
-    public String next() {
-        return null;
+    public Optional<String> next() {
+        return Optional.of("String");
     }
 }

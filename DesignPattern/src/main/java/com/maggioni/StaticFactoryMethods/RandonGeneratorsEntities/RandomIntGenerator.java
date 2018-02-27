@@ -1,5 +1,7 @@
 package com.maggioni.StaticFactoryMethods.RandonGeneratorsEntities;
 
+import java.util.Optional;
+
 class RandomIntGenerator implements RandomGenerator<Integer> {
     private final Integer min;
     private final Integer max;
@@ -22,7 +24,7 @@ class RandomIntGenerator implements RandomGenerator<Integer> {
     }
 
     @Override
-    public Integer next() {
-        return null;
+    public Optional<Integer> next() {
+        return Optional.of(10);
     }
 }

@@ -1,7 +1,5 @@
 package com.maggioni.StaticFactoryMethods.RandonGeneratorsEntities;
 
-import com.maggioni.StaticFactoryMethods.RandonGeneratorsEntities.RandomGenerator;
-
 public class RandomGenerators {
     private RandomGenerators() {
     }
