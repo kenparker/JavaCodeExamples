@@ -1,6 +1,6 @@
-package com.maggioni.StaticFactoryMethods.Client;
+package com.maggioni.StaticFactoryMethods.JoshuaBloch.Client;
 
-import com.maggioni.StaticFactoryMethods.RandonGeneratorsEntities.RandomGenerator;
+import com.maggioni.StaticFactoryMethods.JoshuaBloch.RandonGeneratorsEntities.RandomGenerator;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

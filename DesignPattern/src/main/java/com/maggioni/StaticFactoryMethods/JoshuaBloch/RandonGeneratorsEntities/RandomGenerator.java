@@ -1,4 +1,4 @@
-package com.maggioni.StaticFactoryMethods.RandonGeneratorsEntities;
+package com.maggioni.StaticFactoryMethods.JoshuaBloch.RandonGeneratorsEntities;
 
 import java.util.Optional;
 

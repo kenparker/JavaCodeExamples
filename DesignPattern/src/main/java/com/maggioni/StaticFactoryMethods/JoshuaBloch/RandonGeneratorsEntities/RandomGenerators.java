@@ -1,4 +1,4 @@
-package com.maggioni.StaticFactoryMethods.RandonGeneratorsEntities;
+package com.maggioni.StaticFactoryMethods.JoshuaBloch.RandonGeneratorsEntities;
 
 public class RandomGenerators {
     private RandomGenerators() {
