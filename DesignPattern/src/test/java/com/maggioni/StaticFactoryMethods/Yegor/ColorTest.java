@@ -21,8 +21,18 @@ public class ColorTest {
     @Test
     public void testTomato() {
         Integer red = 255; Integer green = 99; Integer blue = 71;
-        ColorJ tomatoJ = ColorJ.makeFromPalette(red, green, blue);
-        RGBColor tomatoY = new RGBColor(red, green, blue);
-        assertEquals(tomatoJ.getHex(),((HexColor) tomatoY.getOrigin()).getHex());
+        ColorBase tomatoJ = ColorJ.makeFromPalette(red, green, blue);
+        ColorBase tomatoY = new RGBColor(red, green, 72);
+        System.out.println(tomatoJ.getHex());
+        assertEquals(tomatoJ.getHex(),tomatoY.getHex());
+    }
+
+    @Test
+    public void test() {
+        int red = 255; int green = 99; int blue = 71;
+        int i = red << 16 + green << 8 + blue;
+        System.out.println(i);
+        int hexValue1 = 0x100;
+        System.out.println(hexValue1);
     }
 }
