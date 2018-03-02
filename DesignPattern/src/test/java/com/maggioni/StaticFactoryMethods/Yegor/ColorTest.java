@@ -12,7 +12,7 @@ public class ColorTest {
 
     @Test
     public void testNewColor(){
-        Integer hex = 123;
+        int hex = 123;
         ColorJ colorJ = ColorJ.makeFromHex(hex);
         HexColor hexColor = new HexColor(hex);
         assertEquals(colorJ.getHex(),hexColor.getHex());
@@ -20,10 +20,9 @@ public class ColorTest {
 
     @Test
     public void testTomato() {
-        Integer red = 255; Integer green = 99; Integer blue = 71;
+        int red = 255; int green = 99; int blue = 71;
         ColorBase tomatoJ = ColorJ.makeFromPalette(red, green, blue);
-        ColorBase tomatoY = new RGBColor(red, green, 72);
-        System.out.println(tomatoJ.getHex());
+        ColorBase tomatoY = new RGBColor(red, green, blue);
         assertEquals(tomatoJ.getHex(),tomatoY.getHex());
     }
 

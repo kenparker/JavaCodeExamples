@@ -9,7 +9,7 @@ public class HexColor implements ColorBase {
         this.hex = hex;
     }
 
-    public Integer getHex() {
+    public int getHex() {
         return hex;
     }
 

@@ -5,8 +5,8 @@ import java.util.Objects;
 public class RGBColor implements ColorBase {
     private final ColorBase origin;
 
-    public RGBColor(Integer red, Integer green, Integer blue) {
-        origin = new HexColor(red << 16 + green << 8 + blue);
+    public RGBColor(int red, int green, int blue) {
+        origin = new HexColor(red*65536+green*256+blue);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class RGBColor implements ColorBase {
     }
 
     @Override
-    public Integer getHex() {
+    public int getHex() {
         return origin.getHex();
     }
 }

@@ -5,14 +5,14 @@ import com.maggioni.StaticFactoryMethods.Yegor.Entities.Yegor.*;
 import java.util.Objects;
 
 public class ColorJ implements ColorBase{
-    private final Integer hex;
+    private final int hex;
 
-    public ColorJ(Integer hex) {
+    public ColorJ(int hex) {
         this.hex = hex;
     }
 
-    public ColorJ(Integer red, Integer green, Integer blue) {
-        this(red << 16 + green << 8 + blue);
+    public ColorJ(int red, int green, int blue) {
+        this(red*65536+green*256+blue);
     }
 
     public ColorJ(String RGB) {
@@ -23,15 +23,15 @@ public class ColorJ implements ColorBase{
         return new ColorJ(RGB);
     }
 
-    public static ColorJ makeFromHex(Integer hex) {
+    public static ColorJ makeFromHex(int hex) {
         return new ColorJ(hex);
     }
 
-    public static ColorJ makeFromPalette(Integer red, Integer green, Integer blue) {
+    public static ColorJ makeFromPalette(int red, int green, int blue) {
         return new ColorJ(red,green,blue);
     }
 
-    public Integer getHex() {
+    public int getHex() {
         return hex;
     }
 
@@ -45,7 +45,6 @@ public class ColorJ implements ColorBase{
 
     @Override
     public int hashCode() {
-
         return Objects.hash(hex);
     }
 }
