@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.maggioni.Entities.ArticleFunction.filterAuthor;
 import static com.maggioni.Entities.ArticleFunction.sortByAuthor;
@@ -29,4 +30,9 @@ public class ArticleFunctionTest extends ArticleTest {
         assertEquals(authors.get(1),lastAuthor);
     }
 
+    @Test
+    public void testGetFirst() {
+        Optional<Article> result = ArticleFunction.getFirstArticle.apply(articles);
+        assertEquals(ISBNs.get(0),result.get().getISBN());
+    }
 }

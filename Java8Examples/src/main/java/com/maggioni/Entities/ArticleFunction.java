@@ -2,6 +2,7 @@ package com.maggioni.Entities;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -31,4 +32,9 @@ public class ArticleFunction {
     public static Function<List<Article>, List<Article>> sortByAuthor = articles -> articles.stream()
             .sorted(comparatorByAuthor)
             .collect(Collectors.toList());
+
+    static Function<List<Article>, Optional<Article>> first = articles -> articles.stream().findFirst();
+
+    public static Function<List<Article>, Optional<Article>> getFirstArticle = first.compose(sortByISBN);
+
 }
