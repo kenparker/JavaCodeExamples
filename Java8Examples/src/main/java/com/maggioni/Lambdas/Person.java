@@ -1,12 +1,13 @@
 package com.maggioni.Lambdas;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class Person implements PersonInterface {
 
-    private Integer age;
-    private String name;
-    private Gender gender;
+    private Optional<Integer> age;
+    private Optional<String> name;
+    private Optional<Gender> gender;
 
     private Person(Builder builder) {
         this.age = builder.age;
@@ -15,26 +16,26 @@ public class Person implements PersonInterface {
     }
 
     public static class Builder {
-        private Integer age;
-        private String name;
-        private Gender gender;
+        private Optional<Integer> age;
+        private Optional<String> name;
+        private Optional<Gender> gender;
 
         public Builder() {
         }
 
         public Builder age(Integer age) {
             if (Objects.isNull(age) || age == 0)  throw new IllegalArgumentException("Age ist empty");
-            this.age = age;
+            this.age = Optional.of(age);
             return this;
         }
 
         public Builder name(String name) {
-            this.name = name;
+            this.name = Optional.of(name);
             return this;
         }
 
         public Builder gender(Gender gender) {
-            this.gender = gender;
+            this.gender = Optional.of(gender);
             return this;
         }
 
@@ -44,17 +45,17 @@ public class Person implements PersonInterface {
     }
 
     @Override
-    public Integer getAge() {
+    public Optional<Integer> getAge() {
         return this.age;
     }
 
     @Override
-    public String getName() {
+    public Optional<String> getName() {
         return this.name;
     }
 
     @Override
-    public Gender getGender() {
+    public Optional<Gender> getGender() {
         return this.gender;
     }
 

@@ -4,10 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,12 +42,9 @@ public class PersonTest {
         persons.add(new Person.Builder().age(10).name("Angelo").gender(Gender.MALE).build());
         persons.add(new Person.Builder().age(66).name("Marco").gender(Gender.MALE).build());
 
-        Stream<Integer> stream = PersonFunctions.streamAges.apply(persons);
-        //List<Integer> integers = stream.collect(Collectors.toList());
-        //integers.forEach(System.out::println);
+        Stream<Optional<Integer>> stream = PersonFunctions.streamAges.apply(persons);
 
-        assertTrue(stream.allMatch(a -> a == 10 || a == 66));
-
+        assertTrue(stream.allMatch(age -> age.isPresent() && (age.get() == 10 || age.get() == 66)));
 
     }
 }
