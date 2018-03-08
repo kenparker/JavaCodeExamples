@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 public class PersonFunctions {
 
-    static Predicate<Optional<Integer>> ageOver65 = age -> age.isPresent() ? age.get() > 65 : false;
+    static Predicate<Optional<Integer>> ageOver65 = age -> age.filter(a -> a > 65).isPresent();
 
     static Function<List<? extends PersonInterface>, Stream<Optional<Integer>>> streamAges =(List<? extends PersonInterface> persons) -> persons.stream()
                                                                                                              .map(PersonInterface::getAge);

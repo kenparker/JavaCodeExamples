@@ -25,7 +25,7 @@ public class PersonTest {
         gender = Gender.MALE;
         person = new Person.Builder().age(age).name(name).gender(gender).build();
         assertFalse(Objects.isNull(person));
-        assertEquals(age,person.getAge());
+        assertEquals(Optional.of(age),person.getAge());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -44,7 +44,7 @@ public class PersonTest {
 
         Stream<Optional<Integer>> stream = PersonFunctions.streamAges.apply(persons);
 
-        assertTrue(stream.allMatch(age -> age.isPresent() && (age.get() == 10 || age.get() == 66)));
+        assertTrue(stream.allMatch(age -> age.filter(a -> (a == 10 || a == 66)).isPresent()));
 
     }
 }
