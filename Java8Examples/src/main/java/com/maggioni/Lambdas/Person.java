@@ -9,13 +9,13 @@ public class Person implements PersonInterface {
     private Optional<String> name;
     private Optional<Gender> gender;
 
-    private Person(Builder builder) {
+    public Person(Builder<?> builder) {
         this.age = builder.age;
         this.name = builder.name;
         this.gender = builder.gender;
     }
 
-    public static class Builder {
+    public static class Builder<B extends Builder<B>> {
         private Optional<Integer> age;
         private Optional<String> name;
         private Optional<Gender> gender;
@@ -23,20 +23,20 @@ public class Person implements PersonInterface {
         public Builder() {
         }
 
-        public Builder age(Integer age) {
+        public B age(Integer age) {
             if (Objects.isNull(age) || age == 0)  throw new IllegalArgumentException("Age ist empty");
             this.age = Optional.of(age);
-            return this;
+            return (B)this;
         }
 
-        public Builder name(String name) {
+        public B name(String name) {
             this.name = Optional.of(name);
-            return this;
+            return (B) this;
         }
 
-        public Builder gender(Gender gender) {
+        public B gender(Gender gender) {
             this.gender = Optional.of(gender);
-            return this;
+            return (B) this;
         }
 
         public Person build() {
