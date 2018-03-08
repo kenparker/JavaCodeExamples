@@ -1,8 +1,7 @@
-package com.maggioni.SubclassingBuilder;
+package SubclassingBuilder;
 
+import com.maggioni.SubclassingBuilder.GMDFacts;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class GMDFactsTest {
 
