@@ -14,7 +14,8 @@ public class PersonFunctions {
     static Function<List<? extends PersonInterface>, Stream<Optional<Integer>>> streamAges =(List<? extends PersonInterface> persons) -> persons.stream()
                                                                                                              .map(PersonInterface::getAge);
 
-    static Function<Stream<Optional<Integer>>, Boolean> isAgesOver65 = stream -> stream.anyMatch(ageOver65);
+    static Function<Stream<Optional<Integer>>, Boolean> isAnyAgesOver65 = stream -> stream.anyMatch(ageOver65);
+    static Function<Stream<Optional<Integer>>, Boolean> isAllAgesOver65 = stream -> stream.allMatch(ageOver65);
     static Function<Stream<Optional<Integer>>, List<Optional<Integer>>> allElementsToList = stream -> stream.collect(Collectors.toList());
 
 }

@@ -1,11 +1,9 @@
 package com.maggioni.Lambdas;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.maggioni.Lambdas.PersonInterface.*;
@@ -17,6 +15,14 @@ public class PersonTest {
     Integer age;
     String name;
     Gender gender;
+    List<Person> persons = new ArrayList<>();
+
+    @Before
+    public void setUp() throws Exception {
+        persons.add(new Person.Builder().age(10).name("Angelo").gender(Gender.MALE).build());
+        persons.add(new Person.Builder().age(66).name("Marco").gender(Gender.MALE).build());
+        persons.add(new Person.Builder().age(77).name("Paolo").gender(Gender.MALE).build());
+    }
 
     @Test
     public void testCreatePerson() {
@@ -38,13 +44,28 @@ public class PersonTest {
 
     @Test
     public void testStreamOfAges() {
-        List<Person> persons = new ArrayList<>();
-        persons.add(new Person.Builder().age(10).name("Angelo").gender(Gender.MALE).build());
-        persons.add(new Person.Builder().age(66).name("Marco").gender(Gender.MALE).build());
-
         Stream<Optional<Integer>> stream = PersonFunctions.streamAges.apply(persons);
+        assertTrue(stream.anyMatch(age -> age.filter(a -> (a == 10 || a == 66)).isPresent()));
+    }
 
-        assertTrue(stream.allMatch(age -> age.filter(a -> (a == 10 || a == 66)).isPresent()));
+    @Test
+    public void testAnyStreamOver65() {
+        Stream<Optional<Integer>> streamOfAges = PersonFunctions.streamAges.apply(persons);
+        Boolean isOver65 = PersonFunctions.isAnyAgesOver65.apply(streamOfAges);
+        assertTrue(isOver65);
+    }
 
+    @Test
+    public void testAllStreamOver65() {
+        Stream<Optional<Integer>> streamOfAges = PersonFunctions.streamAges.apply(persons);
+        Boolean isOver65 = PersonFunctions.isAllAgesOver65.apply(streamOfAges);
+        assertFalse(isOver65);
+    }
+
+    @Test
+    public void testStreamToList() {
+        Stream<Optional<Integer>> streamOfAges = PersonFunctions.streamAges.apply(persons);
+        List<Optional<Integer>> apply = PersonFunctions.allElementsToList.apply(streamOfAges);
+        assertTrue(apply.size()==3);
     }
 }

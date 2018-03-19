@@ -6,7 +6,7 @@ public class Employee extends Person {
 
     private Integer salary;
 
-    private Employee(Builder builder) {
+    public Employee(Builder builder) {
         super(builder);
         this.salary = builder.salary;
     }
