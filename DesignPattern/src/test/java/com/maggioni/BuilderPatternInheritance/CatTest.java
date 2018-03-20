@@ -49,11 +49,13 @@ public class CatTest {
                 .withNumberOfLegs(numberOfLegs25)
                 .build();
 
-        testCatCreationFields(siamese);
+        testCatCreationFields(cat);
 
-        siamese.builder()
+        siamese = (Siamese) siamese.builder()
+                .withBreed("original")
                 .withNumberOfLegs(numberOfLegs25)
                 .withName(ddd)
                 .build();
+        testCatCreationFields(cat);
     }
 }
