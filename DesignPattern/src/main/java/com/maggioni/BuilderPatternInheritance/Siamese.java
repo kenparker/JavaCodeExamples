@@ -10,12 +10,12 @@ public class Siamese extends Cat {
         return new SiameseBuilder();
     }
 
-    public static class SiameseBuilder extends Builder<SiameseBuilder> {
+    public static class SiameseBuilder extends CatBuilder {
 
         private String name;
 
         protected SiameseBuilder() {
-            super(SiameseBuilder.class);
+            super();
         }
 
         public SiameseBuilder withName(String name) {

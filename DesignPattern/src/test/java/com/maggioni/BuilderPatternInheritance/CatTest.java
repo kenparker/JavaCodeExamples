@@ -7,9 +7,10 @@ import static org.junit.Assert.*;
 public class CatTest {
 
     Cat cat;
+    Siamese siamese;
 
     @Test
-    public void name() {
+    public void catCreationWithCat() {
         cat.builder()
                 .withName("hdhhd")
                 .withNumberOfLegs(25)
@@ -19,7 +20,18 @@ public class CatTest {
                 .withNumberOfLegs(25)
                 .withName("ddd")
                 .build();
+    }
 
+    @Test
+    public void catCreationWithSiamese() {
+        siamese.builder()
+                .withName("hdhhd")
+                .withNumberOfLegs(25)
+                .build();
 
+        siamese.builder()
+                .withNumberOfLegs(25)
+                .withName("ddd")
+                .build();
     }
 }
