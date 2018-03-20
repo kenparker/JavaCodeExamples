@@ -37,4 +37,8 @@ public class Animal {
             super(AnimalBuilder.class);
         }
     }
+
+    public Integer getNumberOfLegs() {
+        return numberOfLegs;
+    }
 }

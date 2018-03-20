@@ -2,8 +2,11 @@ package com.maggioni.BuilderPatternInheritance;
 
 public class Siamese extends Cat {
 
-    public Siamese(Integer numberOfLegs,String name) {
+    private String breed;
+
+    public Siamese(Integer numberOfLegs, String name, String breed) {
         super(numberOfLegs, name);
+        this.breed = breed;
     }
 
     public static SiameseBuilder builder() {
@@ -12,22 +15,27 @@ public class Siamese extends Cat {
 
     public static class SiameseBuilder extends CatBuilder {
 
-        private String name;
+        private String breed;
 
         protected SiameseBuilder() {
             super();
         }
 
-        public SiameseBuilder withName(String name) {
-            this.name = name;
+        public SiameseBuilder withBreed(String breed) {
+            this.breed = breed;
             return this;
         }
 
         public Siamese build() {
             return new Siamese(
                     this.numberOfLegs,
-                    this.name
+                    this.name,
+                    this.breed
             );
         }
+    }
+
+    public String getBreed() {
+        return breed;
     }
 }

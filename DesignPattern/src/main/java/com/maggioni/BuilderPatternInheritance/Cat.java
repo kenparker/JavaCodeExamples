@@ -2,11 +2,11 @@ package com.maggioni.BuilderPatternInheritance;
 
 public class Cat extends Animal {
 
-     private final String name;
+    private final String name;
 
     public Cat(
-             Integer numberOfLegs,
-             String name) {
+            Integer numberOfLegs,
+            String name) {
         super(numberOfLegs);
         this.name = name;
     }
@@ -17,7 +17,7 @@ public class Cat extends Animal {
 
     public static class CatBuilder extends Builder<CatBuilder> {
 
-        private String name;
+        protected String name;
 
         public CatBuilder() {
             super(CatBuilder.class);
@@ -34,6 +34,10 @@ public class Cat extends Animal {
                     this.name
             );
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }
 

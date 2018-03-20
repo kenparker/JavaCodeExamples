@@ -6,32 +6,54 @@ import static org.junit.Assert.*;
 
 public class CatTest {
 
-    Cat cat;
-    Siamese siamese;
+    private final Integer numberOfLegs25 = 25;
+    private final String ddd = "ddd";
+    private final String hdhhd = "hdhhd";
+
+    private Cat cat;
+    private Siamese siamese;
+    private Animal animal;
 
     @Test
-    public void catCreationWithCat() {
-        cat.builder()
-                .withName("hdhhd")
-                .withNumberOfLegs(25)
+    public void catCreationWithCatSequence1() {
+        cat = cat.builder()
+                .withName(hdhhd)
+                .withNumberOfLegs(numberOfLegs25)
                 .build();
 
-        cat.builder()
-                .withNumberOfLegs(25)
-                .withName("ddd")
+        testCatCreationFields(cat);
+    }
+
+    @Test
+    public void catCreationWithCatSequence2() {
+        cat = cat.builder()
+                .withNumberOfLegs(numberOfLegs25)
+                .withName(hdhhd)
                 .build();
+
+        testCatCreationFields(cat);
+    }
+
+    private void testCatCreationFields(Cat cat) {
+        assertEquals(hdhhd, cat.getName());
+        assertEquals(numberOfLegs25, cat.getNumberOfLegs());
+
+        animal = cat;
+        assertEquals(numberOfLegs25, animal.getNumberOfLegs());
     }
 
     @Test
     public void catCreationWithSiamese() {
-        siamese.builder()
-                .withName("hdhhd")
-                .withNumberOfLegs(25)
+        cat  = siamese.builder()
+                .withName(hdhhd)
+                .withNumberOfLegs(numberOfLegs25)
                 .build();
 
+        testCatCreationFields(siamese);
+
         siamese.builder()
-                .withNumberOfLegs(25)
-                .withName("ddd")
+                .withNumberOfLegs(numberOfLegs25)
+                .withName(ddd)
                 .build();
     }
 }
