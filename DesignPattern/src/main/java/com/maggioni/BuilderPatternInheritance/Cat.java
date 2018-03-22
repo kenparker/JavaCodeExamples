@@ -15,7 +15,7 @@ public class Cat extends Animal {
         return new CatBuilder();
     }
 
-    public static class CatBuilder extends Builder<CatBuilder> {
+    public static class CatBuilder<T extends CatBuilder> extends Builder<CatBuilder> {
 
         protected String name;
 
@@ -23,7 +23,7 @@ public class Cat extends Animal {
             super(CatBuilder.class);
         }
 
-        public CatBuilder withName(String name) {
+        public T withName(String name) {
             this.name = name;
             return this;
         }
