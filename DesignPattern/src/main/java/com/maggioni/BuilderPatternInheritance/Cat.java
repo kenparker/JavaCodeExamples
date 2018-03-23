@@ -25,7 +25,7 @@ public class Cat extends Animal {
 
         public T withName(String name) {
             this.name = name;
-            return this;
+            return (T) this;
         }
 
         public Cat build() {
