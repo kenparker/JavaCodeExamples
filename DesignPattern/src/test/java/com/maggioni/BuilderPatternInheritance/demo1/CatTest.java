@@ -1,4 +1,4 @@
-package com.maggioni.BuilderPatternInheritance;
+package com.maggioni.BuilderPatternInheritance.demo1;
 
 import com.maggioni.BuilderPatternInheritance.demo1.Animal;
 import com.maggioni.BuilderPatternInheritance.demo1.Cat;
