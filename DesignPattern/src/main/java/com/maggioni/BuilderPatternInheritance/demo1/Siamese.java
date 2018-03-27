@@ -13,7 +13,7 @@ public class Siamese extends Cat {
         return new SiameseBuilder();
     }
 
-    public static class SiameseBuilder extends CatBuilder {
+    public static class SiameseBuilder extends CatBuilder<SiameseBuilder> {
 
         private String breed;
 
