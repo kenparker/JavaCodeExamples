@@ -1,5 +1,8 @@
 package com.maggioni.BuilderPatternInheritance;
 
+import com.maggioni.BuilderPatternInheritance.demo1.Animal;
+import com.maggioni.BuilderPatternInheritance.demo1.Cat;
+import com.maggioni.BuilderPatternInheritance.demo1.Siamese;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

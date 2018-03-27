@@ -1,4 +1,4 @@
-package com.maggioni.BuilderPatternInheritance;
+package com.maggioni.BuilderPatternInheritance.demo1;
 
 public class Siamese extends Cat {
 
