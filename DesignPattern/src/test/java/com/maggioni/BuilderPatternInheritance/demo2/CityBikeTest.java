@@ -10,7 +10,8 @@ public class CityBikeTest {
 
     @Test
     public void testCityBike() {
-         cityBike = new CityBike.CityBikeBuilder()
+
+        cityBike = new CityBike.CityBikeBuilder()
                 .withModel("my")
                 .withSpeed(15)
                 .withNumberOfWheels(2)
@@ -31,6 +32,11 @@ public class CityBikeTest {
 
     @Test
     public void testBicycle() {
+        vehicle = Bicycle.builder()
+                .withNumberOfWheels(2)
+                .withSpeed(15)
+                .build();
+
         bicycle = new Bicycle.BicycleBuilder()
                 .withNumberOfWheels(2)
                 .withSpeed(25)
