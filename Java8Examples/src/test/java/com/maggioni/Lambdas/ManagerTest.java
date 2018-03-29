@@ -18,6 +18,7 @@ public class ManagerTest {
         Manager.builder().age(25).build();
         Manager.Builder<Manager, ?> builder = Manager.builder();
         manager = builder.age(22).build();
+        //Manager build1 = Manager.builder().age(22).build();
         Employee build = Employee.builder().age(25).build();
     }
 }
