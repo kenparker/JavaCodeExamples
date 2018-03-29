@@ -6,6 +6,10 @@ public class Manager extends Employee {
         super(builder);
     }
 
+    public static Manager.Builder builder() {
+        return new ManagerBuilder();
+    }
+
     public abstract static class Builder<T extends Employee, B extends Builder<T,B>> extends Employee.Builder<T,B>{
 
         protected Builder() {

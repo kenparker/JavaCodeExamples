@@ -14,6 +14,10 @@ public class Employee extends Person {
         this.salary = builder.salary;
     }
 
+    public static Employee.Builder<Employee, EmployeeBuilder> builder() {
+        return new EmployeeBuilder();
+    }
+
     public abstract static class Builder<T extends Person, B extends Builder<T,B>> extends Person.Builder<T,B>{
 
         private Integer salary;
