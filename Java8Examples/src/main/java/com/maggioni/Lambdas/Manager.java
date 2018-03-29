@@ -2,17 +2,27 @@ package com.maggioni.Lambdas;
 
 public class Manager extends Employee {
 
-    private Manager(Builder builder) {
+    private Manager(Builder<?,?> builder) {
         super(builder);
     }
 
-    public static class Builder extends Employee.Builder{
+    public abstract static class Builder<T extends Employee, B extends Builder<T,B>> extends Employee.Builder<T,B>{
 
-        public Builder() {
+        protected Builder() {
+        }
+    }
+
+    public static class ManagerBuilder extends Builder<Manager,ManagerBuilder> {
+
+        @Override
+        protected ManagerBuilder self() {
+            return this;
         }
 
+        @Override
         public Manager build() {
             return new Manager(this);
         }
     }
+
 }

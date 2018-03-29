@@ -9,23 +9,32 @@ public class Employee extends Person {
 
     private Integer salary;
 
-    public Employee(Builder builder) {
+    public Employee(Builder<?,?> builder) {
         super(builder);
         this.salary = builder.salary;
     }
 
-    public static class Builder extends Person.Builder<Builder>{
+    public abstract static class Builder<T extends Person, B extends Builder<T,B>> extends Person.Builder<T,B>{
 
         private Integer salary;
 
-        public Builder() {
+        protected Builder() {
         }
 
-        public Builder salary(Integer salary){
+        public B salary(Integer salary){
             this.salary = salary;
+            return self();
+        }
+    }
+
+    public static class EmployeeBuilder extends Builder<Employee, EmployeeBuilder> {
+
+        @Override
+        protected EmployeeBuilder self() {
             return this;
         }
 
+        @Override
         public Employee build() {
             return new Employee(this);
         }

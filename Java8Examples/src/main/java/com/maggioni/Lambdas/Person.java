@@ -9,36 +9,49 @@ public class Person implements PersonInterface {
     private Optional<String> name;
     private Optional<Gender> gender;
 
-    public Person(Builder<?> builder) {
+    protected Person(Builder<?,?> builder) {
         this.age = builder.age;
         this.name = builder.name;
         this.gender = builder.gender;
     }
 
-    public static class Builder<B extends Builder<B>> {
+    public abstract static class Builder<T extends Person, B extends Builder<T,B>> {
         private Optional<Integer> age;
         private Optional<String> name;
         private Optional<Gender> gender;
 
-        public Builder() {
+        protected Builder() {
         }
 
         public B age(Integer age) {
             if (Objects.isNull(age) || age == 0)  throw new IllegalArgumentException("Age ist empty");
             this.age = Optional.of(age);
-            return (B)this;
+            return self();
         }
+
 
         public B name(String name) {
             this.name = Optional.of(name);
-            return (B) this;
+            return self();
         }
 
         public B gender(Gender gender) {
             this.gender = Optional.of(gender);
-            return (B) this;
+            return self();
         }
 
+        protected abstract B self();
+        public abstract T build();
+    }
+
+    public static class PersonBuilder extends Builder<Person, PersonBuilder>{
+
+        @Override
+        protected PersonBuilder self() {
+            return this;
+        }
+
+        @Override
         public Person build() {
             return new Person(this);
         }

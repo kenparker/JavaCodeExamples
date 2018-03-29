@@ -10,6 +10,9 @@ public class ManagerTest {
 
     @Test
     public void testcreate() {
-        manager = new Manager.Builder().age(25).build();
+        manager = new Manager.ManagerBuilder().age(25).build();
+        manager = new Manager.ManagerBuilder().age(25).salary(2222).build();
+        manager = new Manager.ManagerBuilder().salary(15).build();
+        manager = new Manager.ManagerBuilder().salary(15).name("dd").build();
     }
 }

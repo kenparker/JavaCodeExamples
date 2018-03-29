@@ -6,9 +6,10 @@ import static org.junit.Assert.*;
 
 public class EmployeeTest {
 
+    Employee employee;
     @Test
-    public void name() {
-        new Employee.Builder().salary(1525).name("Angelo").age(14).gender(PersonInterface.Gender.MALE).build();
-        new Employee.Builder().name("Angelo").age(14).gender(PersonInterface.Gender.MALE).salary(100).build();
+    public void testCreate() {
+        employee = new Employee.EmployeeBuilder().salary(1525).name("Angelo").age(14).gender(PersonInterface.Gender.MALE).build();
+        employee = new Employee.EmployeeBuilder().name("Angelo").age(14).gender(PersonInterface.Gender.MALE).salary(100).build();
     }
 }

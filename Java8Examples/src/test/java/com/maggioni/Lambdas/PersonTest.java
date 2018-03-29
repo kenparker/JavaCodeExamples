@@ -19,9 +19,9 @@ public class PersonTest {
 
     @Before
     public void setUp() throws Exception {
-        persons.add(new Person.Builder().age(10).name("Angelo").gender(Gender.MALE).build());
-        persons.add(new Person.Builder().age(66).name("Marco").gender(Gender.MALE).build());
-        persons.add(new Person.Builder().age(77).name("Paolo").gender(Gender.MALE).build());
+        persons.add(new Person.PersonBuilder().age(10).name("Angelo").gender(Gender.MALE).build());
+        persons.add(new Person.PersonBuilder().age(66).name("Marco").gender(Gender.MALE).build());
+        persons.add(new Person.PersonBuilder().age(77).name("Paolo").gender(Gender.MALE).build());
     }
 
     @Test
@@ -29,7 +29,7 @@ public class PersonTest {
         age = 25;
         name = "Angelo";
         gender = Gender.MALE;
-        person = new Person.Builder().age(age).name(name).gender(gender).build();
+        person = new Person.PersonBuilder().age(age).name(name).gender(gender).build();
         assertFalse(Objects.isNull(person));
         assertEquals(Optional.of(age),person.getAge());
     }
@@ -39,7 +39,7 @@ public class PersonTest {
         age = null;
         name = "Angelo";
         gender = Gender.MALE;
-        person = new Person.Builder().age(age).name(name).gender(gender).build();
+        person = new Person.PersonBuilder().age(age).name(name).gender(gender).build();
     }
 
     @Test
