@@ -15,6 +15,7 @@ public class ManagerTest {
         manager = new Manager.ManagerBuilder().salary(15).build();
         manager = new Manager.ManagerBuilder().salary(15).name("dd").build();
 
-        Manager.builder().age(25).build();
+        Person build1 = Manager.builder().age(25).build();
+        Employee build = Employee.builder().age(25).build();
     }
 }

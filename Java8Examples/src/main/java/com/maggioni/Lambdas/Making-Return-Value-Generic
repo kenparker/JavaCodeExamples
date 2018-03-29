@@ -1,0 +1,46 @@
+method return type
+
+I have the following Manager Class with the builder() method:
+
+public class Manager extends Employee {
+
+    public static Manager.Builder builder() {
+        return new ManagerBuilder();
+    }
+
+    public abstract static class Builder<T extends Employee, B extends Builder<T,B>> extends Employee.Builder<T,B>{
+    }
+
+    public static class ManagerBuilder extends Builder<Manager,ManagerBuilder> {
+        ...
+    }
+}
+
+unfortunatelly trying to build an Object with Manager.builder().age(25).build(); return a Person and not a Manager as I need.
+How should I change the Manager.builder() return type to return a Manager and at the same time not clashing with the Employee.builder() Method signature.
+
+
+
+The code Employee.builder().age(25).build(); returns Employee, which is fine.
+
+
+The Employee Class is looking like this:
+
+public class Employee extends Person {
+
+    public static Employee.Builder<Employee, EmployeeBuilder> builder() {
+        return new EmployeeBuilder();
+    }
+
+    public abstract static class Builder<T extends Person, B extends Builder<T,B>> extends Person.Builder<T,B>{
+
+    }
+
+    public static class EmployeeBuilder extends Builder<Employee, EmployeeBuilder> {
+
+...
+    }
+
+}
+
+
