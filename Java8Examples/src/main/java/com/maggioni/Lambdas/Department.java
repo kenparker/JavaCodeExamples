@@ -31,4 +31,14 @@ public class Department {
     public Set<Employee> getEmployees() {
         return employees;
     }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "kind=" + kind +
+                ", name='" + name + '\'' +
+                ", manager=" + manager +
+                ", employees=" + employees +
+                '}';
+    }
 }

@@ -3,11 +3,11 @@ package com.maggioni.Lambdas;
 import org.junit.Test;
 
 import static com.maggioni.Lambdas.Manager.*;
-import static org.junit.Assert.*;
 
 public class DepartmentBuilderTest {
 
-    Department department;
+    Department departmentJava;
+    Department departmentScala;
 
     Employee marco = Employee.builder()
                         .age(20)
@@ -54,15 +54,26 @@ public class DepartmentBuilderTest {
     }
 
     @Test
-    public void createDepartment() {
-        department = new DepartmentBuilder()
+    public void createDepartmentJavaDev() {
+        departmentJava = new DepartmentBuilder()
                 .setKind(Department.Kind.DEVELOPMENT)
                 .addEmployee(marco)
                 .addEmployee(sandro)
                 .setName("Java Development")
                 .setManager(createManagerPeter())
                 .build();
+        System.out.println(departmentJava);
+    }
 
+    @Test
+    public void createDepartmentScalaDev() {
+        departmentScala = new DepartmentBuilder()
+                .setKind(Department.Kind.DEVELOPMENT)
+                .addEmployee(giovanni)
+                .setName("Scala Development")
+                .setManager(createManagerPeter())
+                .build();
+        System.out.println(departmentScala);
     }
 
 

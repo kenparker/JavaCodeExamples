@@ -1,9 +1,10 @@
 package com.maggioni.Lambdas;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class CorporationBuilder {
-    private Set<Department> departments;
+    private Set<Department> departments = new HashSet<>();
 
     public CorporationBuilder setDepartments(Set<Department> departments) {
         this.departments = departments;
@@ -17,5 +18,12 @@ public class CorporationBuilder {
 
     public Corporation build() {
         return new Corporation(departments);
+    }
+
+    @Override
+    public String toString() {
+        return "CorporationBuilder{" +
+                "departments=" + departments +
+                '}';
     }
 }
