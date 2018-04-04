@@ -6,7 +6,7 @@ public class Manager extends Employee {
         super(builder);
     }
 
-    public static ManagerBuilder managerBuilder() {
+    public static Manager.Builder builder() {
         return new ManagerBuilder();
     }
 

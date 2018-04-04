@@ -14,7 +14,7 @@ public class Employee extends Person {
         this.salary = builder.salary;
     }
 
-    public static EmployeeBuilder employeeBuilder() {
+    public static Employee.Builder<Employee, EmployeeBuilder> builder() {
         return new EmployeeBuilder();
     }
 
