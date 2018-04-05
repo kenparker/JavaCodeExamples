@@ -86,4 +86,13 @@ public class Person implements PersonInterface {
     public int hashCode() {
         return Objects.hash(getAge(), getName(), getGender());
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "age=" + age +
+                ", name=" + name +
+                ", gender=" + gender +
+                '}';
+    }
 }

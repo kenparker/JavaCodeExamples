@@ -62,7 +62,7 @@ public class DepartmentBuilderTest {
                 .setName("Java Development")
                 .setManager(createManagerPeter())
                 .build();
-        System.out.println(departmentJava);
+
     }
 
     @Test
@@ -71,9 +71,9 @@ public class DepartmentBuilderTest {
                 .setKind(Department.Kind.DEVELOPMENT)
                 .addEmployee(giovanni)
                 .setName("Scala Development")
-                .setManager(createManagerPeter())
+                .setManager(createManagerSusi())
                 .build();
-        System.out.println(departmentScala);
+
     }
 
 
