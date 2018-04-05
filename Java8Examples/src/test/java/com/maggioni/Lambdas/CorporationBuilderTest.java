@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Set;
 
 public class CorporationBuilderTest extends DepartmentBuilderTest{
 
@@ -20,7 +21,7 @@ public class CorporationBuilderTest extends DepartmentBuilderTest{
     }
 
     @Test
-    public void createCorporation() {
+    public void testCorporation() {
         Manager[] managers = corporation.getDepartments().stream()
                 .filter(department -> department.getEmployees().stream()
                         .map(Employee::getAge)
@@ -29,8 +30,6 @@ public class CorporationBuilderTest extends DepartmentBuilderTest{
                 .toArray(Manager[]::new);
         Arrays.stream(managers)
                 .forEach(System.out::println);
-
-
     }
 
 
