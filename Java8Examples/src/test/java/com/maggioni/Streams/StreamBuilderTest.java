@@ -1,13 +1,10 @@
 package com.maggioni.Streams;
 
 import com.maggioni.Lambdas.Employee;
-import com.maggioni.Lambdas.EmployeeTest;
 import com.maggioni.Lambdas.PersonInterface;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
@@ -18,20 +15,13 @@ public class StreamBuilderTest {
     private Employee employeePaolo;
     private Employee employeeMarco;
 
-    private Supplier<Employee> employeeSupplier = () -> Employee.builder()
-                                                        .age(22)
-                                                        .gender(PersonInterface.Gender.FEMALE)
-                                                        .name("Ella")
-                                                        .build();
+    private Supplier<Employee> employeeSupplier;
+    private Supplier<Stream<Employee>> streamIterateSupplier;
 
-    private UnaryOperator<Employee> employeeUnaryOperator = employee -> Employee.builder()
-                                                                        .age(employee.getAge().get() + 2)
-                                                                        .gender(PersonInterface.Gender.FEMALE)
-                                                                        .name("Ella " + employee.getAge().get())
-                                                                        .build();
+    private UnaryOperator<Employee> employeeUnaryOperator;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         employeeMarco = Employee.builder()
                 .salary(2500)
                 .age(25)
@@ -44,7 +34,19 @@ public class StreamBuilderTest {
                 .gender(PersonInterface.Gender.MALE)
                 .age(11)
                 .build();
+        employeeSupplier = () -> Employee.builder()
+                .age(22)
+                .gender(PersonInterface.Gender.FEMALE)
+                .name("Ella")
+                .build();
+        employeeUnaryOperator = employee -> Employee.builder()
+                .age(employee.getAge().get() + 2)
+                .gender(PersonInterface.Gender.FEMALE)
+                .name("Ella " + employee.getAge().get())
+                .build();
+        streamIterateSupplier = () -> Stream.iterate(employeeMarco, employeeUnaryOperator).limit(20);
     }
+
 
     @Test
     public void testBuild() {
@@ -52,28 +54,44 @@ public class StreamBuilderTest {
                 .add(employeePaolo)
                 .add(employeeMarco)
                 .build();
-        assertEquals(2,stream.count());
+        assertEquals(2, stream.count());
     }
 
     @Test
     public void testGenerate() {
         Stream<Employee> limit = Stream.generate(employeeSupplier).limit(20);
-        assertEquals(20,limit.count());
+        assertEquals(20, limit.count());
     }
 
     @Test
-    public void testIterate() {
-        Stream<Employee> streamIterated = Stream.iterate(employeeMarco, employeeUnaryOperator).limit(20);
-         Boolean isMarco = streamIterated.findFirst().filter(employee ->
-                employee.getName().filter(name -> name.equalsIgnoreCase("Marco"))
-                        .isPresent())
-                        .isPresent();
-        assertTrue(isMarco);
-        streamIterated.forEach(System.out::println);
+    public void testStreamIterate20Elements() {
+        Stream<Employee> streamIterated = streamIterateSupplier.get();
+        long countOfStreamElements = streamIterateSupplier.get().count();
+        assertEquals(20,countOfStreamElements);
+    }
+
+    @Test
+    public void testStreamIterateFirstAndFollowingElements() {
+
+        Boolean isFirstMarco = streamIterateSupplier.get().findFirst().filter(employee ->
+                                                                        employee.getName().filter(name -> name.equalsIgnoreCase("Marco"))
+                                                                                            .isPresent())
+                                                                      .isPresent();
+
+        boolean isOthersElla = streamIterateSupplier.get()
+                            .skip(1)
+                            .allMatch(employee -> employee.getName()
+                                                            .filter(name -> name.startsWith("Ella"))
+                                                            .isPresent());
+
+        assertTrue(isFirstMarco);
+        assertTrue(isOthersElla);
+
     }
 
     /*
     https://stackoverflow.com/questions/36255007/is-there-any-way-to-reuse-a-stream-in-java-8
     https://www.mkyong.com/java8/java-stream-has-already-been-operated-upon-or-closed/
+    https://gist.github.com/stavalfi/969539b245fd71f18ecd14f48eed2a5d
      */
 }
