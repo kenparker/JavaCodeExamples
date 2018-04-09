@@ -9,6 +9,10 @@ public class Employee extends Person {
 
     private Integer salary;
 
+    public Integer getSalary() {
+        return salary;
+    }
+
     public Employee(Builder<?,?> builder) {
         super(builder);
         this.salary = builder.salary;

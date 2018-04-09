@@ -5,6 +5,7 @@ import com.maggioni.Lambdas.PersonInterface;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
@@ -12,13 +13,13 @@ import java.util.stream.Stream;
 import static org.junit.Assert.*;
 
 public class StreamBuilderTest {
-    private Employee employeePaolo;
-    private Employee employeeMarco;
+    protected Employee employeePaolo;
+    protected Employee employeeMarco;
 
-    private Supplier<Employee> employeeSupplier;
-    private Supplier<Stream<Employee>> streamIterateSupplier;
+    protected Supplier<Employee> employeeSupplier;
+    protected Supplier<Stream<Employee>> streamIterateSupplier;
 
-    private UnaryOperator<Employee> employeeUnaryOperator;
+    protected UnaryOperator<Employee> employeeUnaryOperator;
 
     @Before
     public void setUp() {
@@ -40,6 +41,7 @@ public class StreamBuilderTest {
                 .name("Ella")
                 .build();
         employeeUnaryOperator = employee -> Employee.builder()
+                .salary(employee.getSalary() + 1000)
                 .age(employee.getAge().get() + 2)
                 .gender(PersonInterface.Gender.FEMALE)
                 .name("Ella " + employee.getAge().get())
@@ -88,6 +90,7 @@ public class StreamBuilderTest {
         assertTrue(isOthersElla);
 
     }
+
 
     /*
     https://stackoverflow.com/questions/36255007/is-there-any-way-to-reuse-a-stream-in-java-8
