@@ -5,7 +5,6 @@ import com.maggioni.Lambdas.PersonInterface;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
@@ -17,7 +16,7 @@ public class StreamBuilderTest {
     protected Employee employeeMarco;
 
     protected Supplier<Employee> employeeSupplier;
-    protected Supplier<Stream<Employee>> streamIterateSupplier;
+    protected Supplier<Stream<Employee>> employeeStreamIterateSupplier;
 
     protected UnaryOperator<Employee> employeeUnaryOperator;
 
@@ -46,7 +45,7 @@ public class StreamBuilderTest {
                 .gender(PersonInterface.Gender.FEMALE)
                 .name("Ella " + employee.getAge().get())
                 .build();
-        streamIterateSupplier = () -> Stream.iterate(employeeMarco, employeeUnaryOperator).limit(20);
+        employeeStreamIterateSupplier = () -> Stream.iterate(employeeMarco, employeeUnaryOperator).limit(20);
     }
 
 
@@ -67,20 +66,20 @@ public class StreamBuilderTest {
 
     @Test
     public void testStreamIterate20Elements() {
-        Stream<Employee> streamIterated = streamIterateSupplier.get();
-        long countOfStreamElements = streamIterateSupplier.get().count();
+        Stream<Employee> streamIterated = employeeStreamIterateSupplier.get();
+        long countOfStreamElements = employeeStreamIterateSupplier.get().count();
         assertEquals(20,countOfStreamElements);
     }
 
     @Test
     public void testStreamIterateFirstAndFollowingElements() {
 
-        Boolean isFirstMarco = streamIterateSupplier.get().findFirst().filter(employee ->
+        Boolean isFirstMarco = employeeStreamIterateSupplier.get().findFirst().filter(employee ->
                                                                         employee.getName().filter(name -> name.equalsIgnoreCase("Marco"))
                                                                                             .isPresent())
                                                                       .isPresent();
 
-        boolean isOthersElla = streamIterateSupplier.get()
+        boolean isOthersElla = employeeStreamIterateSupplier.get()
                             .skip(1)
                             .allMatch(employee -> employee.getName()
                                                             .filter(name -> name.startsWith("Ella"))

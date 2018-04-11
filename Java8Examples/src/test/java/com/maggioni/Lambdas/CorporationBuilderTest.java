@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class CorporationBuilderTest extends DepartmentBuilderTest{
 
-    Corporation corporation;
+    protected Corporation corporation;
 
     @Before
     public void setUp() throws Exception {

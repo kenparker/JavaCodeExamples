@@ -3,7 +3,6 @@ package com.maggioni.Streams;
 import com.maggioni.Lambdas.Employee;
 import com.maggioni.Lambdas.Person;
 import com.maggioni.Lambdas.PersonInterface;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.*;
@@ -18,13 +17,13 @@ public class StreamReductionTest extends StreamBuilderTest {
 
     @Test
     public void testListStream() {
-        streamIterateSupplier.get()
+        employeeStreamIterateSupplier.get()
                 .forEach(System.out::println);
     }
 
     @Test
     public void testReduce() {
-        Employee employee = streamIterateSupplier.get().reduce((a, b) -> Employee.builder()
+        Employee employee = employeeStreamIterateSupplier.get().reduce((a, b) -> Employee.builder()
                 .age(22)
                 .salary(11000)
                 .name(a.getName().get() + b.getName().get())
@@ -36,7 +35,7 @@ public class StreamReductionTest extends StreamBuilderTest {
 
     @Test
     public void testConvertingNameToList() {
-        List<Optional<String>> optionalList = streamIterateSupplier.get()
+        List<Optional<String>> optionalList = employeeStreamIterateSupplier.get()
                 .map(employee -> employee.getName())
                 .collect(Collectors.toList());
         System.out.println(optionalList);
@@ -44,7 +43,7 @@ public class StreamReductionTest extends StreamBuilderTest {
 
     @Test
     public void testConvertingAgeToList() {
-        List<Optional<Integer>> collect = streamIterateSupplier.get()
+        List<Optional<Integer>> collect = employeeStreamIterateSupplier.get()
                 .map(employee -> employee.getAge())
                 .collect(Collectors.toList());
         System.out.println(collect);
@@ -52,7 +51,7 @@ public class StreamReductionTest extends StreamBuilderTest {
 
     @Test
     public void testConvertingAgeToList2() {
-        List<Optional<Integer>> collect = streamIterateSupplier.get()
+        List<Optional<Integer>> collect = employeeStreamIterateSupplier.get()
                 .map(Person::getAge)
                 .collect(Collectors.toList());
         System.out.println(collect);
@@ -60,7 +59,7 @@ public class StreamReductionTest extends StreamBuilderTest {
 
     @Test
     public void testConvertingToString() {
-        String collect = streamIterateSupplier.get()
+        String collect = employeeStreamIterateSupplier.get()
                 .map(employee -> employee.getName().get())
                 .collect(Collectors.joining(",", "{", "}"));
         System.out.println(collect);
@@ -68,7 +67,7 @@ public class StreamReductionTest extends StreamBuilderTest {
 
     @Test
     public void testConvertingToString2() {
-        Stream<Optional<String>> optionalStream = streamIterateSupplier.get()
+        Stream<Optional<String>> optionalStream = employeeStreamIterateSupplier.get()
                 .map(Person::getName);
         String collect = optionalStream.map(a -> a.get())
                 .collect(Collectors.joining(",", "{", "}"));
@@ -77,18 +76,18 @@ public class StreamReductionTest extends StreamBuilderTest {
 
     @Test
     public void testAveragingSalary() {
-        Long count = streamIterateSupplier.get()
+        Long count = employeeStreamIterateSupplier.get()
                 .collect(Collectors.counting());
-        IntSummaryStatistics sum = streamIterateSupplier.get()
+        IntSummaryStatistics sum = employeeStreamIterateSupplier.get()
                 .collect(Collectors.summarizingInt(Employee::getSalary));
-        Double average = streamIterateSupplier.get()
+        Double average = employeeStreamIterateSupplier.get()
                 .collect(Collectors.averagingInt(Employee::getSalary));
         System.out.println("count : " + count + " sum : " + sum + " average : " + average);
     }
 
     @Test
     public void testConvertingSalaryToSet() {
-        Set<Integer> integerSet = streamIterateSupplier.get()
+        Set<Integer> integerSet = employeeStreamIterateSupplier.get()
                 .map(employee -> employee.getSalary())
                 .collect(Collectors.toSet());
         System.out.println(integerSet);
@@ -96,14 +95,14 @@ public class StreamReductionTest extends StreamBuilderTest {
 
     @Test
     public void testConvertingStreamToSet() {
-        Set<Employee> set = streamIterateSupplier.get()
+        Set<Employee> set = employeeStreamIterateSupplier.get()
                 .collect(Collectors.toSet());
         set.forEach(System.out::println);
     }
 
     @Test
     public void testGroupingGender() {
-        Map<Optional<PersonInterface.Gender>, List<Employee>> grouping = streamIterateSupplier.get()
+        Map<Optional<PersonInterface.Gender>, List<Employee>> grouping = employeeStreamIterateSupplier.get()
                 .collect(Collectors.groupingBy(Employee::getGender));
         assertEquals(2, grouping.size());
         assertEquals(19, grouping.get(Optional.of(PersonInterface.Gender.FEMALE)).size());
@@ -112,7 +111,7 @@ public class StreamReductionTest extends StreamBuilderTest {
 
     @Test
     public void testCollectingAndThen() {
-        Set<Employee> collect = streamIterateSupplier.get()
+        Set<Employee> collect = employeeStreamIterateSupplier.get()
                 .collect(Collectors.collectingAndThen(Collectors.toSet(), Collections::unmodifiableSet));
         collect.forEach(System.out::println);
     }
@@ -129,7 +128,7 @@ public class StreamReductionTest extends StreamBuilderTest {
                     .build()));
             return employeeSet;
         };
-        Set<Employee> setOfEmployees = streamIterateSupplier.get()
+        Set<Employee> setOfEmployees = employeeStreamIterateSupplier.get()
                 .collect(Collectors.collectingAndThen(Collectors.toSet(), transformSet));
         setOfEmployees.forEach(System.out::println);
     }
