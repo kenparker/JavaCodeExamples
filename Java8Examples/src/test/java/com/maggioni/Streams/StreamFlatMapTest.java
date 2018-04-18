@@ -91,4 +91,13 @@ public class StreamFlatMapTest extends CorporationBuilderTest {
                     return Stream.of(department);
                 });
     }
+
+    @Test
+    public void testMapAndFlatrMap() {
+        Stream<Stream<Employee>> streamStream = corporation.getDepartments().stream()
+                .map(department -> department.getEmployees().stream());
+
+        Stream<Employee> employeeStream = corporation.getDepartments().stream()
+                .flatMap(department -> department.getEmployees().stream());
+    }
 }
