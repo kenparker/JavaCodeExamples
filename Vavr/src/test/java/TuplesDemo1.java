@@ -6,7 +6,6 @@ import io.vavr.Tuple;
 import io.vavr.Tuple2;
 import io.vavr.Tuple3;
 import io.vavr.Tuple4;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
