@@ -8,36 +8,62 @@ import java.util.Optional;
 
 public class OptionDemo1 {
 
+    /*
+    http://joel-costigliola.github.io/assertj/assertj-core-features-highlight.html#exception-assertion
+     */
     @Before
     public void setUp() throws Exception {
 
     }
 
     @Test
-    public void testOptionalNull() {
+    public void givenAnEmptyOptional_whenGet_thenNoSuchElementExceptionIsThrown() {
         Optional<Object> nullOptional = Optional.empty();
         Throwable thrown = catchThrowable(nullOptional::get);
         assertThat(thrown).isInstanceOf(NoSuchElementException.class);
     }
 
     @Test
-    public void testOptionNone1() {
-        Option<Object> none = Option.none();
-        assertThat(none).isInstanceOf(Option.None.class);
-    }
-
-    @Test
-    public void testOptionNone2() {
+    public void givenNoneOption_whenOptionGet_thenNoSuchElementExceptionIsThrown() {
         Option<Object> noneOption = Option.none();
         Throwable thrown = catchThrowable(noneOption::get);
         assertThat(thrown).isInstanceOf(NoSuchElementException.class);
     }
 
     @Test
-    public void testOptionNull() {
-        Option<Object> nullOption = Option.of(null);
+    public void givenNullValue_whenCreateOptionOfAndGet_thenNoSuchElementExceptionIsThrown() {
+        Object value = null;
+        Option<Object> nullOption = Option.of(value);
         Throwable thrown = catchThrowable(nullOption::get);
         assertThat(thrown).isInstanceOf(NoSuchElementException.class);
+    }
+
+    @Test
+    public void givenNullValue_whenCreateOptionsomeAndGet_thenNullValue() {
+        Object value = null;
+        Option<Object> nullOption = Option.some(value);
+        Object nullValue = nullOption.get();
+        assertThat(nullValue).isEqualTo(value);
+    }
+
+    @Test
+    public void givenNullValue_whenCreateOptionalOf_thenNullPointerException() {
+        Object value = null;
+        Throwable throwable = catchThrowable(() -> Optional.of(value));
+        assertThat(throwable).isInstanceOf(NullPointerException.class);
+    }
+
+    @Test
+    public void givenNullValue_whenCreateOptionalOfNullable_thenObjectIsEmpty() {
+        Object value = null;
+        Optional<Object> nullable = Optional.ofNullable(value);
+        assertThat(nullable).isEmpty();
+    }
+
+    @Test
+    public void givenAnNoneOption_thenTheClassIsInstanceOfOptionNone() {
+        Option<Object> none = Option.none();
+        assertThat(none).isInstanceOf(Option.None.class);
     }
 
     @Test
