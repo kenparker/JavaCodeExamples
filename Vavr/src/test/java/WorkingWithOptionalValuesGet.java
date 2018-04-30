@@ -5,26 +5,26 @@ public class WorkingWithOptionalValuesGet extends WorkingWithOptionalValuesBase 
 
     @Test
     public void givenAnEmptyOptionalValue_whenGet_thenNoSuchElementExceptionIsThrown() {
-        assertThat(catchThrowable(emptyOptional::get))
+        assertThat(catchThrowable(optionalEmpty::get))
                 .isInstanceOf(NoSuchElementException.class);
-        assertThat(catchThrowable(myNullableOptional::get))
+        assertThat(catchThrowable(optionalOfNullable::get))
                 .isInstanceOf(NoSuchElementException.class);
-        assertThat(catchThrowable(noneOption::get))
+        assertThat(catchThrowable(optionNone::get))
                 .isInstanceOf(NoSuchElementException.class);
-        assertThatCode(mySomeNullOption::get)
+        assertThatCode(optionSomeNullValue::get)
                 .doesNotThrowAnyException();
 
     }
 
     @Test
     public void givenOptionalValues_whenGet_thenReturnIsValue() {
-        assertThat(myOptional.get())
+        assertThat(optionalOfValue.get())
                 .isEqualTo(value);
-        assertThat(myOption.get())
+        assertThat(optionOfValue.get())
                 .isEqualTo(value);
-        assertThat(mySomeOption.get())
+        assertThat(optionSomeValue.get())
                 .isEqualTo(value);
-        assertThat(mySomeNullOption.get())
+        assertThat(optionSomeNullValue.get())
                 .isEqualTo(nullValue);
     }
 }

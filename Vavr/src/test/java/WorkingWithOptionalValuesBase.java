@@ -5,16 +5,16 @@ import java.util.Optional;
 
 public class WorkingWithOptionalValuesBase {
 
-    Optional<String> emptyOptional;
-    Optional<String> defaultOptional;
-    Optional<String> myOptional;
-    Optional<String> myNullableOptional;
+    Optional<String> optionalEmpty;
+    Optional<String> optionalOfDefaultValue;
+    Optional<String> optionalOfValue;
+    Optional<String> optionalOfNullable;
 
-    Option<String> noneOption;
-    Option<String> defaultOption;
-    Option<String> myOption;
-    Option<String> mySomeOption;
-    Option<String> mySomeNullOption;
+    Option<String> optionNone;
+    Option<String> optionOfDefaultValue;
+    Option<String> optionOfValue;
+    Option<String> optionSomeValue;
+    Option<String> optionSomeNullValue;
 
     String defaultValue = "myDefault";
     String value = "Test Optional and Option";
@@ -22,15 +22,15 @@ public class WorkingWithOptionalValuesBase {
 
     @Before
     public void setUp() {
-        emptyOptional = Optional.empty();
-        myOptional = Optional.of(value);
-        myNullableOptional = Optional.ofNullable(nullValue);
-        defaultOptional = Optional.of(defaultValue);
+        optionalEmpty = Optional.empty();
+        optionalOfValue = Optional.of(value);
+        optionalOfNullable = Optional.ofNullable(nullValue);
+        optionalOfDefaultValue = Optional.of(defaultValue);
 
-        noneOption = Option.none();
-        myOption = Option.of(value);
-        mySomeOption = Option.some(value);
-        mySomeNullOption = Option.some(nullValue);
-        defaultOption = Option.of(defaultValue);
+        optionNone = Option.none();
+        optionOfValue = Option.of(value);
+        optionSomeValue = Option.some(value);
+        optionSomeNullValue = Option.some(nullValue);
+        optionOfDefaultValue = Option.of(defaultValue);
     }
 }

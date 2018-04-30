@@ -1,4 +1,3 @@
-import io.vavr.CheckedRunnable;
 import org.junit.Test;
 
 import java.util.NoSuchElementException;
@@ -9,45 +8,54 @@ public class WorkingWithOptionalValuesOrElse extends WorkingWithOptionalValuesBa
 
     @Test
     public void givenAnOptionalValue_whenOrElse_thenResultIsValueOrMyOption() {
-        assertThat(myOptional.orElse(defaultValue))
-                .isEqualTo(value); // myOptional = Optional.of(value)
-        assertThat(myOption.orElse(defaultOption))
-                .isEqualTo(myOption);
+        assertThat(optionalOfValue.orElse(defaultValue))
+                .isEqualTo(value); // optionalOfValue = Optional.of(value)
+        assertThat(optionOfValue.orElse(optionOfDefaultValue))
+                .isEqualTo(optionOfValue);
     }
 
     @Test
     public void givenAnEmptyOptionalValue_whenOrElse_thenResultIsElseValue() {
-        assertThat(emptyOptional.orElse(defaultValue))
+        assertThat(optionalEmpty.orElse(defaultValue))
                 .isEqualTo(defaultValue);             // T orElse(T other)
-        assertThat(myNullableOptional.orElse(defaultValue))
+        assertThat(optionalOfNullable.orElse(defaultValue))
                 .isEqualTo(defaultValue);
-        assertThat(noneOption.orElse(defaultOption))
-                .isEqualTo(defaultOption);          // Option<T> orElse(Option<? extends T> other)
-        assertThat(noneOption.orElse(() -> defaultOption))
-                .isEqualTo(defaultOption);          // Option<T> orElse(Supplier<? extends Option<? extends T>> supplier)
+        assertThat(optionNone.orElse(optionOfDefaultValue))
+                .isEqualTo(optionOfDefaultValue);          // Option<T> orElse(Option<? extends T> other)
+        assertThat(optionNone.orElse(() -> optionOfDefaultValue))
+                .isEqualTo(optionOfDefaultValue);          // Option<T> orElse(Supplier<? extends Option<? extends T>> supplier)
     }
 
     @Test
     public void givenAnEmptyOptional_whenOrElseGet_thenResultIsDefaultValue() {
-        assertThat(emptyOptional.orElseGet(() -> defaultValue))
+        assertThat(optionalEmpty.orElseGet(() -> defaultValue))
                 .isEqualTo(defaultValue);               // T orElseGet(Supplier<? extends T> other)
-        assertThat(noneOption.getOrElse(defaultValue))
+        assertThat(optionNone.getOrElse(defaultValue))
                 .isEqualTo(defaultValue);               // T getOrElse(T other)
     }
 
     @Test
+    public void givenAnOptionalValue_when_orElseGet_thenResultIsValue() {
+        assertThat(optionalOfValue.orElseGet(() -> defaultValue))
+                .isEqualTo(value);
+        assertThat(optionOfValue.getOrElse(defaultValue))
+                .isEqualTo(value);
+    }
+
+
+    @Test
     public void givenAnEmptyOptional_whenOrElseThrow_thenResultIsException() {
-        assertThatCode(() -> emptyOptional.orElseThrow(() -> new NoSuchElementException()))
+        assertThatCode(() -> optionalEmpty.orElseThrow(() -> new NoSuchElementException()))
                 .isInstanceOf(NoSuchElementException.class);
-        assertThat(catchThrowable(() -> emptyOptional.orElseThrow(() -> new NoSuchElementException())))
+        assertThat(catchThrowable(() -> optionalEmpty.orElseThrow(() -> new NoSuchElementException())))
                 .isInstanceOf(NoSuchElementException.class);
     }
 
     @Test
     public void givenAnOptional_whenOrElseThrow_thenResultIsValue() {
-        assertThat(myOptional.orElseThrow(() -> new NoSuchElementException()))
+        assertThat(optionalOfValue.orElseThrow(() -> new NoSuchElementException()))
                 .isEqualTo(value);
-        assertThat(catchThrowable(() -> myOptional.orElseThrow(() -> new NoSuchElementException())))
+        assertThat(catchThrowable(() -> optionalOfValue.orElseThrow(() -> new NoSuchElementException())))
                 .doesNotThrowAnyException();
     }
 }

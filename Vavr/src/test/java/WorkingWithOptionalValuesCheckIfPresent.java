@@ -6,19 +6,19 @@ public class WorkingWithOptionalValuesCheckIfPresent extends WorkingWithOptional
 
     @Test
     public void givenAnEmptyOptionalValue_whenIsPresent_thenResultIsFalse() {
-        assertThat(emptyOptional.isPresent())
+        assertThat(optionalEmpty.isPresent())
                 .isFalse();
-        assertThat(myNullableOptional.isPresent())
+        assertThat(optionalOfNullable.isPresent())
                 .isFalse();
-        assertThat(!noneOption.isEmpty())
+        assertThat(!optionNone.isEmpty())
                 .isFalse();
     }
 
     @Test
     public void givenOptionalValues_whenIsPresent_thenResultIsTrue() {
-        assertThat(myOptional.isPresent())
+        assertThat(optionalOfValue.isPresent())
                 .isTrue();
-        assertThat(myOption.isDefined())
+        assertThat(optionOfValue.isDefined())
                 .isTrue();
     }
 }
