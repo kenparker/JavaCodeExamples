@@ -39,36 +39,4 @@ public class WorkingWithOptionalValuesBase {
         optionSomeNullValue = Option.some(nullValue);
         optionOfDefaultValue = Option.of(defaultValue);
     }
-
-    @Test
-    public void givenAnlValue_when_OptionOf_usedForCreation_thenNoException() {
-        assertThatCode(() -> {
-            Option.of("Hello");
-            Option.of(null);
-            Option.some("Hello");
-            Option.some(null);
-        })
-                .doesNotThrowAnyException();
-    }
-
-    @Test
-    public void givenAnValue_when_OptionalOf_usedForCreation_thenExceptionIfNull() {
-        assertThatCode(() -> {
-            Optional.of("Hello");
-        })
-                .doesNotThrowAnyException();
-        assertThatCode(() -> {
-            Optional.of(null);
-        })
-                .isInstanceOf(Exception.class);
-    }
-
-    @Test
-    public void givenAnValue_when_OptionalOfNullable_usedForCreation_thenNoException() {
-        assertThatCode(() -> {
-            Optional.ofNullable("Hello");
-            Optional.ofNullable(null);
-        })
-                .doesNotThrowAnyException();
-    }
 }
