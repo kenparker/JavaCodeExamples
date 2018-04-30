@@ -2,7 +2,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class WorkingWithOptionalValuesCheckIfPresentDemos extends WorkingWithOptionalValuesBase {
+public class WorkingWithOptionalValuesCheckIfPresent extends WorkingWithOptionalValuesBase {
 
     @Test
     public void givenAnEmptyOptionalValue_whenIsPresent_thenResultIsFalse() {
