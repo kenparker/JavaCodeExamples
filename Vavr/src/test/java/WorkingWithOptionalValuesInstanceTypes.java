@@ -18,15 +18,14 @@ public class WorkingWithOptionalValuesInstanceTypes extends WorkingWithOptionalV
 
     @Test
     public void givenANullValue_when_OptionOf_IsCreated_thenInstanceIsOf_TypeNoneAndIsEmpty() {
-        Option<Object> nullOption = Option.of(null);
-        assertThat(nullOption.isEmpty()).isTrue();
-        assertThat(nullOption.isDefined()).isFalse();
-        assertThat(nullOption).isInstanceOf(Option.None.class);
+        assertThat(optionOfNullValue.isEmpty()).isTrue();
+        assertThat(optionOfNullValue.isDefined()).isFalse();
+        assertThat(optionOfNullValue).isInstanceOf(Option.None.class);
     }
 
     @Test
     public void givenAValue_wenn_OptionOf_Iscreated_thenInstanceIsOf_TypeSome() {
-        Option<String> someOption = Option.of(value);
-        assertThat(someOption).isInstanceOf(Option.Some.class);
+        assertThat(optionOfValue.isDefined()).isTrue();
+        assertThat(optionOfValue).isInstanceOf(Option.Some.class);
     }
 }
