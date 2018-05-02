@@ -10,23 +10,15 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 public class WorkingWithOptionalValuesCreateAnOptionalObject {
 
     @Test
-    public void givenAlValue_when_OptionOf_usedForCreation_thenNoException() {
-        assertThatCode(() -> {
+    public void givenAValue_when_CreateAnOptional_thenIsOK() {
+            Optional.of("Hello");
+            Optional.ofNullable("Hello");
             Option.of("Hello");
-            Option.of(null);
-            Option.none();
             Option.some("Hello");
-            Option.some(null);
-        })
-                .doesNotThrowAnyException();
     }
 
     @Test
-    public void givenAValue_when_OptionalOf_usedForCreation_thenExceptionIfNull() {
-        assertThatCode(() -> {
-            Optional.of("Hello");
-        })
-                .doesNotThrowAnyException();
+    public void givenNull_when_OptionalOf_usedForCreation_thenExceptionIfNull() {
         assertThatCode(() -> {
             Optional.of(null);
         })
@@ -34,11 +26,21 @@ public class WorkingWithOptionalValuesCreateAnOptionalObject {
     }
 
     @Test
-    public void givenAValue_when_OptionalOfNullable_usedForCreation_thenNoException() {
+    public void givenNull_when_OptionalOfNullable_usedForCreation_thenIsOK() {
         assertThatCode(() -> {
-            Optional.ofNullable("Hello");
             Optional.ofNullable(null);
         })
                 .doesNotThrowAnyException();
     }
+
+    @Test
+    public void givenNull_when_OptionOf_usedForCreation_thenIsOK() {
+        assertThatCode(() -> {
+            Option.of(null);
+            Option.none();
+            Option.some(null);
+        })
+                .doesNotThrowAnyException();
+    }
+
 }
