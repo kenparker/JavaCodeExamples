@@ -33,7 +33,7 @@ public class TuplesDemo1 {
     public void tupleOfTwo() {
         Tuple2<String, Integer> tupleOfTwoElements = Tuple.of("Java", 23);
         System.out.println(tupleOfTwoElements._2);
-        assertEquals(23,tupleOfTwoElements._2);
+        assertEquals((Object) 23,tupleOfTwoElements._2);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class TuplesDemo1 {
                                                             .build();
         Tuple2<Employee, Person> tuple2After = tuple2Before.map(fEmployee, fPerson);
 
-        assertEquals(expected,tuple2After._1.getSalary());
+        assertEquals((Object) expected,tuple2After._1.getSalary());
 
         assertSame(employeeAngelo,tuple2Before._1);
         assertSame(personMarco,tuple2Before._2);
