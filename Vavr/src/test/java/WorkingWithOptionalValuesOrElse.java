@@ -1,3 +1,4 @@
+import io.vavr.control.Option;
 import org.junit.Test;
 
 import java.util.NoSuchElementException;
@@ -6,12 +7,77 @@ import static org.assertj.core.api.Assertions.*;
 
 public class WorkingWithOptionalValuesOrElse extends WorkingWithOptionalValuesBase {
 
+    String other;
+
     @Test
     public void givenAnOptionalValue_whenOrElse_thenResultIsValueOrMyOption() {
         assertThat(optionalOfValue.orElse(defaultValue))
                 .isEqualTo(value); // optionalOfValue = Optional.of(value)
         assertThat(optionOfValue.orElse(optionOfDefaultValue))
                 .isEqualTo(optionOfValue);
+    }
+
+    @Test
+    public void givenAnOptionalValue_whenOrElse_thenOtherIsCalledButNotUsed() {
+        // given
+        //optionalOfValue
+        // when
+        other = null;
+        optionalOfValue.orElse(createOther());
+        // then
+        assertThat(other).isNotNull();
+    }
+
+    @Test
+    public void givenAnOptionalValue_whenOrElseGet_thenOtherIsNOTCalled() {
+        // given
+        // optionalOfValue
+        // when
+        other = null;
+        optionalOfValue.orElseGet(() -> createOther());
+        // then
+        assertThat(other)
+                .isNull();
+    }
+
+    @Test
+    public void givenAnOptionValue_whenOrElse_thenOtherIsCalledButNotUsed() {
+        // given
+        // optionOfValue
+        // when
+        other = null;
+        optionOfValue.orElse(Option.of(createOther()));
+        // then
+        assertThat(other).isNotNull();
+    }
+
+    @Test
+    public void givenAnOptionValue_whenOrElseSupplier_thenOtherIsNOTCalled() {
+        // given
+        // optionOfValue
+        // when
+        other = null;
+        optionOfValue.orElse(() -> Option.of(createOther()));
+        // then
+        assertThat(other).isNull();
+    }
+
+    @Test
+    public void givenAnOptionValue_whenGetOrElse_thenOtherIsCalledButNotUsed() {
+        // given
+        // optionOfValue
+        // when
+        other = null;
+        optionOfValue.getOrElse(createOther());
+        // then
+        assertThat(other)
+                .isNotNull();
+    }
+
+    private String createOther() {
+        System.out.println("createOther called");
+        other = "otherCreated";
+        return other;
     }
 
     @Test
