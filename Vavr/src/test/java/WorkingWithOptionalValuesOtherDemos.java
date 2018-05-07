@@ -5,7 +5,7 @@ import org.junit.contrib.java.lang.system.SystemOutRule;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class WorkingWithOptionalValuesCheckEquality extends WorkingWithOptionalValuesBase {
+public class WorkingWithOptionalValuesOtherDemos extends WorkingWithOptionalValuesBase {
 
     @Test
     public void givenTwoOptionFromSameValue_whenCheckIfEquals_thenOptionsAreEquals() {
@@ -28,18 +28,20 @@ public class WorkingWithOptionalValuesCheckEquality extends WorkingWithOptionalV
                 .isEmpty();
     }
 
+    @Rule
+    public final SystemOutRule log = new SystemOutRule().enableLog();
+
+
     @Test
-    public void given() {
-        assertThat(optionalOfValue.ifPresent();)
+    public void givenAnOptionalValue_whenValueIsPresent_thenConsumerIsExecuted() {
+        optionalOfValue.ifPresent( a -> System.out.println(a));
+        assertThat(log.getLog().trim()).isEqualTo(value);
     }
 
+    @Test
+    public void when_TextIsWrittenToSystemOut_thenTextIsLoggedInRule() {
+        System.out.print("hello world");
+        assertThat(log.getLog()).isEqualTo("hello world");
+    }
 
-        @Rule
-        public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
-
-        @Test
-        public void writesTextToSystemOut() {
-            System.out.print("hello world");
-            assertThat(systemOutRule.getLog()).isEqualTo("hello world");
-        }
 }
