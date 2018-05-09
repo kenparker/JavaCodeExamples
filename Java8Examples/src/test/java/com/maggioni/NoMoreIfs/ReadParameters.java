@@ -2,6 +2,7 @@ package com.maggioni.NoMoreIfs;
 
 import io.vavr.Function1;
 import io.vavr.control.Option;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
@@ -15,6 +16,17 @@ public class ReadParameters {
 
     Set<String> setOfStrings = new HashSet<>();
     Map<String, Set<String>> parameters = new HashMap<>();
+
+    String param2 = "Hello";
+    String param1 = "PincoPallo";
+    Float value1 = 125000.0f;
+    Float value2 = 5000000.0f;
+
+    @Before
+    public void setUp() throws Exception {
+        setOfStrings.clear();
+        parameters.clear();
+    }
 
     public Optional<Float> readFloatParameterUsingIfs(String param, Map<String, Set<String>> parameters) {
         final Set<String> values = parameters.get(param);
@@ -44,6 +56,7 @@ public class ReadParameters {
                     }
                 });
     }
+
     public Optional<Float> readFloatParametersUsingOptionalsAndFlatMap(String param, Map<String, Set<String>> parameters) {
         return Optional.ofNullable(parameters.get(param))
                 .filter(values -> values.size() == 1)
@@ -65,102 +78,83 @@ public class ReadParameters {
                 .isPresent()
                 .hasValue(val);
 
-        String param = "Hello";
-        Float value = 125000.0f;
+        setOfStrings.add(value1.toString());
+        parameters.put(param2, setOfStrings);
 
-        setOfStrings.add(value.toString());
+        Optional<Float> optionalValue = readFloatParameterUsingIfs(param2, parameters);
+        assertThatOptional.accept(value1, optionalValue);
 
-        parameters.put(param, setOfStrings);
+        optionalValue = readFloatParametersUsingOptionalsAndTryCatch(param2, parameters);
+        assertThatOptional.accept(value1, optionalValue);
 
-        Optional<Float> optionalValue = readFloatParameterUsingIfs(param, parameters);
-        assertThatOptional.accept(value, optionalValue);
-
-        optionalValue = readFloatParametersUsingOptionalsAndTryCatch(param, parameters);
-        assertThatOptional.accept(value, optionalValue);
-
-        optionalValue = readFloatParametersUsingOptionVavr(param, parameters);
-        assertThatOptional.accept(value, optionalValue);
+        optionalValue = readFloatParametersUsingOptionVavr(param2, parameters);
+        assertThatOptional.accept(value1, optionalValue);
 
     }
 
     @Test
     public void givenASetWithMoreValues_whenReadFloatParametersIsCalled_thenReturnOptionalIsEmpty() {
-        String param = "PincoPallo";
-        Float value1 = 125000.0f;
-        Float value2 = 5000000.0f;
-
-        setOfStrings.clear();
         setOfStrings.add(value1.toString());
         setOfStrings.add(value2.toString());
 
-        parameters.put(param, setOfStrings);
+        parameters.put(param1, setOfStrings);
 
-        Optional<Float> optionalValue = readFloatParameterUsingIfs(param, parameters);
+        Optional<Float> optionalValue = readFloatParameterUsingIfs(param1, parameters);
         assertThat(optionalValue)
                 .isEmpty();
 
-        optionalValue = readFloatParametersUsingOptionalsAndTryCatch(param, parameters);
+        optionalValue = readFloatParametersUsingOptionalsAndTryCatch(param1, parameters);
         assertThat(optionalValue)
                 .isEmpty();
 
-        optionalValue = readFloatParametersUsingOptionVavr(param, parameters);
+        optionalValue = readFloatParametersUsingOptionVavr(param1, parameters);
         assertThat(optionalValue)
                 .isEmpty();
     }
 
     @Test
     public void givenAnEmpty_whenReadFloatParametersIsCalled_thenReturnOptionalIsEmpty() {
-        String param = "PincoPallo";
+        parameters.put(param1, setOfStrings);
 
-        setOfStrings.clear();
-
-        parameters.put(param, setOfStrings);
-
-        Optional<Float> optionalValue = readFloatParameterUsingIfs(param, parameters);
+        Optional<Float> optionalValue = readFloatParameterUsingIfs(param1, parameters);
         assertThat(optionalValue)
                 .isEmpty();
 
-        optionalValue = readFloatParametersUsingOptionalsAndTryCatch(param, parameters);
+        optionalValue = readFloatParametersUsingOptionalsAndTryCatch(param1, parameters);
         assertThat(optionalValue)
                 .isEmpty();
 
-        optionalValue = readFloatParametersUsingOptionVavr(param, parameters);
+        optionalValue = readFloatParametersUsingOptionVavr(param1, parameters);
         assertThat(optionalValue)
                 .isEmpty();
     }
 
     @Test
     public void givenAnInvalidValue_whenReadFloatParametersIsCalled_thenReturnOptionalIsEmpty() {
-        String param = "PincoPallo";
-
-        setOfStrings.clear();
         setOfStrings.add("InvalidValue");
 
-        parameters.put(param, setOfStrings);
+        parameters.put(param1, setOfStrings);
 
-        Optional<Float> optionalValue = readFloatParameterUsingIfs(param, parameters);
+        Optional<Float> optionalValue = readFloatParameterUsingIfs(param1, parameters);
         assertThat(optionalValue)
                 .isEmpty();
 
-        optionalValue = readFloatParametersUsingOptionalsAndTryCatch(param, parameters);
+        optionalValue = readFloatParametersUsingOptionalsAndTryCatch(param1, parameters);
         assertThat(optionalValue)
                 .isEmpty();
 
-        optionalValue = readFloatParametersUsingOptionVavr(param, parameters);
+        optionalValue = readFloatParametersUsingOptionVavr(param1, parameters);
         assertThat(optionalValue)
                 .isEmpty();
     }
 
     @Test
     public void givenAnInvalidValue_whenReadFloatParametersIsCalled_thenNumberformatException() {
-        String param = "PincoPallo";
-
-        setOfStrings.clear();
         setOfStrings.add("InvalidValue");
 
-        parameters.put(param, setOfStrings);
+        parameters.put(param1, setOfStrings);
 
-        ThrowingCallable callable = () -> readFloatParametersUsingOptionalsAndFlatMap(param, parameters);
+        ThrowingCallable callable = () -> readFloatParametersUsingOptionalsAndFlatMap(param1, parameters);
         assertThatCode(callable)
                 .isInstanceOf(NumberFormatException.class);
     }
