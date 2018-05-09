@@ -8,6 +8,8 @@ import java.util.*;
 import java.util.function.BiConsumer;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.ThrowableAssert.*;
 
 public class ReadParameters {
 
@@ -30,7 +32,7 @@ public class ReadParameters {
         return Optional.of(valueAsFloat);
     }
 
-    public Optional<Float> readFloatParametersUsingOptionals(String param, Map<String, Set<String>> parameters) {
+    public Optional<Float> readFloatParametersUsingOptionalsAndTryCatch(String param, Map<String, Set<String>> parameters) {
         return Optional.ofNullable(parameters.get(param))
                 .filter(values -> values.size() == 1)
                 .map(values -> values.iterator().next())
@@ -41,6 +43,12 @@ public class ReadParameters {
                         return null;
                     }
                 });
+    }
+    public Optional<Float> readFloatParametersUsingOptionalsAndFlatMap(String param, Map<String, Set<String>> parameters) {
+        return Optional.ofNullable(parameters.get(param))
+                .filter(values -> values.size() == 1)
+                .map(values -> values.iterator().next())
+                .flatMap((value) -> Optional.of(Float.parseFloat(value)));
     }
 
     public Optional<Float> readFloatParametersUsingOptionVavr(String parm, Map<String, Set<String>> parameters) {
@@ -67,7 +75,7 @@ public class ReadParameters {
         Optional<Float> optionalValue = readFloatParameterUsingIfs(param, parameters);
         assertThatOptional.accept(value, optionalValue);
 
-        optionalValue = readFloatParametersUsingOptionals(param, parameters);
+        optionalValue = readFloatParametersUsingOptionalsAndTryCatch(param, parameters);
         assertThatOptional.accept(value, optionalValue);
 
         optionalValue = readFloatParametersUsingOptionVavr(param, parameters);
@@ -91,7 +99,7 @@ public class ReadParameters {
         assertThat(optionalValue)
                 .isEmpty();
 
-        optionalValue = readFloatParametersUsingOptionals(param, parameters);
+        optionalValue = readFloatParametersUsingOptionalsAndTryCatch(param, parameters);
         assertThat(optionalValue)
                 .isEmpty();
 
@@ -112,7 +120,7 @@ public class ReadParameters {
         assertThat(optionalValue)
                 .isEmpty();
 
-        optionalValue = readFloatParametersUsingOptionals(param, parameters);
+        optionalValue = readFloatParametersUsingOptionalsAndTryCatch(param, parameters);
         assertThat(optionalValue)
                 .isEmpty();
 
@@ -125,7 +133,6 @@ public class ReadParameters {
     public void givenAnInvalidValue_whenReadFloatParametersIsCalled_thenReturnOptionalIsEmpty() {
         String param = "PincoPallo";
 
-
         setOfStrings.clear();
         setOfStrings.add("InvalidValue");
 
@@ -135,12 +142,26 @@ public class ReadParameters {
         assertThat(optionalValue)
                 .isEmpty();
 
-        optionalValue = readFloatParametersUsingOptionals(param, parameters);
+        optionalValue = readFloatParametersUsingOptionalsAndTryCatch(param, parameters);
         assertThat(optionalValue)
                 .isEmpty();
 
         optionalValue = readFloatParametersUsingOptionVavr(param, parameters);
         assertThat(optionalValue)
                 .isEmpty();
+    }
+
+    @Test
+    public void givenAnInvalidValue_whenReadFloatParametersIsCalled_thenNumberformatException() {
+        String param = "PincoPallo";
+
+        setOfStrings.clear();
+        setOfStrings.add("InvalidValue");
+
+        parameters.put(param, setOfStrings);
+
+        ThrowingCallable callable = () -> readFloatParametersUsingOptionalsAndFlatMap(param, parameters);
+        assertThatCode(callable)
+                .isInstanceOf(NumberFormatException.class);
     }
 }
