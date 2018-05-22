@@ -1,32 +1,31 @@
 package com.maggioni.Function;
 
 import io.vavr.Function1;
-import io.vavr.Function2;
 import io.vavr.Function3;
 import org.junit.Test;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
-import java.util.stream.IntStream;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PartialFunctionCurryingDemo {
 
     Function<Integer, Function<Integer, Function<Integer, Integer>>> sumTri = a -> b -> c -> a + b + c;
     Function<Integer, Function<Integer, UnaryOperator<Integer>>> sumTriUn = a -> b -> c -> a + b + c;
     BiFunction<Integer, Integer, UnaryOperator<Integer>> sumTriBi = (a, b) -> c -> a + b + c;
-    Function<Integer, Function<Integer, Function<Integer, Integer>>> sumTriM = a -> b -> c -> sumTriMethod(a,b,c);
-    Function3<Integer, Integer, Integer, Integer> sum3 = (a,b,c) -> a + b + c;
+    Function<Integer, Function<Integer, Function<Integer, Integer>>> sumTriM = a -> b -> c -> sumTriMethod(a, b, c);
+    Function3<Integer, Integer, Integer, Integer> sum3 = (a, b, c) -> a + b + c;
 
     Integer in1 = 12;
     Integer in2 = 22;
     Integer in3 = 3;
     Integer total = 37;
 
-        Integer sumOfTri;
-        Integer sumOf3;
+    Integer sumOfTri;
+    Integer sumOf3;
+
     @Test
     public void givenThreeIntegers_whenSum3Function_thenResultIs37() {
         sumOfTri = sumTri.apply(in1).apply(in2).apply(in3);
@@ -56,6 +55,6 @@ public class PartialFunctionCurryingDemo {
     }
 
     private Integer sumTriMethod(Integer a, Integer b, Integer c) {
-        return a +b + c;
+        return a + b + c;
     }
 }
