@@ -8,8 +8,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class FunctionCompositionStrategiesDemo1 {
 
-    private UnaryOperator<Integer> sum1 = x -> x + 3;
-    private UnaryOperator<Integer> mult1 = x -> x * 3;
+    private static Integer FIRSTNUMBER = 5;
+    private static Integer SECONDNUMBER = 3;
+
+    private UnaryOperator<Integer> sum1 = x -> x + SECONDNUMBER;
+    private UnaryOperator<Integer> mult1 = x -> x * SECONDNUMBER;
 
     private Function<Integer, Integer> sum1Func = x -> sum1.apply(x);
     private Function<Integer, Integer> mult3Func = y -> mult1.apply(y);
@@ -19,9 +22,9 @@ public class FunctionCompositionStrategiesDemo1 {
     private UnaryOperator<Integer> mult3Unary = y -> mult1.apply(y);
 
     private BinaryOperator<Function<Integer, Integer>> binaryComposer = (sum, mult) -> x -> sum.apply(mult.apply(x));
-    private Integer result = 5 * 3 + 3;
+    private Integer result = FIRSTNUMBER * SECONDNUMBER + SECONDNUMBER;
 
-    private Supplier assertResultIsOK = () -> assertThat(compose.apply(5)).isEqualTo(result);
+    private Supplier assertResultIsOK = () -> assertThat(compose.apply(FIRSTNUMBER)).isEqualTo(result);
 
     @Test
     public void givenTwoFunctions_whenComposingWithBinaryFunction_thenResultIsOK() {
