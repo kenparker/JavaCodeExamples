@@ -8,35 +8,38 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class FunctionCompositionStrategiesDemo1 {
 
-    private Function<Integer, Integer> sum1 = x -> x + 3;
-    private Function<Integer, Integer> mult3 = y -> y * 3;
+    private UnaryOperator<Integer> sum1 = x -> x + 3;
+    private UnaryOperator<Integer> mult1 = x -> x * 3;
+
+    private Function<Integer, Integer> sum1Func = x -> sum1.apply(x);
+    private Function<Integer, Integer> mult3Func = y -> mult1.apply(y);
     private Function<Integer, Integer> compose;
 
-    private UnaryOperator<Integer> sum1Unary = x -> x + 3;
-    private UnaryOperator<Integer> mult3Unary = y -> y * 3;
+    private UnaryOperator<Integer> sum1Unary = x -> sum1.apply(x);
+    private UnaryOperator<Integer> mult3Unary = y -> mult1.apply(y);
 
-    private BinaryOperator<Function<Integer, Integer>> functionBinaryOperator = (sum, mult) -> x -> sum.apply(mult.apply(x));
+    private BinaryOperator<Function<Integer, Integer>> binaryComposer = (sum, mult) -> x -> sum.apply(mult.apply(x));
     private Integer result = 5 * 3 + 3;
 
     private Supplier assertResultIsOK = () -> assertThat(compose.apply(5)).isEqualTo(result);
 
     @Test
     public void givenTwoFunctions_whenComposingWithBinaryFunction_thenResultIsOK() {
-        compose = functionBinaryOperator.apply(sum1, mult3);
+        compose = binaryComposer.apply(sum1Func, mult3Func);
 
         assertResultIsOK.get();
     }
 
     @Test
     public void givenTwoFunctions_whenComposingWithCompose_thenResultIsOK() {
-        compose = sum1.compose(mult3);
+        compose = sum1Func.compose(mult3Func);
 
         assertResultIsOK.get();
     }
 
     @Test
     public void givenTwoUnaryOperators_whenComposingWithBinary_thenResultIsOK() {
-        compose = functionBinaryOperator.apply(sum1Unary, mult3Unary);
+        compose = binaryComposer.apply(sum1Unary, mult3Unary);
 
         assertResultIsOK.get();
     }
