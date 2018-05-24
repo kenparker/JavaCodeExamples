@@ -34,4 +34,10 @@ public class UsingCurryingDemoTest {
         List<Integer> resultOfCalculate2 = usingCurrying.calculate2(list.stream(), a, b).collect(Collectors.toList());
         assertResultIsOK.accept(resultOfCalculate2,result);
     }
+
+    @Test
+    public void givenCalculate3_thenResultIsOK() {
+        List<Integer> resultOfCalculate3 = usingCurrying.calculate3(list.stream(), a, b).collect(Collectors.toList());
+        assertResultIsOK.accept(resultOfCalculate3,result);
+    }
 }
