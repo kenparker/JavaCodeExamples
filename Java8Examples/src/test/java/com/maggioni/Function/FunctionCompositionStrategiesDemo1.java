@@ -8,8 +8,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class FunctionCompositionStrategiesDemo1 {
 
-    private static Integer FIRSTNUMBER = 5;
-    private static Integer SECONDNUMBER = 3;
+    private static final Integer FIRSTNUMBER = 5;
+    private static final Integer SECONDNUMBER = 3;
 
     private UnaryOperator<Integer> sum1 = x -> x + SECONDNUMBER;
     private UnaryOperator<Integer> mult1 = x -> x * SECONDNUMBER;
@@ -24,33 +24,38 @@ public class FunctionCompositionStrategiesDemo1 {
     private BinaryOperator<Function<Integer, Integer>> binaryComposer = (sum, mult) -> x -> sum.apply(mult.apply(x));
     private Integer result = FIRSTNUMBER * SECONDNUMBER + SECONDNUMBER;
 
-    private Supplier assertResultIsOK = () -> assertThat(compose.apply(FIRSTNUMBER)).isEqualTo(result);
+    private AssertResult assertResultIsOK = () -> assertThat(compose.apply(FIRSTNUMBER)).isEqualTo(result);
+    private AssertResultConsumer<Function<Integer, Integer>,Integer> assertResultIsOKCons = (compose, result) -> assertThat(compose.apply(FIRSTNUMBER)).isEqualTo(result);
 
     @Test
     public void givenTwoFunctions_whenComposingWithBinaryFunction_thenResultIsOK() {
         compose = binaryComposer.apply(sum1Func, mult3Func);
 
-        assertResultIsOK.get();
+        assertResultIsOKCons.test(compose,result);
     }
 
     @Test
     public void givenTwoFunctions_whenComposingWithCompose_thenResultIsOK() {
         compose = sum1Func.compose(mult3Func);
 
-        assertResultIsOK.get();
+        assertResultIsOK.apply();
     }
 
     @Test
     public void givenTwoUnaryOperators_whenComposingWithBinary_thenResultIsOK() {
         compose = binaryComposer.apply(sum1Unary, mult3Unary);
 
-        assertResultIsOK.get();
+        assertResultIsOK.apply();
     }
 
     @Test
     public void givenTwoUnaryOperators_whenComposing_thenResultIsOK() {
         compose = sum1Unary.compose(mult3Unary);
 
-        assertResultIsOK.get();
+        assertResultIsOK.apply();
     }
+
 }
+    interface AssertResultConsumer<T, Z> {
+        void test(T t, Z z);
+    }

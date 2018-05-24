@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PartialFunctionCurryingDemo {
 
-    Function<Integer, Function<Integer, Function<Integer, Integer>>> sumTri = a -> b -> c -> a + b + c;
+    Function<Integer, Function<Integer, Function<Integer, Integer>>> sumTri = a -> b -> c -> a + b + c; // Returning a Lambda Expression from a Lambda Expression
     Function<Integer, Function<Integer, UnaryOperator<Integer>>> sumTriUn = a -> b -> c -> a + b + c;
     BiFunction<Integer, Integer, UnaryOperator<Integer>> sumTriBi = (a, b) -> c -> a + b + c;
     Function<Integer, Function<Integer, Function<Integer, Integer>>> sumTriM = a -> b -> c -> sumTriMethod(a, b, c);
