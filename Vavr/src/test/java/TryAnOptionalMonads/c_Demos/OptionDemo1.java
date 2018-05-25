@@ -72,9 +72,9 @@ public class OptionDemo1 {
         for (String name : personMapJava7.keySet()) {
             Option<Person> person = personMapJava7.get(name);
             if (person.isDefined()) {
-                Option<Address> adress = person.get().getAdressOption();
-                if (adress.isDefined()) {
-                    Option<City> city = adress.get().getCityOption();
+                Option<Address> address = person.get().getAdressOption();
+                if (address.isDefined()) {
+                    Option<City> city = address.get().getCityOption();
                     if (city.isDefined()) {
                         assertCity.accept(city.get(), cityMailand);
                     }
