@@ -1,3 +1,5 @@
+package Optional;
+
 import io.vavr.control.Option;
 import org.junit.Rule;
 import org.junit.Test;

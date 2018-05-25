@@ -1,4 +1,7 @@
+package Optional;
+
 import io.vavr.control.Option;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,25 +17,25 @@ public class WorkingWithOptionalValuesToString extends WorkingWithOptionalValues
 
     @Test
     public void givenANullValueWrappedInOptional_whenToString_thenNoException() {
-        assertThat(optionalEmpty.toString())
+        Assertions.assertThat(optionalEmpty.toString())
                 .isEqualTo("Optional.empty");
-        assertThat(optionalOfNullable.toString())
+        Assertions.assertThat(optionalOfNullable.toString())
                 .isEqualTo("Optional.empty");
-        assertThat(optionNone.toString())
+        Assertions.assertThat(optionNone.toString())
                 .isEqualTo("None");
-        assertThat(optionSomeNullValue.toString())
+        Assertions.assertThat(optionSomeNullValue.toString())
                 .isEqualTo("Some(null)");
     }
 
     @Test
     public void givenAValueWrappedInOption_whenToString_thenValue() {
-        assertThat(optionalOfValue.toString())
+        Assertions.assertThat(optionalOfValue.toString())
                 .isEqualTo("Optional[" + value + "]");
-        assertThat(optionOfValue.toString())
+        Assertions.assertThat(optionOfValue.toString())
                 .isEqualTo("Some(" + value + ")");
-        assertThat(optionSomeValue.toString())
+        Assertions.assertThat(optionSomeValue.toString())
                 .isEqualTo("Some(" + value + ")");
-        assertThat(optionSomeNullValue.toString())
+        Assertions.assertThat(optionSomeNullValue.toString())
                 .isEqualTo("Some(null)");
     }
 }
