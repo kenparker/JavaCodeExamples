@@ -24,7 +24,10 @@ public class Person {
     }
 
     public Try<Address> getAdressTry() {
-        return Try.of(() -> address);
+        if (address == null) {
+            return Try.failure(new IllegalStateException());
+        } else
+            return Try.success(address);
     }
 
     public String getName() {

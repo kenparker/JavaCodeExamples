@@ -1,0 +1,127 @@
+package TryAnOptionalMonads.c_Demos;
+
+import TryAnOptionalMonads.a_Entities.Address;
+import TryAnOptionalMonads.a_Entities.City;
+import TryAnOptionalMonads.a_Entities.Person;
+import io.vavr.control.Try;
+import org.assertj.core.api.ThrowableAssert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.function.BiConsumer;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.ThrowableAssert.*;
+
+
+public class TryDemo1 extends CommonItems {
+
+    public static final String ADDRESS_AS_NO_CITY = "Adress as no city";
+    public static final String PERSON_HAS_NO_ADRESS = "Person has no adress";
+    public static final String NAME_NOT_FOUND_IN_MAP = "Name not found in map";
+
+    BiConsumer<HashMap<String, Person>, String> hashMapStringBiConsumer = (personMap, nameMarco) -> {
+        Person person = personMap.get(nameMarco);
+        if (person != null) {
+            Address address = person.getAddress();
+            if (address != null) {
+                City city = address.getCity();
+                if (city != null) {
+
+                } else {
+                    throw new IllegalStateException(ADDRESS_AS_NO_CITY);
+                }
+            } else {
+                throw new IllegalStateException(PERSON_HAS_NO_ADRESS);
+            }
+        } else {
+            throw new IllegalStateException(NAME_NOT_FOUND_IN_MAP);
+        }
+    };
+
+    MapTry<String, Person> mapTry = new MapTry();
+
+    public static class MapTry<T, U> extends HashMap<T, U> {
+        public Try<U> find(T t) {
+            U value = super.get(t);
+            if (value==null) {
+                return Try.failure(new IllegalStateException(NAME_NOT_FOUND_IN_MAP));
+            } else {
+                return Try.success(value);
+            }
+        }
+    }
+
+    @Override
+    @Before
+    public void setUp() {
+        super.setUp();
+        mapTry.put(nameMarco, person1);
+        mapTry.put(namePaolo, person2);
+        mapTry.put(nameDaniela, person3);
+
+    }
+
+    @Test
+    public void givenAPersonWithNoCity_thenIllegalStateException() {
+        ThrowingCallable throwable = () -> hashMapStringBiConsumer.accept(personMap, nameMarco);
+        assertThatCode(throwable)
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage(ADDRESS_AS_NO_CITY);
+    }
+
+    @Test
+    public void givenAPersonWithNoAdress_thenIllegalStateException() {
+        ThrowingCallable throwable = () -> hashMapStringBiConsumer.accept(personMap, namePaolo);
+        assertThatCode(throwable)
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage(PERSON_HAS_NO_ADRESS);
+    }
+
+    @Test
+    public void givenAPersonNameThatDoesNotExist_thenIllegalStateException() {
+        ThrowingCallable throwable = () -> hashMapStringBiConsumer.accept(personMap, "Dummy");
+        assertThatCode(throwable)
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage(NAME_NOT_FOUND_IN_MAP);
+    }
+
+    @Test
+    public void givenAPersonOK_thenNOIllegalStateException() {
+        ThrowingCallable throwable = () -> hashMapStringBiConsumer.accept(personMap, nameDaniela);
+        assertThatCode(throwable)
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    public void given_thenIsFailure() {
+        boolean dummy = mapTry.find("Dummy")
+                .isFailure();
+        assertThat(dummy).isTrue();
+    }
+
+    @Test
+    public void given_thenIsSuccess() {
+        boolean dummy = mapTry.find(nameMarco)
+                .isSuccess();
+        assertThat(dummy).isTrue();
+    }
+
+    @Test
+    public void givenAnEmptyAdress_thenIsFailure() {
+        assertThat(mapTry.find(namePaolo)
+                .flatMap(person -> person.getAdressTry())
+                .isFailure()).isTrue();
+    }
+
+    @Test
+    public void name() {
+        mapTry.find("dddd")
+                .flatMap(person -> person.getAdressTry())
+                .flatMap(address -> address.getCityTry())
+                .flatMap(city -> city.getNameTry())
+                .forEach(city -> System.out.println("City : " +city));
+    }
+}
