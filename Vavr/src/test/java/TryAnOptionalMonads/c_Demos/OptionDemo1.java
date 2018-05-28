@@ -33,6 +33,13 @@ public class OptionDemo1 {
     HashMap<String, Option<Person>> personMapJava7 = new HashMap<>();
     Map<String, Person> personMapJava8 = new Map<>();
 
+    public static class Map<T, U> extends HashMap<T, U> {
+
+        public Option<U> find(T t) {
+            return Option.of(super.get(t));
+        }
+    }
+
     BiConsumer<City, City> assertCity = (cityToTest, cityResult) -> assertThat(cityToTest).isEqualTo(cityResult);
 
     @Before
@@ -91,13 +98,6 @@ public class OptionDemo1 {
                     .flatMap(Person::getAdressOption)
                     .flatMap(Address::getCityOption)
                     .forEach((city) -> assertCity.accept(city, cityMailand));
-        }
-    }
-
-    public static class Map<T, U> extends HashMap<T, U> {
-
-        public Option<U> find(T t) {
-            return Option.of(super.get(t));
         }
     }
 }
