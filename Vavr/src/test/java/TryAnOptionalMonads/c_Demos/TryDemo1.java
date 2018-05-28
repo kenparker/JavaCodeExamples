@@ -16,11 +16,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.ThrowableAssert.*;
 
 
-public class TryDemo1 extends CommonItems {
-
-    public static final String ADDRESS_AS_NO_CITY = "Adress as no city";
-    public static final String PERSON_HAS_NO_ADRESS = "Person has no adress";
-    public static final String NAME_NOT_FOUND_IN_MAP = "Name not found in map";
+public class TryDemo1 extends CommonItems implements CommonConstants {
 
     BiConsumer<HashMap<String, Person>, String> hashMapStringBiConsumer = (personMap, nameMarco) -> {
         Person person = personMap.get(nameMarco);

@@ -1,11 +1,12 @@
 package TryAnOptionalMonads.a_Entities;
 
+import TryAnOptionalMonads.c_Demos.CommonConstants;
 import io.vavr.control.Option;
 import io.vavr.control.Try;
 
 import java.util.Objects;
 
-public class Person {
+public class Person implements CommonConstants{
 
     private Address address;
     private String name;
@@ -25,7 +26,7 @@ public class Person {
 
     public Try<Address> getAdressTry() {
         if (address == null) {
-            return Try.failure(new IllegalStateException());
+            return Try.failure(new IllegalStateException(PERSON_HAS_NO_ADRESS));
         } else
             return Try.success(address);
     }
