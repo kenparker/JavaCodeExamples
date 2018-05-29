@@ -3,6 +3,7 @@ package TryAnOptionalMonads.c_Demos;
 import TryAnOptionalMonads.a_Entities.Address;
 import TryAnOptionalMonads.a_Entities.City;
 import TryAnOptionalMonads.a_Entities.Person;
+import io.vavr.Function2;
 import io.vavr.control.Try;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.Before;
@@ -37,12 +38,23 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
         }
     };
 
+
+    Function2<MapTry<String, Person>, String, City> mapTryStringCityFunction2 = (Function2<MapTry<String, Person>, String, City>) (mapTry, name) -> mapTry.find(name)
+            .flatMap(person -> person.getAdressTry())
+            .getOrElseThrow(throwable -> {
+                throw new RuntimeException(throwable);
+            })
+            .getCityTry()
+            .getOrElseThrow(throwable -> {
+                throw new RuntimeException(throwable);
+            });
+
     MapTry<String, Person> mapTry = new MapTry();
 
     public static class MapTry<T, U> extends HashMap<T, U> {
         public Try<U> find(T t) {
             U value = super.get(t);
-            if (value==null) {
+            if (value == null) {
                 return Try.failure(new IllegalStateException(NAME_NOT_FOUND_IN_MAP));
             } else {
                 return Try.success(value);
@@ -113,11 +125,34 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
     }
 
     @Test
+    public void givenAnEmptyAdress_thenThrow() {
+        ThrowingCallable throwingCallable = () -> mapTry.find(namePaolo)
+                .flatMap(person -> person.getAdressTry())
+                .getOrElseThrow(throwable -> {
+                    throw new RuntimeException(throwable);
+                });
+        assertThatCode(throwingCallable)
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(PERSON_HAS_NO_ADRESS);
+    }
+
+
+    @Test
+    public void given_then() {
+        ThrowingCallable throwingCallable = () -> {
+            mapTryStringCityFunction2.apply(mapTry, nameMarco);
+        };
+        assertThatCode(throwingCallable)
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(ADDRESS_AS_NO_CITY);
+    }
+
+    @Test
     public void name() {
         mapTry.find("dddd")
                 .flatMap(person -> person.getAdressTry())
                 .flatMap(address -> address.getCityTry())
                 .flatMap(city -> city.getNameTry())
-                .forEach(city -> System.out.println("City : " +city));
+                .forEach(city -> System.out.println("City : " + city));
     }
 }

@@ -1,11 +1,12 @@
 package TryAnOptionalMonads.a_Entities;
 
+import TryAnOptionalMonads.c_Demos.CommonConstants;
 import io.vavr.control.Option;
 import io.vavr.control.Try;
 
 import java.util.Objects;
 
-public class Address {
+public class Address implements CommonConstants {
 
     private String street;
     private City city;
@@ -28,7 +29,9 @@ public class Address {
     }
 
     public Try<City> getCityTry() {
-        return Try.of(() -> city);
+        if (city == null) {
+            return Try.failure(new IllegalStateException(ADDRESS_AS_NO_CITY));
+        } else return Try.success(city);
     }
 
     @Override
