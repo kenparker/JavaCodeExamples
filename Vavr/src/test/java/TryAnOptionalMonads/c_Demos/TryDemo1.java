@@ -40,7 +40,10 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
 
 
     Function2<MapTry<String, Person>, String, City> mapTryStringCityFunction2 = (Function2<MapTry<String, Person>, String, City>) (mapTry, name) -> mapTry.find(name)
-            .flatMap(person -> person.getAdressTry())
+            .getOrElseThrow(throwable -> {
+                throw new RuntimeException(throwable);
+            })
+            .getAdressTry()
             .getOrElseThrow(throwable -> {
                 throw new RuntimeException(throwable);
             })
@@ -104,7 +107,7 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
     }
 
     @Test
-    public void given_thenIsFailure() {
+    public void givenANonExistingPerson_thenIsFailure() {
         boolean dummy = mapTry.find("Dummy")
                 .isFailure();
         assertThat(dummy).isTrue();
@@ -125,12 +128,16 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
     }
 
     @Test
+    public void givenANonExistingPerson_thenThrow() {
+        ThrowingCallable throwingCallable = () -> mapTryStringCityFunction2.apply(mapTry, "Dummy");
+        assertThatCode(throwingCallable)
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(NAME_NOT_FOUND_IN_MAP);
+    }
+
+    @Test
     public void givenAnEmptyAdress_thenThrow() {
-        ThrowingCallable throwingCallable = () -> mapTry.find(namePaolo)
-                .flatMap(person -> person.getAdressTry())
-                .getOrElseThrow(throwable -> {
-                    throw new RuntimeException(throwable);
-                });
+        ThrowingCallable throwingCallable = () -> mapTryStringCityFunction2.apply(mapTry, namePaolo);
         assertThatCode(throwingCallable)
                 .isInstanceOf(RuntimeException.class)
                 .hasMessageContaining(PERSON_HAS_NO_ADRESS);
@@ -138,10 +145,8 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
 
 
     @Test
-    public void given_then() {
-        ThrowingCallable throwingCallable = () -> {
-            mapTryStringCityFunction2.apply(mapTry, nameMarco);
-        };
+    public void givenAnEmptyCity_thenThrow() {
+        ThrowingCallable throwingCallable = () -> mapTryStringCityFunction2.apply(mapTry, nameMarco);
         assertThatCode(throwingCallable)
                 .isInstanceOf(RuntimeException.class)
                 .hasMessageContaining(ADDRESS_AS_NO_CITY);
