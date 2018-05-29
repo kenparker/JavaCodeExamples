@@ -3,14 +3,15 @@ package TryAnOptionalMonads.c_Demos;
 import TryAnOptionalMonads.a_Entities.Address;
 import TryAnOptionalMonads.a_Entities.City;
 import TryAnOptionalMonads.a_Entities.Person;
+import io.vavr.CheckedFunction2;
+import io.vavr.Function1;
 import io.vavr.Function2;
+import io.vavr.control.Option;
 import io.vavr.control.Try;
-import org.assertj.core.api.ThrowableAssert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
-import java.util.function.BiConsumer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -19,14 +20,14 @@ import static org.assertj.core.api.ThrowableAssert.*;
 
 public class TryDemo1 extends CommonItems implements CommonConstants {
 
-    BiConsumer<HashMap<String, Person>, String> hashMapStringBiConsumer = (personMap, nameMarco) -> {
+    Function2<HashMap<String, Person>, String, City> imperativIfThenElseThrowCode = (personMap, nameMarco) -> {
         Person person = personMap.get(nameMarco);
         if (person != null) {
             Address address = person.getAddress();
             if (address != null) {
                 City city = address.getCity();
                 if (city != null) {
-
+                    return city;
                 } else {
                     throw new IllegalStateException(ADDRESS_AS_NO_CITY);
                 }
@@ -39,7 +40,7 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
     };
 
 
-    Function2<MapTry<String, Person>, String, City> mapTryStringCityFunction2 = (Function2<MapTry<String, Person>, String, City>) (mapTry, name) -> mapTry.find(name)
+    Function2<MapTry<String, Person>, String, City> functionalIfThenElseThrowCode = (Function2<MapTry<String, Person>, String, City>) (mapTry, name) -> mapTry.find(name)
             .getOrElseThrow(throwable -> {
                 throw new RuntimeException(throwable);
             })
@@ -77,7 +78,7 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
 
     @Test
     public void givenAPersonWithNoCity_thenIllegalStateException() {
-        ThrowingCallable throwable = () -> hashMapStringBiConsumer.accept(personMap, nameMarco);
+        ThrowingCallable throwable = () -> imperativIfThenElseThrowCode.apply(personMap, nameMarco);
         assertThatCode(throwable)
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage(ADDRESS_AS_NO_CITY);
@@ -85,7 +86,7 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
 
     @Test
     public void givenAPersonWithNoAdress_thenIllegalStateException() {
-        ThrowingCallable throwable = () -> hashMapStringBiConsumer.accept(personMap, namePaolo);
+        ThrowingCallable throwable = () -> imperativIfThenElseThrowCode.apply(personMap, namePaolo);
         assertThatCode(throwable)
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage(PERSON_HAS_NO_ADRESS);
@@ -93,7 +94,7 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
 
     @Test
     public void givenAPersonNameThatDoesNotExist_thenIllegalStateException() {
-        ThrowingCallable throwable = () -> hashMapStringBiConsumer.accept(personMap, "Dummy");
+        ThrowingCallable throwable = () -> imperativIfThenElseThrowCode.apply(personMap, "Dummy");
         assertThatCode(throwable)
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage(NAME_NOT_FOUND_IN_MAP);
@@ -101,7 +102,7 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
 
     @Test
     public void givenAPersonOK_thenNOIllegalStateException() {
-        ThrowingCallable throwable = () -> hashMapStringBiConsumer.accept(personMap, nameDaniela);
+        ThrowingCallable throwable = () -> imperativIfThenElseThrowCode.apply(personMap, nameDaniela);
         assertThatCode(throwable)
                 .doesNotThrowAnyException();
     }
@@ -129,7 +130,7 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
 
     @Test
     public void givenANonExistingPerson_thenThrow() {
-        ThrowingCallable throwingCallable = () -> mapTryStringCityFunction2.apply(mapTry, "Dummy");
+        ThrowingCallable throwingCallable = () -> functionalIfThenElseThrowCode.apply(mapTry, "Dummy");
         assertThatCode(throwingCallable)
                 .isInstanceOf(RuntimeException.class)
                 .hasMessageContaining(NAME_NOT_FOUND_IN_MAP);
@@ -137,7 +138,7 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
 
     @Test
     public void givenAnEmptyAdress_thenThrow() {
-        ThrowingCallable throwingCallable = () -> mapTryStringCityFunction2.apply(mapTry, namePaolo);
+        ThrowingCallable throwingCallable = () -> functionalIfThenElseThrowCode.apply(mapTry, namePaolo);
         assertThatCode(throwingCallable)
                 .isInstanceOf(RuntimeException.class)
                 .hasMessageContaining(PERSON_HAS_NO_ADRESS);
@@ -146,7 +147,7 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
 
     @Test
     public void givenAnEmptyCity_thenThrow() {
-        ThrowingCallable throwingCallable = () -> mapTryStringCityFunction2.apply(mapTry, nameMarco);
+        ThrowingCallable throwingCallable = () -> functionalIfThenElseThrowCode.apply(mapTry, nameMarco);
         assertThatCode(throwingCallable)
                 .isInstanceOf(RuntimeException.class)
                 .hasMessageContaining(ADDRESS_AS_NO_CITY);
@@ -154,10 +155,17 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
 
     @Test
     public void name() {
-        mapTry.find("dddd")
+        CheckedFunction2<MapTry<String, Person>, String, City> checkedFunction2 = (map,name) -> map.find(name)
                 .flatMap(person -> person.getAdressTry())
                 .flatMap(address -> address.getCityTry())
-                .flatMap(city -> city.getNameTry())
-                .forEach(city -> System.out.println("City : " + city));
+                .get();
+        Function2<MapTry<String, Person>, String, City> dddd = (mapTry, name) -> mapTry.find(name)
+                .flatMap(person -> person.getAdressTry())
+                .flatMap(address -> address.getCityTry())
+                .get();
+        //City city = dddd.apply(mapTry, namePaolo);
+        Function2<MapTry<String, Person>, String, Option<City>> lift = CheckedFunction2.lift(checkedFunction2);
+        Option<City> apply = lift.apply(mapTry, "fff");
+        System.out.println(apply);
     }
 }
