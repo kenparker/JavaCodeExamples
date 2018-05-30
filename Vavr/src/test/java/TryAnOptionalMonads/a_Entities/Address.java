@@ -30,7 +30,7 @@ public class Address implements CommonConstants {
 
     public Try<City> getCityTry() {
         if (city == null) {
-            return Try.failure(new IllegalStateException(ADDRESS_AS_NO_CITY));
+            return Try.failure(new IllegalStateException(ADDRESS_HAS_NO_CITY));
         } else return Try.success(city);
     }
 
