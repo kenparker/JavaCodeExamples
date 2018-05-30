@@ -29,18 +29,6 @@ public class CommonItems {
     Person person3 = new PersonBuilder().setName(nameDaniela).setAddress(addressManzoni).createPerson();
 
     HashMap<String, Person> personMap = new HashMap<>();
-    HashMap<String, Option<Person>> personMapJava7 = new HashMap<>();
-    Map<String, Person> personMapJava8 = new Map<>();
-
-    public static class Map<T, U> extends HashMap<T, U> {
-
-        public Option<U> find(T t) {
-            return Option.of(super.get(t));
-        }
-    }
-
-    BiConsumer<City, City> assertCity = (cityToTest, cityResult) -> assertThat(cityToTest).isEqualTo(cityResult);
-
 
     @Before
     public void setUp() {
@@ -48,12 +36,5 @@ public class CommonItems {
         personMap.put(namePaolo, person2);
         personMap.put(nameDaniela, person3);
 
-        personMapJava7.put(nameMarco, Option.of(person1));
-        personMapJava7.put(namePaolo, Option.of(person2));
-        personMapJava7.put(nameDaniela, Option.of(person3));
-
-        personMapJava8.put(nameMarco, person1);
-        personMapJava8.put(namePaolo, person2);
-        personMapJava8.put(nameDaniela, person3);
     }
 }
