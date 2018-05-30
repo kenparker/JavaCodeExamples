@@ -156,8 +156,12 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
                 .flatMap(address -> address.getCityTry())
                 .get();
         //City city = dddd.apply(personMapFunctional, namePaolo);
-        Function2<Map<String, Person>, String, Option<City>> lift = CheckedFunction2.lift(checkedFunction2);
-        Option<City> apply = lift.apply(personMapFunctional, "fff");
+        //Function2<Map<String, Person>, String, Option<City>> lift = CheckedFunction2.lift(checkedFunction2);
+        //Option<City> apply = lift.apply(personMapFunctional, nameMarco);
+
+        Option<City> apply = CheckedFunction2.lift(checkedFunction2).apply(personMapFunctional,nameDaniela);
+
+         checkedFunction2.unchecked() ;
         System.out.println(apply);
     }
 }
