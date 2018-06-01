@@ -145,23 +145,4 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
                 .isFailure()).isTrue();
     }
 
-    @Test
-    public void name() {
-        CheckedFunction2<Map<String, Person>, String, City> checkedFunction2 = (map, name) -> map.find(name)
-                .flatMap(person -> person.getAdressTry())
-                .flatMap(address -> address.getCityTry())
-                .get();
-        Function2<Map<String, Person>, String, City> dddd = (map, name) -> map.find(name)
-                .flatMap(person -> person.getAdressTry())
-                .flatMap(address -> address.getCityTry())
-                .get();
-        //City city = dddd.apply(personMapFunctional, namePaolo);
-        //Function2<Map<String, Person>, String, Option<City>> lift = CheckedFunction2.lift(checkedFunction2);
-        //Option<City> apply = lift.apply(personMapFunctional, nameMarco);
-
-        Option<City> apply = CheckedFunction2.lift(checkedFunction2).apply(personMapFunctional,nameDaniela);
-
-         checkedFunction2.unchecked() ;
-        System.out.println(apply);
-    }
 }
