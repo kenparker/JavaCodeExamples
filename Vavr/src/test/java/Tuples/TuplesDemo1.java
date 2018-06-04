@@ -62,6 +62,8 @@ public class TuplesDemo1 {
         Tuple3<Employee, Person, String> map = tuple3.map(employee -> employee, person -> person, s -> s.concat(employeeAngelo.getName().get()
                                                                                                         .concat(" e ")
                                                                                                         .concat(personMarco.getName().get())));
+        map = tuple3.map((employee, person, s) -> Tuple.of(employee, person, s.concat(employee.getName().get()).concat(" e ").concat(person.getName().get())));
+
         System.out.println(map._3);
     }
 
