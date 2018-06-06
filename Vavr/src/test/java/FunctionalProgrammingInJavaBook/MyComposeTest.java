@@ -7,11 +7,8 @@ import static org.assertj.core.api.Assertions.*;
 
 public class MyComposeTest {
 
-    MyFunction<MyFunction<Integer,Integer>, MyFunction<MyFunction<Integer,Integer>, MyFunction<Integer,Integer>>> comp =
+    MyFunction<MyFunction<Integer, Integer>, MyFunction<MyFunction<Integer, Integer>, MyFunction<Integer, Integer>>> comp =
             x -> y -> z -> x.apply(y.apply(z));
-
-    @Test
-    public void compose() {
 
         MyFunction<Integer, Integer> triple = new MyFunction<Integer, Integer>() {
             @Override
@@ -27,6 +24,10 @@ public class MyComposeTest {
             }
         };
 
+    @Test
+    public void compose() {
+
+
         Integer resultAnonymus = MyFunction.composeAnonymus(triple, square).apply(5);
         Integer resultLambdas = MyFunction.composeLambdas(triple, square).apply(5);
 
@@ -39,5 +40,14 @@ public class MyComposeTest {
                 .isEqualTo(resultLambdas);
         assertThat(resultAnonymus)
                 .isEqualTo(75);
+    }
+
+    @Test
+    public void name() {
+
+        Integer higherCompose = MyFunction.<Integer, Integer, Integer>higherCompose().apply(triple).apply(square).apply(5);
+        Integer higherAndThen = MyFunction.<Integer, Integer, Integer>higherAndThen().apply(square).apply(triple).apply(5);
+
+        assertThat(higherCompose).isEqualTo(higherAndThen);
     }
 }

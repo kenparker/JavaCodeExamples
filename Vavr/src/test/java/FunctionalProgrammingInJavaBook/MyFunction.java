@@ -17,4 +17,17 @@ public interface MyFunction<T,U> {
     static MyFunction<Integer, Integer> composeLambdas(MyFunction<Integer, Integer> f1, MyFunction<Integer, Integer> f2) {
         return  arg -> f1.apply(f2.apply(arg));
     }
+
+
+    static <T, U, V> MyFunction<MyFunction<T, U>,
+            MyFunction<MyFunction<V, T>,
+                    MyFunction<V, U>>> higherCompose() {
+        return f -> g -> x -> f.apply(g.apply(x));
+    }
+
+    static <T, U, V> MyFunction<MyFunction<T, U>,
+            MyFunction<MyFunction<U, V>,
+                    MyFunction<T, V>>> higherAndThen() {
+        return f -> g -> x -> g.apply(f.apply(x));
+    }
 }
