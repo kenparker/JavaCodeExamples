@@ -10,19 +10,19 @@ public class MyComposeTest {
     MyFunction<MyFunction<Integer, Integer>, MyFunction<MyFunction<Integer, Integer>, MyFunction<Integer, Integer>>> comp =
             x -> y -> z -> x.apply(y.apply(z));
 
-        MyFunction<Integer, Integer> triple = new MyFunction<Integer, Integer>() {
-            @Override
-            public Integer apply(Integer arg) {
-                return arg * 3;
-            }
-        };
+    MyFunction<Integer, Integer> triple = new MyFunction<Integer, Integer>() {
+        @Override
+        public Integer apply(Integer arg) {
+            return arg * 3;
+        }
+    };
 
-        MyFunction<Integer, Integer> square = new MyFunction<Integer, Integer>() {
-            @Override
-            public Integer apply(Integer arg) {
-                return arg * arg;
-            }
-        };
+    MyFunction<Integer, Integer> square = new MyFunction<Integer, Integer>() {
+        @Override
+        public Integer apply(Integer arg) {
+            return arg * arg;
+        }
+    };
 
     @Test
     public void compose() {
