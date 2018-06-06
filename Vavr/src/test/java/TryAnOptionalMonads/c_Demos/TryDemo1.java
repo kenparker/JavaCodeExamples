@@ -3,9 +3,7 @@ package TryAnOptionalMonads.c_Demos;
 import TryAnOptionalMonads.a_Entities.Address;
 import TryAnOptionalMonads.a_Entities.City;
 import TryAnOptionalMonads.a_Entities.Person;
-import io.vavr.CheckedFunction2;
 import io.vavr.Function2;
-import io.vavr.control.Option;
 import io.vavr.control.Try;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +18,7 @@ import static org.assertj.core.api.ThrowableAssert.*;
 
 public class TryDemo1 extends CommonItems implements CommonConstants {
 
-    Function2<HashMap<String, Person>, String, City> imperativIfThenElseThrowCode = (personMap, nameMarco) -> {
+    private Function2<HashMap<String, Person>, String, City> imperativIfThenElseThrowCode = (personMap, nameMarco) -> {
         Person person = personMap.get(nameMarco);
         if (person != null) {
             Address address = person.getAddress();
@@ -39,7 +37,7 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
         }
     };
 
-    Function2<Map<String, Person>, String, City> functionalIfThenElseThrowCode = (map, name) ->
+    private Function2<Map<String, Person>, String, City> functionalIfThenElseThrowCodeBad = (map, name) ->
             map.find(name)
                     .getOrElseThrow(throwable -> {
                         throw new IllegalStateException(throwable);
@@ -53,10 +51,18 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
                         throw new IllegalStateException(throwable);
                     });
 
-    Map<String, Person> personMapFunctional = new Map();
+    private Function2<Map<String, Person>, String, City> functionalIfThenElseThrowCodeNice = (map, name) ->
+            map.find(name)
+            .flatMap(Person::getAdressTry)
+            .flatMap(Address::getCityTry)
+            .getOrElseThrow(throwable -> {
+                        throw new IllegalStateException(throwable);
+                    });
 
-    public static class Map<T, U> extends HashMap<T, U> {
-        public Try<U> find(T t) {
+    private Map<String, Person> personMapFunctional = new Map();
+
+    private static class Map<T, U> extends HashMap<T, U> {
+        private Try<U> find(T t) {
             U value = super.get(t);
             if (value == null) {
                 return Try.failure(new IllegalStateException(NAME_NOT_FOUND_IN_MAP));
@@ -78,15 +84,15 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
 
     }
 
-    Consumer<ThrowingCallable> assertErrorAddress_no_city = throwingCallable -> assertThatCode(throwingCallable)
+    private Consumer<ThrowingCallable> assertErrorAddress_no_city = throwingCallable -> assertThatCode(throwingCallable)
             .isInstanceOf(IllegalStateException.class)
             .hasMessageContaining(ADDRESS_HAS_NO_CITY);
 
-    Consumer<ThrowingCallable> assertErrorPerson_no_address = throwingCallable -> assertThatCode(throwingCallable)
+    private Consumer<ThrowingCallable> assertErrorPerson_no_address = throwingCallable -> assertThatCode(throwingCallable)
             .isInstanceOf(IllegalStateException.class)
             .hasMessageContaining(PERSON_HAS_NO_ADRESS);
 
-    Consumer<ThrowingCallable> assertErrorName_not_found = throwingCallable -> assertThatCode(throwingCallable)
+    private Consumer<ThrowingCallable> assertErrorName_not_found = throwingCallable -> assertThatCode(throwingCallable)
             .isInstanceOf(IllegalStateException.class)
             .hasMessageContaining(NAME_NOT_FOUND_IN_MAP);
 
@@ -95,7 +101,10 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
         throwable = () -> imperativIfThenElseThrowCode.apply(personMap, nameMarco);
         assertErrorAddress_no_city.accept(throwable);
 
-        throwable = () -> functionalIfThenElseThrowCode.apply(personMapFunctional, nameMarco);
+        throwable = () -> functionalIfThenElseThrowCodeBad.apply(personMapFunctional, nameMarco);
+        assertErrorAddress_no_city.accept(throwable);
+
+        throwable = () -> functionalIfThenElseThrowCodeNice.apply(personMapFunctional, nameMarco);
         assertErrorAddress_no_city.accept(throwable);
     }
 
@@ -104,7 +113,10 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
         throwable = () -> imperativIfThenElseThrowCode.apply(personMap, namePaolo);
         assertErrorPerson_no_address.accept(throwable);
 
-        throwable = () -> functionalIfThenElseThrowCode.apply(personMapFunctional, namePaolo);
+        throwable = () -> functionalIfThenElseThrowCodeBad.apply(personMapFunctional, namePaolo);
+        assertErrorPerson_no_address.accept(throwable);
+
+        throwable = () -> functionalIfThenElseThrowCodeNice.apply(personMapFunctional, namePaolo);
         assertErrorPerson_no_address.accept(throwable);
     }
 
@@ -113,7 +125,10 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
         throwable = () -> imperativIfThenElseThrowCode.apply(personMap, "Dummy");
         assertErrorName_not_found.accept(throwable);
 
-        throwable = () -> functionalIfThenElseThrowCode.apply(personMapFunctional, "Dummy");
+        throwable = () -> functionalIfThenElseThrowCodeBad.apply(personMapFunctional, "Dummy");
+        assertErrorName_not_found.accept(throwable);
+
+        throwable = () -> functionalIfThenElseThrowCodeNice.apply(personMapFunctional, "Dummy");
         assertErrorName_not_found.accept(throwable);
     }
 
@@ -141,7 +156,7 @@ public class TryDemo1 extends CommonItems implements CommonConstants {
     @Test
     public void givenAnEmptyAddress_thenIsFailure() {
         assertThat(personMapFunctional.find(namePaolo)
-                .flatMap(person -> person.getAdressTry())
+                .flatMap(Person::getAdressTry)
                 .isFailure()).isTrue();
     }
 
