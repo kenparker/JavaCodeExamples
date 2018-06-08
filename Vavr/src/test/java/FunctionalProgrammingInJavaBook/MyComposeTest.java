@@ -1,6 +1,5 @@
 package FunctionalProgrammingInJavaBook;
 
-import io.vavr.Function1;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -9,6 +8,7 @@ public class MyComposeTest {
 
     MyFunction<MyFunction<Integer, Integer>, MyFunction<MyFunction<Integer, Integer>, MyFunction<Integer, Integer>>> comp =
             x -> y -> z -> x.apply(y.apply(z));
+
 
     MyFunction<Integer, Integer> triple = new MyFunction<Integer, Integer>() {
         @Override
