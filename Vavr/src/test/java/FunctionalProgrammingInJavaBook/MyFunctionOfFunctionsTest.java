@@ -93,6 +93,29 @@ public class MyFunctionOfFunctionsTest {
         };
     }
 
+    static <A, B, C> MyFunction<MyFunction<A, C>,
+                            MyFunction<MyFunction<B, A>,
+                                    MyFunction<B, C>>> sss() {
+        return new MyFunction<MyFunction<A, C>, MyFunction<MyFunction<B, A>, MyFunction<B, C>>>() {
+            @Override
+            public MyFunction<MyFunction<B, A>, MyFunction<B, C>> apply(MyFunction<A, C> arg1) {
+                return new MyFunction<MyFunction<B, A>, MyFunction<B, C>>() {
+                    @Override
+                    public MyFunction<B, C> apply(MyFunction<B, A> arg2) {
+                        return new MyFunction<B, C>() {
+                            @Override
+                            public C apply(B arg3) {
+                                A a = arg2.apply(arg3);
+                                C b = arg1.apply(a);
+                                return b;
+                            }
+                        };
+                    }
+                };
+            }
+        };
+    }
+
     MyFunction<Integer, String> a = integer -> Integer.toString(integer);
     MyFunction<Integer, Integer> b = integer -> integer * 2;
 
