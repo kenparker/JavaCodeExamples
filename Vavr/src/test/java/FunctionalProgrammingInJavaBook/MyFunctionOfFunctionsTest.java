@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class MyFunctionOfFunctionsTest {
 
-    static <T extends String> MyFunction<T, String> hello() {
+    static <T extends String> MyFunction<T, String> myTestFunction1() {
         return new MyFunction<T, String>() {
             @Override
             public String apply(T t) {
@@ -15,7 +15,7 @@ public class MyFunctionOfFunctionsTest {
         };
     }
 
-    static MyFunction<Integer, MyFunction<Integer, String>> baby() {
+    static MyFunction<Integer, MyFunction<Integer, String>> myTestFunction2() {
         return new MyFunction<Integer, MyFunction<Integer, String>>() {
             @Override
             public MyFunction<Integer, String> apply(Integer arg1) {
@@ -32,7 +32,7 @@ public class MyFunctionOfFunctionsTest {
     }
 
     static MyFunction<MyFunction<Integer, String>,
-            MyFunction<String, String>> idea() {
+            MyFunction<String, String>> myTestFunction3() {
         return new MyFunction<MyFunction<Integer, String>, MyFunction<String, String>>() {
             @Override
             public MyFunction<String, String> apply(MyFunction<Integer, String> arg1) {
@@ -47,13 +47,13 @@ public class MyFunctionOfFunctionsTest {
     }
 
     static MyFunction<MyFunction<Integer, String>,
-            MyFunction<String, String>> mango() {
+            MyFunction<String, String>> myTestFunction4() {
         return arg1 -> arg2 -> arg1 + arg2;
     }
 
     static MyFunction<MyFunction<Integer,Integer>,
                             MyFunction<MyFunction<Integer,Integer>,
-                                            MyFunction<Integer,Integer>>> comisch() {
+                                            MyFunction<Integer,Integer>>> myCompose1() {
         return new MyFunction<MyFunction<Integer, Integer>, MyFunction<MyFunction<Integer, Integer>, MyFunction<Integer, Integer>>>() {
             @Override
             public MyFunction<MyFunction<Integer, Integer>, MyFunction<Integer, Integer>> apply(MyFunction<Integer, Integer> arg1) {
@@ -74,7 +74,7 @@ public class MyFunctionOfFunctionsTest {
 
     static MyFunction<MyFunction<Integer,String>,
                             MyFunction<MyFunction<Integer,Integer>,
-                                            MyFunction<Integer,Integer>>> comischLa() {
+                                            MyFunction<Integer,Integer>>> myCompose2() {
         return new MyFunction<MyFunction<Integer, String>, MyFunction<MyFunction<Integer, Integer>, MyFunction<Integer, Integer>>>() {
             @Override
             public MyFunction<MyFunction<Integer, Integer>, MyFunction<Integer, Integer>> apply(MyFunction<Integer, String> arg1) {
@@ -95,7 +95,7 @@ public class MyFunctionOfFunctionsTest {
 
     static <A, B, C> MyFunction<MyFunction<A, C>,
                             MyFunction<MyFunction<B, A>,
-                                    MyFunction<B, C>>> sss() {
+                                    MyFunction<B, C>>> myCompose3() {
         return new MyFunction<MyFunction<A, C>, MyFunction<MyFunction<B, A>, MyFunction<B, C>>>() {
             @Override
             public MyFunction<MyFunction<B, A>, MyFunction<B, C>> apply(MyFunction<A, C> arg1) {
@@ -121,12 +121,12 @@ public class MyFunctionOfFunctionsTest {
 
     @Test
     public void given_when_then() {
-        String hello = hello().apply("hello");
+        String hello = myTestFunction1().apply("hello");
         assertThat(hello).isEqualToIgnoringCase("Hello");
     }
 
     @Test
     public void name() {
-        Integer result = comischLa().apply(a).apply(b).apply(3);
+        Integer result = myCompose2().apply(a).apply(b).apply(3);
     }
 }
