@@ -1,9 +1,12 @@
-package FunctionalProgrammingInJavaBook;
+package FunctionalProgrammingInJavaBook_Chapter_2;
 
 
 public interface MyFunction<T,U> {
     U apply(T arg);
 
+    static <T> MyFunction<T, T> identity() {
+        return t -> t;
+    }
 
     static MyFunction<Integer, Integer> composeAnonymus(MyFunction<Integer, Integer> f1, MyFunction<Integer, Integer> f2) {
         return new MyFunction<Integer, Integer>() {

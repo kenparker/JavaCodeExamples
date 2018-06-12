@@ -1,6 +1,5 @@
-package FunctionalProgrammingInJavaBook;
+package FunctionalProgrammingInJavaBook_Chapter_2;
 
-import io.vavr.Tuple;
 import io.vavr.Tuple2;
 import org.junit.Test;
 
