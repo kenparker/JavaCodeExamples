@@ -1,5 +1,8 @@
-package FunctionalProgrammingInJavaBook_Chapter_3;
+package FunctionalProgrammingInJavaBook_Chapter_3.Exercise_3_1;
 
+import FunctionalProgrammingInJavaBook_Chapter_3.Executable;
+import FunctionalProgrammingInJavaBook_Chapter_3.Function;
+import FunctionalProgrammingInJavaBook_Chapter_3.Result;
 import org.assertj.core.api.Condition;
 import org.junit.Test;
 
