@@ -73,6 +73,10 @@ public class CollectionUtilities {
         return foldLeft(list, list(), x -> y -> append(x, f.apply(y)));
     }
 
+    public static <T,U> List<U> mapWithFoldRight(List<T> list, Function<T,U> f) {
+        return foldRight(list,list(), x -> y -> prepend(f.apply(x),y));
+    }
+
     public static <T, U> List<U> mapWithFoldLeft2(List<T> list, Function<T, U> f) {
         Function<Function<T, U>, Function<List<U>, Function<T, List<U>>>> function = f1 -> x -> y -> append(x, f1.apply(y));
 
