@@ -18,7 +18,7 @@ public class FoldTest {
         return "(" + s + " + " + i + ")";
     }
 
-    private static String addIS( Integer i, String s) {
+    private static String addIS(Integer i, String s) {
         return "(" + i + " + " + s + ")";
     }
     private static String addSIs(String s, String i) {
