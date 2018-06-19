@@ -22,10 +22,14 @@ public class PrintWithTwoDecimalsTest {
         System.out.println();
     };
 
+    Function<Double,Executable> print2DecExec = x -> () -> print2Dec.apply(x);
+
     Function<Executable, Function<Executable, Executable>> compose = x -> y -> () -> {
         x.exec();
         y.exec();
     };
+
+
 
     Executable ez = () -> {};
 

@@ -9,8 +9,8 @@ public class MyFunctionOfFunctionsTest {
     static <T extends String> MyFunction<T, String> myTestFunction1() {
         return new MyFunction<T, String>() {
             @Override
-            public String apply(T t) {
-                return t.toString();
+            public String apply(T arg) {
+                return arg.toString();
             }
         };
     }
@@ -106,8 +106,8 @@ public class MyFunctionOfFunctionsTest {
                             @Override
                             public C apply(B arg3) {
                                 A a = arg2.apply(arg3);
-                                C b = arg1.apply(a);
-                                return b;
+                                C c = arg1.apply(a);
+                                return c;
                             }
                         };
                     }

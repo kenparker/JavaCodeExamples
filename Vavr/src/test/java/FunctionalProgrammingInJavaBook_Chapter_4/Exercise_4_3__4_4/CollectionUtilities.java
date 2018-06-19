@@ -1,11 +1,15 @@
-package FunctionalProgrammingInJavaBook_Chapter_3.Exercise_3_10;
+package FunctionalProgrammingInJavaBook_Chapter_4.Exercise_4_3__4_4;
 
 import FunctionalProgrammingInJavaBook_Chapter_3.Function;
+import FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_2.TailCall;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import static FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_2.TailCall.ret;
+import static FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_2.TailCall.sus;
 
 public class CollectionUtilities {
 
@@ -55,6 +59,16 @@ public class CollectionUtilities {
         return result;
     }
 
+    public static <T,U>  U foldLeftSafe(List<T> list, U identity, Function<U, Function<T, U>> f) {
+        return foldLeftSafe_(list,identity,f).eval();
+    }
+
+    private static <T, U> TailCall<U> foldLeftSafe_(List<T> list, U identity, Function<U, Function<T, U>> f) {
+        return list.isEmpty()
+                ? ret(identity)
+                : sus( () -> foldLeftSafe_(tail(list), f.apply(identity).apply(head(list)),f));
+    }
+
     public static <T, U> U foldRight(List<T> list, U identity, Function<T, Function<U, U>> f) {
         return list.isEmpty()
                 ? identity
@@ -79,6 +93,7 @@ public class CollectionUtilities {
 
     public static <T, U> List<U> mapWithFoldLeft2(List<T> list, Function<T, U> f) {
         Function<Function<T, U>, Function<List<U>, Function<T, List<U>>>> function = f1 -> x -> y -> append(x, f1.apply(y));
+
         return foldLeft(list, list(), function.apply(f));
     }
 }
