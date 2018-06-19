@@ -21,7 +21,7 @@ public class FoldLeftTest {
 
     @Test
     public void testFoldLeft() {
-        String sFoldLeftOriginal = foldLeft(list, identity, f);
+        String sFoldLeftOriginal = foldLeftImperative(list, identity, f);
         String sFoldLeftSafe = foldLeftSafe(list, identity, f);
 
         assertThat(sFoldLeftOriginal).isEqualTo(sFoldLeftSafe);

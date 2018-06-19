@@ -51,7 +51,7 @@ public class CollectionUtilities {
         return Collections.unmodifiableList(result);
     }
 
-    public static <T, U> U foldLeft(List<T> list, U identity, Function<U, Function<T, U>> f) {
+    public static <T, U> U foldLeftImperative(List<T> list, U identity, Function<U, Function<T, U>> f) {
         U result = identity;
         for (T i : list) {
             result = f.apply(result).apply(i);
@@ -75,22 +75,32 @@ public class CollectionUtilities {
                 : f.apply(head(list)).apply(foldRight(tail(list), identity, f));
     }
 
-    public static <T,U> U foldRightTail(U acc, List<T> list, U identity, Function<T, Function<U, U>> f) {
+    public static <T,U> U foldRightTail(U acc, List<T> list, Function<T, Function<U, U>> f) {
         return list.isEmpty()
                 ? acc
-                : foldRightTail(f.apply(head(list)).apply(acc),tail(list),identity,f);
+                : foldRightTail(f.apply(head(list)).apply(acc),tail(list),f);
+    }
+
+    private static <T,U> TailCall<U> foldRight_(U acc, List<T> list, Function<T, Function<U, U>> f) {
+        return list.isEmpty()
+                ? ret(acc)
+                : sus(() -> foldRight_(f.apply(head(list)).apply(acc),tail(list),f));
+    }
+
+    public static <T,U> U foldRightSafe(List<T> list, U identity, Function<T, Function<U, U>> f) {
+        return foldRight_( identity, reverse(list), f).eval();
     }
 
     public static <T> List<T> prepend(T t, List<T> list) {
-        return foldLeft(list, list(t), a -> b -> append(a, b));
+        return foldLeftImperative(list, list(t), a -> b -> append(a, b));
     }
 
     public static <T> List<T> reverse(List<T> list) {
-        return foldLeft(list, list(), a -> b -> prepend(b, a));
+        return foldLeftImperative(list, list(), a -> b -> prepend(b, a));
     }
 
     public static <T, U> List<U> mapWithFoldLeft(List<T> list, Function<T, U> f) {
-        return foldLeft(list, list(), x -> y -> append(x, f.apply(y)));
+        return foldLeftImperative(list, list(), x -> y -> append(x, f.apply(y)));
     }
 
     public static <T,U> List<U> mapWithFoldRight(List<T> list, Function<T,U> f) {
@@ -100,6 +110,6 @@ public class CollectionUtilities {
     public static <T, U> List<U> mapWithFoldLeft2(List<T> list, Function<T, U> f) {
         Function<Function<T, U>, Function<List<U>, Function<T, List<U>>>> function = f1 -> x -> y -> append(x, f1.apply(y));
 
-        return foldLeft(list, list(), function.apply(f));
+        return foldLeftImperative(list, list(), function.apply(f));
     }
 }

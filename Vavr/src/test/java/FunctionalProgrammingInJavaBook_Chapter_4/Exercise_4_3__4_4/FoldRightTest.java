@@ -25,8 +25,10 @@ public class FoldRightTest {
     public void testFoldRight() {
 
         String s = foldRight(list, identity, f);
-        String sTail = foldRightTail("0", reverse(list), identity, f);
+        String sTail = foldRightTail(identity,reverse(list), f);
+        String sSafe = foldRightSafe(list,identity, f);
 
         assertThat(sTail).isEqualTo(s);
+        assertThat(sSafe).isEqualTo(s);
     }
 }

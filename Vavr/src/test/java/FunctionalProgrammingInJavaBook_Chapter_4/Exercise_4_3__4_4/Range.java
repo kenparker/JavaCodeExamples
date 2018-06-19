@@ -12,7 +12,7 @@ import static FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_2.TailCall.*;
 
 public class Range {
 
-    public static List<Integer> range(Integer start, Integer end) {
+    public static List<Integer> rangeImperative(Integer start, Integer end) {
         List<Integer> result = new ArrayList<>();
         Integer temp = start;
         while (temp < end) {
@@ -50,10 +50,10 @@ public class Range {
 
 
     public static List<Integer> rangeGeneric(Integer start, Integer end) {
-        return unfold(start, x -> x + 1, x -> x < end);
+        return unfoldImperative(start, x -> x + 1, x -> x < end);
     }
 
-    public static <T> List<T> unfold(T seed, Function<T, T> f, Function<T, Boolean> p) {
+    public static <T> List<T> unfoldImperative(T seed, Function<T, T> f, Function<T, Boolean> p) {
         List<T> result = new ArrayList<>();
         T temp = seed;
         while (p.apply(temp)) {

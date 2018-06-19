@@ -15,7 +15,7 @@ public class RangeTest {
     @Test
     public void testRangeBase() {
 
-        List<Integer> range = range(start, end);
+        List<Integer> range = rangeImperative(start, end);
         List<Integer> rangeBase = rangeBase(start, end);
         List<Integer> rangeTail = rangeTail(start, end);
         List<Integer> rangeSafe = rangeSafe(start, end);
