@@ -75,6 +75,12 @@ public class CollectionUtilities {
                 : f.apply(head(list)).apply(foldRight(tail(list), identity, f));
     }
 
+    public static <T,U> U foldRightTail(U acc, List<T> list, U identity, Function<T, Function<U, U>> f) {
+        return list.isEmpty()
+                ? acc
+                : foldRightTail(f.apply(head(list)).apply(acc),tail(list),identity,f);
+    }
+
     public static <T> List<T> prepend(T t, List<T> list) {
         return foldLeft(list, list(t), a -> b -> append(a, b));
     }
