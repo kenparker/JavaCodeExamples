@@ -28,6 +28,11 @@ public class EMailValidation {
         emailChecker.apply("hey@good.de").bind(sendVerificationMail,logError);
     }
 
+    @Test
+    public void testOneOneCase() {
+        emailChecker.apply("this.is@my.email").bind(sendVerificationMail,logError);
+    }
+
     static Function<String, Result<String>> emailChecker = s -> match(
             mcase(() -> success(s)),
             mcase(() -> s == null, () -> failure("email must not be null")),
