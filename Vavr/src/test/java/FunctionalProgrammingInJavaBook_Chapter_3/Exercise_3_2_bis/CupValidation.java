@@ -1,4 +1,4 @@
-package FunctionalProgrammingInJavaBook_Chapter_3.Exercise_3_2;
+package FunctionalProgrammingInJavaBook_Chapter_3.Exercise_3_2_bis;
 
 import Entities.Cup;
 import FunctionalProgrammingInJavaBook_Chapter_3.Effect;
@@ -49,9 +49,9 @@ public class CupValidation {
 
     };
 
-    Function<Cup, Result<Cup>> cupValidationFunctional = cup -> match(
+    Function<Cup, Function<Consumer<Cup>,Result<Consumer<Cup>>>> cupValidationFunctional = cup -> conCup -> match(
             null,
-            mcase(() -> cup == null, () -> Result.success(cup))
+           mcase(() -> cup == null, () -> Result.success(cup))
     );
 
     @Before
@@ -72,14 +72,13 @@ public class CupValidation {
     @Test
     public void cupTest() {
         cupImperativeEvaluation.apply(cup1);
-        Result<Cup> result = cupValidationFunctional.apply(cup3);
-        result.bind(effCupNull,null);
+
     }
 
     @Test
     public void cupTestFunctional() {
 
-        Result<Cup> result = cupValidationFunctional.apply(cup3);
-        result.bind(effCupNull,null);
+        Result<Consumer<Cup>> result = cupValidationFunctional.apply(cup3).apply(cupNull);
+        System.out.println(result);
     }
 }
