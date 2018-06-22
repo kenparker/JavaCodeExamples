@@ -3,13 +3,14 @@ package FunctionalProgrammingInJavaBook_Chapter_3.Exercise_3_2_bis;
 import Entities.Cup;
 import FunctionalProgrammingInJavaBook_Chapter_3.Effect;
 import FunctionalProgrammingInJavaBook_Chapter_3.Function;
-import FunctionalProgrammingInJavaBook_Chapter_3.Result;
 import org.junit.Before;
 import org.junit.Test;
+
+import static FunctionalProgrammingInJavaBook_Chapter_3.Exercise_3_2_bis.Case.*;
 import static org.assertj.core.api.Assertions.*;
-import static FunctionalProgrammingInJavaBook_Chapter_3.Exercise_3_2.Case.*;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class CupValidation {
 
@@ -20,7 +21,10 @@ public class CupValidation {
     Cup cup5;
 
     Consumer<Cup> cupNull = cup -> System.out.println("cup is null");
-    Effect<Cup> effCupNull = cup -> System.out.println("cup is null");
+    Effect<Cup> effCupNullSuccess = cup -> System.out.println("cup is null");
+    Effect<Cup> effCupNullFailure = cup -> System.out.println("something else");
+    Effect<Cup> defaultCase = cup -> System.out.println("Default Case");
+    Supplier<Effect<Cup>> ddd = () -> a -> defaultCase.apply(a);
     Consumer<Cup> cupEmpty = cup -> System.out.println("cup is empty");
     Consumer<Cup> cupIsOK = cup -> System.out.println("Cup " + cup + " is ok");
     Consumer<Cup> cupMario = cup -> System.out.println("cup mario");
@@ -49,9 +53,12 @@ public class CupValidation {
 
     };
 
-    Function<Cup, Function<Consumer<Cup>,Result<Consumer<Cup>>>> cupValidationFunctional = cup -> conCup -> match(
-            null,
-           mcase(() -> cup == null, () -> Result.success(cup))
+    Function<Cup,
+            Function<Supplier<Effect<Cup>>,
+                    Function<Supplier<Effect<Cup>>,
+                                        Effect<Cup>>>> cupValidationFunctional = cup -> success -> failure -> match(
+                    macaseDefault(() -> defaultCase ),
+                    mcase(() -> cup == null,success,failure)
     );
 
     @Before
@@ -77,8 +84,7 @@ public class CupValidation {
 
     @Test
     public void cupTestFunctional() {
-
-        Result<Consumer<Cup>> result = cupValidationFunctional.apply(cup3).apply(cupNull);
-        System.out.println(result);
+        Effect<Cup> effect = cupValidationFunctional.apply(cup3).apply(effCupNullSuccess).apply(effCupNullFailure);
+        effect.apply(cup3);
     }
 }

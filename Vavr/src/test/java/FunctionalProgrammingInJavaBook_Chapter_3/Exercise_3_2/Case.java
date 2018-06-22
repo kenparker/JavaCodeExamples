@@ -1,6 +1,7 @@
 package FunctionalProgrammingInJavaBook_Chapter_3.Exercise_3_2;
 
-import FunctionalProgrammingInJavaBook_Chapter_3.Exercise_3_2_bis.Result;
+
+import FunctionalProgrammingInJavaBook_Chapter_3.Result;
 import FunctionalProgrammingInJavaBook_Chapter_3.Tuple;
 
 import java.util.function.Supplier;

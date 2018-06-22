@@ -8,8 +8,8 @@ import org.junit.Test;
 import java.util.regex.Pattern;
 
 import static FunctionalProgrammingInJavaBook_Chapter_3.Exercise_3_2.Case.*;
+import static FunctionalProgrammingInJavaBook_Chapter_3.Result.*;
 import static FunctionalProgrammingInJavaBook_Chapter_3.Result.failure;
-import static FunctionalProgrammingInJavaBook_Chapter_3.Result.success;
 
 public class EMailValidation {
 
