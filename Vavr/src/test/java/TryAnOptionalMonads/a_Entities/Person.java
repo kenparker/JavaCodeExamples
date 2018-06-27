@@ -54,7 +54,7 @@ public class Person implements CommonConstants{
     public String toString() {
         return "Person{" +
                 "address=" + address +
-                ", name='" + name + '\'' +
+                ", testRecursive='" + name + '\'' +
                 '}';
     }
 }

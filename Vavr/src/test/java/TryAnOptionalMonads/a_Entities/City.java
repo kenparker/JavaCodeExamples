@@ -42,7 +42,7 @@ public class City {
     @Override
     public String toString() {
         return "City{" +
-                "name='" + name + '\'' +
+                "testRecursive='" + name + '\'' +
                 '}';
     }
 }
