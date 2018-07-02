@@ -9,21 +9,7 @@ import java.util.List;
 import static FunctionalProgrammingInJavaBook_Chapter_4.CollectionUtilities_Tests.CollectionUtilities.*;
 import static org.assertj.core.api.Assertions.*;
 
-public class CollectionUtilitiesTest {
-
-
-    Cup cup1 = Cup.builder()
-            .field("Snake").build();
-    Cup cup2 = Cup.builder()
-            .field("Tiger").build();
-    Cup cup3 = Cup.builder()
-            .field("Lion").build();
-    Cup cup4 = Cup.builder()
-            .field("Giraffe").build();
-    Cup cup5 = Cup.builder()
-            .field("Giraffe").build();
-
-    List<Cup> cupList = list(cup1, cup2);
+public class CollectionUtilities_Append_Prepend_Iterate_Test extends CollectionUtilitiesBaseTest {
 
     @Test
     public void givenACup_whenAppend_ThenNewListCupAtTheEnd() {
@@ -46,15 +32,16 @@ public class CollectionUtilitiesTest {
     @Test
     public void givenASeed_whenIterate_thenAListIsCreated() {
         Cup seed = Cup.builder().field("0").build();
-        Function<Cup,Cup> f = cup -> Cup.builder().field(String.valueOf(Integer.valueOf(cup.field())+1)).build();
+        Function<Cup, Cup> f = cup -> Cup.builder().field(String.valueOf(Integer.valueOf(cup.field()) + 1)).build();
         List<Cup> cupList = iterate(seed, f, 5);
         System.out.println(cupList); // [Cup{field=0}, Cup{field=1}, Cup{field=2}, Cup{field=3}, Cup{field=4}]
 
         seed = Cup.builder().field("A").build();
-        f = cup -> Cup.builder().field(cup.field()+"B").build();
-        cupList = iterate(seed,f,6);
+        f = cup -> Cup.builder().field(cup.field() + "B").build();
+        cupList = iterate(seed, f, 6);
         System.out.println(cupList); // [Cup{field=A}, Cup{field=AB}, Cup{field=ABB}, Cup{field=ABBB}, Cup{field=ABBBB}, Cup{field=ABBBBB}]
         assertThat(cupList.get(0)).isEqualTo(seed);
         assertThat(cupList.get(1)).isNotEqualTo(seed);
     }
+
 }
