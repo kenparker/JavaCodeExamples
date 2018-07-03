@@ -4,10 +4,12 @@ import Entities.Cup;
 import FunctionalProgrammingInJavaBook_Chapter_3.Function;
 import org.junit.Test;
 
+import java.util.List;
+
 import static FunctionalProgrammingInJavaBook_Chapter_4.CollectionUtilities_Tests.CollectionUtilities.*;
 import static org.assertj.core.api.Assertions.*;
 
-public class CollectionUtilities_FoldLeft_FoldRight_Test extends CollectionUtilitiesBaseTest {
+public class CollectionUtilities_Folding_And_Mapping_Test extends CollectionUtilitiesBaseTest {
 
     private String identity = "Hello";
     private Function<String,
@@ -33,5 +35,19 @@ public class CollectionUtilities_FoldLeft_FoldRight_Test extends CollectionUtili
         System.out.println(cupList);
         String s = foldRightSafe(cupList, identity, f2); // ( Snake( TigerHello ) )
         assertThat(s).isEqualTo("( Snake( TigerHello))");
+    }
+
+    private Function<Cup,String> f3 = cup -> "( " + cup.field() + ")";
+
+    @Test
+    public void testMapWithFoldLeft() {
+        List<String> strings = mapWithFoldLeft(cupList, f3);
+        System.out.println(strings); // [( Snake), ( Tiger)]
+    }
+
+    @Test
+    public void testMapWithFoldRight() {
+        List<String> strings = mapWithFoldRight(cupList, f3);
+        System.out.println(strings); // [( Snake), ( Tiger)]
     }
 }
