@@ -2,7 +2,7 @@ package FunctionalProgrammingInJavaBook_Chapter_4.Exercise_4_9;
 
 import FunctionalProgrammingInJavaBook_Chapter_3.Function;
 import FunctionalProgrammingInJavaBook_Chapter_3.Tuple;
-import FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_2.TailCall;
+import FunctionalProgrammingInJavaBook_Chapter_4.Listing_4_2.TailCall;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -11,8 +11,8 @@ import static FunctionalProgrammingInJavaBook_Chapter_4.Exercise_4_9.CollectionU
 import static FunctionalProgrammingInJavaBook_Chapter_4.Exercise_4_9.CollectionUtilities.append;
 import static FunctionalProgrammingInJavaBook_Chapter_4.Exercise_4_9.CollectionUtilities.head;
 import static FunctionalProgrammingInJavaBook_Chapter_4.Exercise_4_9.CollectionUtilities.list;
-import static FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_2.TailCall.ret;
-import static FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_2.TailCall.sus;
+import static FunctionalProgrammingInJavaBook_Chapter_4.Listing_4_2.TailCall.ret;
+import static FunctionalProgrammingInJavaBook_Chapter_4.Listing_4_2.TailCall.sus;
 
 public class Memoization {
 

@@ -1,4 +1,4 @@
-package FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_2;
+package FunctionalProgrammingInJavaBook_Chapter_4.Listing_4_2;
 
 import org.junit.Test;
 

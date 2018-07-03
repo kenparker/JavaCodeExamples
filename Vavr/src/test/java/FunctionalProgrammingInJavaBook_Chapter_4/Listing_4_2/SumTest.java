@@ -1,11 +1,11 @@
-package FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_2;
+package FunctionalProgrammingInJavaBook_Chapter_4.Listing_4_2;
 
 import org.junit.Test;
 
 import java.util.List;
 
 import static FunctionalProgrammingInJavaBook_Chapter_3.Exercise_3_9.CollectionUtilities.*;
-import static FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_2.Sum.*;
+import static FunctionalProgrammingInJavaBook_Chapter_4.Listing_4_2.Sum.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class SumTest {

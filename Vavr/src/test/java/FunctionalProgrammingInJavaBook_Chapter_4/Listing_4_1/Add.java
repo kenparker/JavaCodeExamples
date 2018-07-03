@@ -1,4 +1,4 @@
-package FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_1;
+package FunctionalProgrammingInJavaBook_Chapter_4.Listing_4_1;
 
 public class Add {
 

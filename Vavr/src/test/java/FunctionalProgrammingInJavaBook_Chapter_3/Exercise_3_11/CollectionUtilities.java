@@ -1,14 +1,11 @@
 package FunctionalProgrammingInJavaBook_Chapter_3.Exercise_3_11;
 
 import FunctionalProgrammingInJavaBook_Chapter_3.Function;
-import FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_2.TailCall;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import static FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_2.TailCall.*;
 
 public class CollectionUtilities {
 

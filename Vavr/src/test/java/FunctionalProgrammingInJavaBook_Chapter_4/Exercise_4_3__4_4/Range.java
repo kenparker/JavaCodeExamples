@@ -1,13 +1,13 @@
 package FunctionalProgrammingInJavaBook_Chapter_4.Exercise_4_3__4_4;
 
 import FunctionalProgrammingInJavaBook_Chapter_3.Function;
-import FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_2.TailCall;
+import FunctionalProgrammingInJavaBook_Chapter_4.Listing_4_2.TailCall;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static FunctionalProgrammingInJavaBook_Chapter_4.Exercise_4_3__4_4.CollectionUtilities.*;
-import static FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_2.TailCall.*;
+import static FunctionalProgrammingInJavaBook_Chapter_4.Listing_4_2.TailCall.*;
 
 
 public class Range {

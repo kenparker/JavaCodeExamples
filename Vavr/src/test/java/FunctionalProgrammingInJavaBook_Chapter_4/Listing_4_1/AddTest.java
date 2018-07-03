@@ -1,8 +1,8 @@
-package FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_1;
+package FunctionalProgrammingInJavaBook_Chapter_4.Listing_4_1;
 
 import org.junit.Test;
 
-import static FunctionalProgrammingInJavaBook_Chapter_4.Listung_4_1.Add.add;
+import static FunctionalProgrammingInJavaBook_Chapter_4.Listing_4_1.Add.add;
 
 public class AddTest {
 
