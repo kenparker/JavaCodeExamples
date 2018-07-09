@@ -1,6 +1,7 @@
 package FunctionalProgrammingInJavaBook_Chapter_5.Common;
 
 
+import FunctionalProgrammingInJavaBook_Chapter_3.Function;
 import FunctionalProgrammingInJavaBook_Chapter_4.Listing_4_2.TailCall;
 
 import static FunctionalProgrammingInJavaBook_Chapter_4.Listing_4_2.TailCall.*;
@@ -16,6 +17,7 @@ public abstract class List<A> {
     }
     public abstract String toString();
     public abstract List<A> drop(Integer n);
+    public abstract List<A> dropWhile(Function<A, Boolean> function);
 
     @SuppressWarnings("rawtypes")
     public static final List NIL = new Nil();
@@ -51,6 +53,8 @@ public abstract class List<A> {
         public List<A> drop(Integer n) {
             return this;
         }
+
+        public List<A> dropWhile(Function<A, Boolean> function) {return this;}
     }
 
     private static class Cons<A> extends List<A> {
@@ -94,10 +98,21 @@ public abstract class List<A> {
                     ? ret(list)
                     : sus(() -> drop_(list.tail(), n - 1));
         }
+
         private TailCall<StringBuilder> toString(StringBuilder acc, List<A> list) {
             return list.isEmpty()
                     ? ret(acc)
                     : sus(() -> toString(acc.append(list.head()).append(", "),list.tail()));
+        }
+
+        public List<A> dropWhile(Function<A,Boolean> f) {
+            return dropWhile_(this, f).eval();
+        }
+
+        private TailCall<List<A>> dropWhile_(List<A> list, Function<A, Boolean> f) {
+            return !list.isEmpty() && f.apply(list.head())
+                    ? sus(() -> dropWhile_(list.tail(),f))
+                    : ret(list);
         }
     }
 
