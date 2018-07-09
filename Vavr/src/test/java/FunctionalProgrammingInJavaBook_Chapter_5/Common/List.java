@@ -18,6 +18,8 @@ public abstract class List<A> {
     public abstract String toString();
     public abstract List<A> drop(Integer n);
     public abstract List<A> dropWhile(Function<A, Boolean> function);
+    public abstract List<A> reverse();
+    public abstract List<A> init();
 
     @SuppressWarnings("rawtypes")
     public static final List NIL = new Nil();
@@ -55,6 +57,8 @@ public abstract class List<A> {
         }
 
         public List<A> dropWhile(Function<A, Boolean> function) {return this;}
+        public List<A> reverse() {return this;}
+        public List<A> init() {throw new IllegalStateException("Init called en empty list");}
     }
 
     private static class Cons<A> extends List<A> {
@@ -109,6 +113,20 @@ public abstract class List<A> {
             return dropWhile_(this, f).eval();
         }
 
+        public List<A> reverse() {
+            return reverse_(list(),this).eval();
+        }
+
+        public TailCall<List<A>> reverse_(List<A> acc, List<A> list) {
+            return list.isEmpty()
+                    ? ret(acc)
+                    : sus(() -> reverse_(new Cons<>(list.head(),acc),list.tail()));
+        }
+
+        public List<A> init() {
+            return this.reverse().tail().reverse();
+        }
+
         private TailCall<List<A>> dropWhile_(List<A> list, Function<A, Boolean> f) {
             return !list.isEmpty() && f.apply(list.head())
                     ? sus(() -> dropWhile_(list.tail(),f))
@@ -124,6 +142,14 @@ public abstract class List<A> {
         return list.drop(n);
     }
 
+    public static <A> List<A> reverse(List<A> list) {
+        return list.reverse();
+    }
+
+    public static <A> List<A> init(List<A> list) {
+        return list.init();
+    }
+
     @SuppressWarnings("unchecked")
     public static <A> List<A> list() {
         return NIL;
@@ -137,6 +163,4 @@ public abstract class List<A> {
         }
         return n;
     }
-
-
 }

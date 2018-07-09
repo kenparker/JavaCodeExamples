@@ -30,6 +30,12 @@ public class DropTest {
     }
 
     @Test
+    public void name() {
+        List<Integer> integerList = list.drop(0).setHead(55);
+        System.out.println(integerList);
+    }
+
+    @Test
     public void givenAList_whenDropAllElementWhileMin11_then_newListOK() {
         List<Integer> integerList = list.dropWhile(f);
         System.out.println(integerList);
