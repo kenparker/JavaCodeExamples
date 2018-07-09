@@ -1,10 +1,9 @@
-package FunctionalProgrammingInJavaBook_Chapter_5.Exercise_5_3;
+package FunctionalProgrammingInJavaBook_Chapter_5.Exercise_5_3_5_4;
 
 import FunctionalProgrammingInJavaBook_Chapter_5.Common.List;
 import org.junit.Test;
 
 import static FunctionalProgrammingInJavaBook_Chapter_5.Common.List.*;
-import static org.junit.Assert.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class ToStringTest {

@@ -15,6 +15,7 @@ public abstract class List<A> {
         return new Cons<>(a, this);
     }
     public abstract String toString();
+    public abstract List<A> drop(Integer n);
 
     @SuppressWarnings("rawtypes")
     public static final List NIL = new Nil();
@@ -45,6 +46,10 @@ public abstract class List<A> {
 
         public String toString() {
             return "[NIL]";
+        }
+
+        public List<A> drop(Integer n) {
+            return this;
         }
     }
 
@@ -78,6 +83,17 @@ public abstract class List<A> {
             return String.format("[%sNIL]",toString(new StringBuilder(),this).eval());
         }
 
+        public List<A> drop(Integer n) {
+            return n <= 0
+                    ? this
+                    : drop_(this,n).eval();
+        }
+
+        private TailCall<List<A>> drop_(List<A> list, Integer n) {
+            return n <= 0 || list.isEmpty()
+                    ? ret(list)
+                    : sus(() -> drop_(list.tail(), n - 1));
+        }
         private TailCall<StringBuilder> toString(StringBuilder acc, List<A> list) {
             return list.isEmpty()
                     ? ret(acc)
@@ -87,6 +103,10 @@ public abstract class List<A> {
 
     public static <A> List<A> setHead(List<A> list, A h) {
         return list.setHead(h);
+    }
+
+    public static <A> List<A> drop(List<A> list, Integer n) {
+        return list.drop(n);
     }
 
     @SuppressWarnings("unchecked")
@@ -102,4 +122,6 @@ public abstract class List<A> {
         }
         return n;
     }
+
+
 }
