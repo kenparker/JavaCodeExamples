@@ -21,6 +21,7 @@ public abstract class List<A> {
     public abstract List<A> reverse();
     public abstract List<A> init();
     public abstract Integer length();
+    public abstract <B> B foldLeft(B identity, Function<B, Function<A,B>> f);
 
     @SuppressWarnings("rawtypes")
     public static final List NIL = new Nil();
@@ -61,6 +62,9 @@ public abstract class List<A> {
         public List<A> reverse() {return this;}
         public List<A> init() {throw new IllegalStateException("Init called en empty list");}
         public Integer length() {throw new IllegalStateException("length called en empty list");}
+        public <B> B foldLeft(B identity, Function<B, Function<A,B>> f) {
+            return identity;
+        }
     }
 
     private static class Cons<A> extends List<A> {
@@ -138,6 +142,16 @@ public abstract class List<A> {
         public Integer length() {
             return foldRight(this, 0 , x -> y -> y + 1);
         }
+
+        public <B> B foldLeft(B identity, Function<B, Function<A, B>>f) {
+            return foldLeft_(identity,this,f).eval();
+        }
+
+        private <B> TailCall<B> foldLeft_(B acc, List<A> list, Function<B, Function<A,B>> f) {
+            return list.isEmpty()
+                    ? ret(acc)
+                    : sus(() -> foldLeft_(f.apply(acc).apply(list.head()),list.tail(), f));
+        }
     }
 
     public static <A> List<A> setHead(List<A> list, A h) {
@@ -160,6 +174,10 @@ public abstract class List<A> {
         return list.isEmpty()
                 ? n
                 : f.apply(list.head()).apply(foldRight(list.tail(),n, f));
+    }
+
+    public static <A,B> B foldLeft(List<A> list, B n, Function<B, Function<A,B>> f) {
+        return list.foldLeft(list,n,f);
     }
 
     @SuppressWarnings("unchecked")
