@@ -20,6 +20,7 @@ public abstract class List<A> {
     public abstract List<A> dropWhile(Function<A, Boolean> function);
     public abstract List<A> reverse();
     public abstract List<A> init();
+    public abstract Integer length();
 
     @SuppressWarnings("rawtypes")
     public static final List NIL = new Nil();
@@ -59,6 +60,7 @@ public abstract class List<A> {
         public List<A> dropWhile(Function<A, Boolean> function) {return this;}
         public List<A> reverse() {return this;}
         public List<A> init() {throw new IllegalStateException("Init called en empty list");}
+        public Integer length() {throw new IllegalStateException("length called en empty list");}
     }
 
     private static class Cons<A> extends List<A> {
@@ -132,6 +134,10 @@ public abstract class List<A> {
                     ? sus(() -> dropWhile_(list.tail(),f))
                     : ret(list);
         }
+
+        public Integer length() {
+            return foldRight(this, 0 , x -> y -> y + 1);
+        }
     }
 
     public static <A> List<A> setHead(List<A> list, A h) {
@@ -148,6 +154,12 @@ public abstract class List<A> {
 
     public static <A> List<A> init(List<A> list) {
         return list.init();
+    }
+
+    public static <A,B> B foldRight(List<A> list, B n, Function<A, Function<B,B>> f) {
+        return list.isEmpty()
+                ? n
+                : f.apply(list.head()).apply(foldRight(list.tail(),n, f));
     }
 
     @SuppressWarnings("unchecked")
