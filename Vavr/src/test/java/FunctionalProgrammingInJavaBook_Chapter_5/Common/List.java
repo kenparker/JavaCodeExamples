@@ -180,6 +180,22 @@ public abstract class List<A> {
         return list.foldLeft(list,n,f);
     }
 
+    public static Integer sumViaFoldLeft(List<Integer> list) {
+        return list.foldLeft(0, x -> y -> x + y);
+    }
+
+    public static Double productViaFoldLeft(List<Double> list) {
+        return list.foldLeft(1.0, x -> y -> x * y);
+    }
+
+    public static <A> Integer lengthViaFoldLeft(List<A> list) {
+        return list.foldLeft(0, x -> ignore -> x + 1);
+    }
+
+    public static <A> List<A> reverseViaFoldLeft(List<A> list) {
+        return list.foldLeft(list(), x -> a -> x.cons(a));
+    }
+
     @SuppressWarnings("unchecked")
     public static <A> List<A> list() {
         return NIL;

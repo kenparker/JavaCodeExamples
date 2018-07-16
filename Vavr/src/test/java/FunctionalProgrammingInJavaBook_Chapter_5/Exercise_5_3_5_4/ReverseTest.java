@@ -17,8 +17,10 @@ public class ReverseTest {
         List<String> reverse1 = list1.reverse();
         System.out.println(reverse1);
         List<String> reverse2 = reverse(list1);
+        List<String> reverseViaFoldLeft = List.reverseViaFoldLeft(list1);
+        System.out.println(reverseViaFoldLeft);
 
-        assertThat(reverse1.toString()).isEqualTo(reverse2.toString());
+        assertThat(reverse1.toString()).isEqualTo(reverse2.toString()).isEqualTo(reverseViaFoldLeft.toString());
     }
 
     @Test

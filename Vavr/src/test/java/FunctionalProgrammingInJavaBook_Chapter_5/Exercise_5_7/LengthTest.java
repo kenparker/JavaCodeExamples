@@ -12,6 +12,7 @@ public class LengthTest {
     @Test
     public void testLength() {
         Integer length = list.length();
-        assertThat(length).isEqualTo(3);
+        Integer lengthViaFoldLeft = List.lengthViaFoldLeft(list);
+        assertThat(length).isEqualTo(3).isEqualTo(lengthViaFoldLeft);
     }
 }

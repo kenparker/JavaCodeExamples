@@ -27,15 +27,17 @@ public class FoldRight {
     public void testSum() {
         List<Integer> list = list(3, 3, 2);
         Integer sum = sum(list);
-        assertThat(sum).isEqualTo(8);
+        Integer sumViaFoldLeft = List.sumViaFoldLeft(list);
+        assertThat(sum).isEqualTo(8).isEqualTo(sumViaFoldLeft);
     }
 
     @Test
     public void testProduct() {
         List<Double> list = list(1.1, 4.6, 13.42);
         Double product = product(list);
+        Double productViaFoldLeft = List.productViaFoldLeft(list);
         Double expected = 67.9052;
-        assertThat(product).isEqualTo(expected);
+        assertThat(product).isEqualTo(expected).isEqualTo(productViaFoldLeft);
     }
 
     @Test
