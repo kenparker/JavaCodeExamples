@@ -23,6 +23,10 @@ public abstract class List<A> {
     public abstract Integer length();
     public abstract <B> B foldLeft(B identity, Function<B, Function<A,B>> f);
 
+    public <B> B foldRight(B identity, Function<A, Function<B, B>> f) {
+        return reverse().foldLeft(identity, x -> y -> f.apply(y).apply(x));
+    }
+
     @SuppressWarnings("rawtypes")
     public static final List NIL = new Nil();
 
@@ -176,8 +180,8 @@ public abstract class List<A> {
                 : f.apply(list.head()).apply(foldRight(list.tail(),n, f));
     }
 
-    public static <A,B> B foldLeft(List<A> list, B n, Function<B, Function<A,B>> f) {
-        return list.foldLeft(list,n,f);
+    public static <A,B> B foldRightViaFoldLeft(List<A> list, B n, Function<A, Function<B,B>> f) {
+        return list.reverse().foldLeft(n, x -> y -> f.apply(y).apply(x));
     }
 
     public static Integer sumViaFoldLeft(List<Integer> list) {

@@ -16,7 +16,24 @@ public class FoldLeftTest {
 
     @Test
     public void sumWithFoldLeft() {
-        Integer integer = foldLeft(list, n, sum);
+        Integer integer = list.foldLeft(n, sum);
         assertThat(integer).isEqualTo(foldRight(list,n,sum));
+    }
+
+    @Test
+    public void sumWithFoldRightViaFoldLeft() {
+        Integer integer = foldRightViaFoldLeft(list, n, sum);
+        System.out.println(integer);
+        Integer integer1 = foldRight(list, n, sum);
+        assertThat(integer).isEqualTo(integer1);
+
+    }
+
+    @Test
+    public void sumWithFoldRightInstance() {
+        Integer integer = list.foldRight(n, sum);
+        System.out.println(integer);
+        Integer integer1 = foldRight(list, n, sum);
+        assertThat(integer).isEqualTo(integer1);
     }
 }
