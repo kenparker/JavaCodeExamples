@@ -174,6 +174,10 @@ public abstract class List<A> {
         return list.init();
     }
 
+    public static <A> List<A> concat(List<A> list1, List<A> list2) {
+        return foldRightViaFoldLeft(list1,list2, x -> y -> new Cons<>(x,y));
+    }
+
     public static <A,B> B foldRight(List<A> list, B n, Function<A, Function<B,B>> f) {
         return list.isEmpty()
                 ? n
