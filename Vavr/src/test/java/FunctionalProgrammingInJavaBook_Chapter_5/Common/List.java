@@ -185,7 +185,12 @@ public abstract class List<A> {
     }
 
     public static <A,B> B foldRightViaFoldLeft(List<A> list, B n, Function<A, Function<B,B>> f) {
-        return list.reverse().foldLeft(n, x -> y -> f.apply(y).apply(x));
+        return list.reverse()
+                .foldLeft(n, x -> y -> f.apply(y).apply(x));
+    }
+
+    public static <A> List<A> flatten(List<List<A>> list) {
+        return foldRightViaFoldLeft(list,List.<A>list(),x -> y -> concat(x,y));
     }
 
     public static Integer sumViaFoldLeft(List<Integer> list) {

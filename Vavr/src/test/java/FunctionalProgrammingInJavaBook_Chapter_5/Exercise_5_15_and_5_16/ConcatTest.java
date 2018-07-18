@@ -1,4 +1,4 @@
-package FunctionalProgrammingInJavaBook_Chapter_5.Exercise_5_15;
+package FunctionalProgrammingInJavaBook_Chapter_5.Exercise_5_15_and_5_16;
 
 import FunctionalProgrammingInJavaBook_Chapter_5.Common.List;
 import org.junit.Test;
