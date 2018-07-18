@@ -21,6 +21,9 @@ public class FlattenTest {
     List<List<String>> list11 = list(list5,list6,list7);
     List<List<List<String>>> listList = list(list10,list11);
 
+    List<Integer> li1 = list(1,3,5,6);
+    List<Integer> li2 = list(10,13,40);
+    List<List<Integer>> li = list(li1,li2);
 
     @Test
     public void givenAListOfListOfStrings_whenFlatten_thenResultIsAListWithAllElements() {
@@ -38,8 +41,17 @@ public class FlattenTest {
     }
 
     @Test
+    public void name() {
+        List<Integer> flatten = flatten(li);
+        System.out.println(flatten);
+        assertThat(flatten.toString()).isEqualTo("[1, 3, 5, 6, 10, 13, 40, NIL]");
+    }
+
+    @Test
     public void givenAListOfList_whenFoldLeft_thenResultIsEqualToFlatten() {
         List<String> stringList = list.foldLeft(list(), x -> y -> concat(x, y));
+        System.out.println(stringList);
+        stringList = list.foldRight(list(), x -> y -> concat(x,y));
         System.out.println(stringList);
         assertThat(stringList.toString()).isEqualTo(flatten(list).toString());
     }
