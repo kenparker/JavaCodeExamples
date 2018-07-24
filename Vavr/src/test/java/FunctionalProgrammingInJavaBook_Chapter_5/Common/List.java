@@ -12,9 +12,6 @@ public abstract class List<A> {
     public abstract List<A> tail();
     public abstract boolean isEmpty();
     public abstract List<A> setHead(A h);
-    public List<A> cons(A a) {
-        return new Cons<>(a, this);
-    }
     public abstract String toString();
     public abstract List<A> drop(Integer n);
     public abstract List<A> dropWhile(Function<A, Boolean> function);
@@ -23,6 +20,13 @@ public abstract class List<A> {
     public abstract Integer length();
     public abstract <B> B foldLeft(B identity, Function<B, Function<A,B>> f);
 
+    public <B> List<B> map(Function<A, B> f) {
+        return foldRight(list(), h -> y -> new Cons<>(f.apply(h),y));
+    }
+
+    public List<A> cons(A a) {
+        return new Cons<>(a, this);
+    }
     public <B> B foldRight(B identity, Function<A, Function<B, B>> f) {
         return reverse().foldLeft(identity, x -> y -> f.apply(y).apply(x));
     }
