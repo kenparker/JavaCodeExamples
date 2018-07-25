@@ -29,8 +29,10 @@ public abstract class List<A> {
     }
 
     public List<A> filter(Function<A, Boolean> f) {
-        return foldRight(list(), a -> lb -> f.apply(a)
-                ? new Cons<>(a, lb) : lb);
+        return foldRight(list(), a -> lb ->
+                f.apply(a)
+                ? new Cons<>(a, lb)
+                        : lb);
     }
 
     public <B> B foldRight(B identity, Function<A, Function<B, B>> f) {

@@ -7,13 +7,15 @@ import org.junit.Test;
 public class FilterTest {
 
 
-    public  Function<String, Function<List<String>,List<String>>> f ;
+    List<Integer> integerList = List.list(20,4,5,22);
+
+    Function<Integer, Boolean> check = integer ->
+            integer > 6;
 
     @Test
-    public void name() {
-        String s1 = null;
-        List<String> ls = null;
-        Function<List<String>, List<String>> apply1 = f.apply(s1);
-        List<String> applyls = apply1.apply(ls);
+    public void given_when_then() {
+
+        List<Integer> filter = integerList.filter(check);
+        System.out.println(filter);
     }
 }
