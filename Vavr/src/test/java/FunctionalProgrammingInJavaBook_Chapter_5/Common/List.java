@@ -20,15 +20,23 @@ public abstract class List<A> {
     public abstract Integer length();
     public abstract <B> B foldLeft(B identity, Function<B, Function<A,B>> f);
 
+    public List<A> cons(A a) {
+        return new Cons<>(a, this);
+    }
+
     public <B> List<B> map(Function<A, B> f) {
         return foldRight(list(), h -> y -> new Cons<>(f.apply(h),y));
     }
 
-    public List<A> cons(A a) {
-        return new Cons<>(a, this);
+    public List<A> filter(Function<A, Boolean> f) {
+        return foldRight(list(), a -> lb -> f.apply(a)
+                ? new Cons<>(a, lb) : lb);
     }
+
     public <B> B foldRight(B identity, Function<A, Function<B, B>> f) {
-        return reverse().foldLeft(identity, x -> y -> f.apply(y).apply(x));
+        return reverse().foldLeft(identity,
+                x -> y ->
+                        f.apply(y).apply(x));
     }
 
     @SuppressWarnings("rawtypes")

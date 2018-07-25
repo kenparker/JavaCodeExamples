@@ -1,4 +1,4 @@
-package FunctionalProgrammingInJavaBook_Chapter_5.Exercise_5_19;
+package FunctionalProgrammingInJavaBook_Chapter_5.Exercise_5_19_und_5_20;
 
 import FunctionalProgrammingInJavaBook_Chapter_3.Function;
 import FunctionalProgrammingInJavaBook_Chapter_5.Common.List;
