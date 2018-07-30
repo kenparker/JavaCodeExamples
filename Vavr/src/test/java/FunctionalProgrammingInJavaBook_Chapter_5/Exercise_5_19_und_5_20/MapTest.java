@@ -12,6 +12,7 @@ public class MapTest {
 
     Function<Integer,Integer> triple = integer -> integer * 3;
     Function<Integer, String> convert = integer -> Integer.toString(integer);
+    Function<Integer, List<String>> convertFlatMap = integer -> List.list(integer.toString());
 
     @Test
     public void givenAnIntegerList_whenMapTriple_thenListIntegerTriple() {
@@ -22,6 +23,12 @@ public class MapTest {
     @Test
     public void given_when_then() {
         List<String> stringList = integerList.map(convert);
+        System.out.println(stringList);
+    }
+
+    @Test
+    public void given_whenFlatMap_then() {
+        List<String> stringList = integerList.flatMap(convertFlatMap);
         System.out.println(stringList);
     }
 }

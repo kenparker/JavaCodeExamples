@@ -28,6 +28,10 @@ public abstract class List<A> {
         return foldRight(list(), h -> y -> new Cons<>(f.apply(h),y));
     }
 
+    public <B> List<B> flatMap(Function<A, List<B>> f) {
+        return foldRight(list(), a  -> l -> concat(f.apply(a),l));
+    }
+
     public List<A> filter(Function<A, Boolean> f) {
         return foldRight(list(), a -> lb ->
                 f.apply(a)
@@ -204,7 +208,7 @@ public abstract class List<A> {
     }
 
     public static <A> List<A> flatten(List<List<A>> list) {
-        return foldRightViaFoldLeft(list,List.<A>list(),x -> y -> concat(x,y));
+        return list.flatMap( a -> a);
     }
 
     public static Integer sumViaFoldLeft(List<Integer> list) {
@@ -221,6 +225,10 @@ public abstract class List<A> {
 
     public static <A> List<A> reverseViaFoldLeft(List<A> list) {
         return list.foldLeft(list(), x -> a -> x.cons(a));
+    }
+
+    public static <A> List<A> filterViaFlatMap(List<A> list, Function<A, Boolean> f) {
+        return list.flatMap(a -> f.apply(a) ? list(a) : list());
     }
 
     @SuppressWarnings("unchecked")
