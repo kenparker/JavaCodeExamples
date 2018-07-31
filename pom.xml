@@ -29,6 +29,7 @@
         <module>Vavr</module>
         <module>AutoValueDemos</module>
         <module>Immutables</module>
+        <module>Functional_Programming_in_Java</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
