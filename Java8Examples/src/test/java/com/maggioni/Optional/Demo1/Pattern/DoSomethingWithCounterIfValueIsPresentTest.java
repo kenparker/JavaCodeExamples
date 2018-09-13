@@ -12,7 +12,7 @@ public class DoSomethingWithCounterIfValueIsPresentTest {
     private DoSomethingWithCounterIfValueIsPresent doSomethingWithCounter = new DoSomethingWithCounterIfValueIsPresent();;
     private Counter counter;
     
-
+/*
     @Test
     public void Counter_is_Null_test() {
         
@@ -81,4 +81,5 @@ public class DoSomethingWithCounterIfValueIsPresentTest {
         counter =  new Counter(20,25);
         doSomethingWithCounter.setCounter(counter);
     }
+    */
 }

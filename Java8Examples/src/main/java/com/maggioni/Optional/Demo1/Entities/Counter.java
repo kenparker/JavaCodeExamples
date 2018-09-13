@@ -1,53 +1,52 @@
 package com.maggioni.Optional.Demo1.Entities;
 
 import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 
 public class Counter {
 
-    private Optional<Integer> endValue;
-    private Optional<Integer> currentValue;
+    private Integer endValue;
+    private Integer currentValue;
 
-    public Counter() {
-        this(10, 0);
+    private Counter(Builder builder) {
+        endValue = builder.endValue;
+        currentValue = builder.currentValue;
     }
 
-    public Counter(Integer endValue, Integer currentValue) {
-        this.endValue = Optional.of(endValue);
-        this.currentValue = Optional.of(currentValue);
+    public static Builder newBuilder() {
+        return new Builder();
     }
 
-    public Integer getCurrentValue() {
-        return currentValue.get();
+    public Optional<Integer> getCurrentValue() {
+        return Optional.ofNullable(currentValue);
     }
 
-    public void incrementOldWay(Integer value) {
+    public Optional<Integer> getEndValue() {
+        return Optional.ofNullable(endValue);
+    }
 
-        Integer newCurrentValue = currentValue.get() + value;
-        if (newCurrentValue != null && newCurrentValue <= endValue.get()) {
-            currentValue = Optional.of(newCurrentValue);
+    public boolean counterIsNotOK() {
+        return currentValue == null || endValue == null;
+    }
+
+    public static final class Builder {
+        private Integer endValue;
+        private Integer currentValue;
+
+        private Builder() {
+        }
+
+        public Builder withEndValue(Integer val) {
+            endValue = val;
+            return this;
+        }
+
+        public Builder withCurrentValue(Integer val) {
+            currentValue = val;
+            return this;
+        }
+
+        public Counter build() {
+            return new Counter(this);
         }
     }
-  
-    public void increment(Integer value) {
-
-        Optional<Integer> newCurrentValue = calculateNewCurrentValue(currentValue.get(), value);
-        final Optional<Integer> filter = newCurrentValue.filter(newCurrentValueIsLessThenEndValue());
-        //currentValue = filter
-        filter.ifPresent(doSomething());
-    }
-
-    private Predicate<Integer> newCurrentValueIsLessThenEndValue() {
-        return a -> a <= endValue.get();
-    }
-
-    private Optional<Integer> calculateNewCurrentValue(Integer currentValue, Integer value) {
-        return Optional.of(currentValue + value);
-    }
-
-    private Consumer<Integer> doSomething() {
-        return b -> currentValue = Optional.of(b);
-    }
-
 }
