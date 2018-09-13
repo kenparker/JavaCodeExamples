@@ -8,25 +8,22 @@ public class CounterJava8Functions {
     static Function<Counter, Function<Integer, Optional<Counter>>> increment = counter -> integer -> increment(counter, integer);
 
     static Function<Integer, Function<Integer, Function<Integer, Integer>>> calculateCurrentValue = currentV -> endV -> incV ->
-            currentV + incV < endV ? currentV + incV : endV;
+    {
+        Integer newCurrentValue = currentV + incV;
+        return newCurrentValue < endV ? newCurrentValue : endV;
+    };
 
     public static Optional<Counter> increment(Counter counter, Integer incValue) {
 
         if (incValue == null || counter.counterIsNotOK())
             return Optional.empty();
 
-        Optional<Integer> newCurrentValue = counter.getCurrentValue()
-                .map(currentValue -> calculateCurrentValue.apply(currentValue)
-                        .apply(counter.getEndValue().get())
-                        .apply(incValue));
+        Integer newCurrentValue = calculateCurrentValue.apply(counter.getCurrentValue().get())
+                .apply(counter.getEndValue().get())
+                .apply(incValue);
 
-        /*
-        newCurrentValue = newCurrentValue
-                .flatMap(currentValue -> counter.getEndValue()
-                                                            .map(endValue -> endValue > currentValue ? endValue : currentValue));
-                                                            */
         Counter newCounter = Counter.newBuilder()
-                .withCurrentValue(newCurrentValue.get())
+                .withCurrentValue(newCurrentValue)
                 .withEndValue(counter.getEndValue().get())
                 .build();
         return Optional.of(newCounter);
