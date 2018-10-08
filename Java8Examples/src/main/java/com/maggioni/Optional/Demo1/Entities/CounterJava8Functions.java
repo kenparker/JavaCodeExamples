@@ -5,25 +5,18 @@ import java.util.function.Function;
 
 public class CounterJava8Functions {
 
-    static Function<Counter, Function<Integer, Optional<Counter>>> increment = counter -> integer -> increment(counter, integer);
+    static Function<Counter, Function<Integer, Optional<Integer>>> incrementCurrentValue = counter -> inc ->
+                     counter.getCurrentValue().map(currentValue -> currentValue + inc)
+                            .filter(currentValue -> currentValue < counter.getEndValue().get());
 
-    static Function<Integer, Function<Integer, Function<Integer, Integer>>> calculateCurrentValue = currentV -> endV -> incV ->
-    {
-        Integer newCurrentValue = currentV + incV;
-        return newCurrentValue < endV ? newCurrentValue : endV;
-    };
 
     public static Optional<Counter> increment(Counter counter, Integer incValue) {
 
-        if (incValue == null || counter.counterIsNotOK())
-            return Optional.empty();
-
-        Integer newCurrentValue = calculateCurrentValue.apply(counter.getCurrentValue().get())
-                .apply(counter.getEndValue().get())
-                .apply(incValue);
-
+        if (incValue == null || counter.counterIsNotOK()) return Optional.empty();
+        Optional<Integer> currentValue = CounterJava8Functions.incrementCurrentValue.apply(counter).apply(incValue);
+        if (!currentValue.isPresent()) return Optional.empty();
         Counter newCounter = Counter.newBuilder()
-                .withCurrentValue(newCurrentValue)
+                .withCurrentValue(currentValue.get())
                 .withEndValue(counter.getEndValue().get())
                 .build();
         return Optional.of(newCounter);
