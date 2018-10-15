@@ -14,7 +14,7 @@ public class CounterFunctions {
         }
     }
 /*
-    public void increment(Integer value) {
+    public void incrementCurrentValueAndCreateNewCounter(Integer value) {
 
         Optional<Integer> newCurrentValue = calculateNewCurrentValue(currentValue.get(), value);
         final Optional<Integer> filter = newCurrentValue.filter(newCurrentValueIsLessThenEndValue());

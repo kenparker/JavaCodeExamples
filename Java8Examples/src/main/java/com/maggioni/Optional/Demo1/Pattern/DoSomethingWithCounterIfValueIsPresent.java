@@ -23,6 +23,6 @@ public class DoSomethingWithCounterIfValueIsPresent {
     }
 
     private void doSomething() {
-        //counter.increment(1);
+        //counter.incrementCurrentValueAndCreateNewCounter(1);
     }    
 }

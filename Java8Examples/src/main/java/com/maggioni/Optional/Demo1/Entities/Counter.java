@@ -24,9 +24,6 @@ public class Counter {
         return Optional.ofNullable(endValue);
     }
 
-    public boolean counterIsNotOK() {
-        return currentValue == null || endValue == null;
-    }
 
     public static final class Builder {
         private Integer endValue;
