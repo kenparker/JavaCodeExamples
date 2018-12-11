@@ -10,7 +10,6 @@ public abstract class Option<A> {
   private static Option none = new None();
 
   public abstract A getOrThrow();
-  public abstract A getOrElse(Supplier<A> defaultValue);
   public abstract <B> Option<B> map(Function<A,B> f);
 
   private Option() {}
@@ -18,6 +17,7 @@ public abstract class Option<A> {
   public <B> Option<B> flatMap(Function<A, Option<B>> f) {
     return map(f).getOrElse(Option::none);
   }
+  public abstract A getOrElse(Supplier<A> defaultValue);
   public Option<A> orElse(Supplier<Option<A>> defaultValue) {
       Option<Option<A>> map = map(x -> this);
       return map.getOrElse(defaultValue);
