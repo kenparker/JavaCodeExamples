@@ -6,8 +6,7 @@ import com.google.common.collect.ImmutableList;
 
 @AutoValue
 public abstract class StockBrokers {
-    public abstract Builder toBuilder();
-    public abstract ImmutableList<StockBroker> stockBrokers();
+     public abstract ImmutableList<StockBroker> stockBrokers();
 
     public static Builder builder() {
         return new AutoValue_StockBrokers.Builder();
