@@ -13,9 +13,9 @@ public class StockMarket extends AbstractStockMarket {
     }
 
     @Override
-    public void update(String stockSymbol, Double price) {
+    public void update(String stockSymbol, Double price, StockBrokers stockBrokers) {
         stockList.put(stockSymbol, price);
-        notifyStockBroker(stockList);
+        StockBrokersFunctions.notifyBrokers.apply(stockList).accept(stockBrokers);
     }
 
     @Override

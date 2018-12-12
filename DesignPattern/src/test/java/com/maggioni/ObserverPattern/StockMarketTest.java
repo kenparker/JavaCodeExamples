@@ -10,13 +10,16 @@ public class StockMarketTest {
     private static StockMarket stockMarket = new StockMarket();
     private static String appleSymbol = "APPLE";
     private static Double applePrice = 500.22;
+    private static StockBrokers stockBrokers;
 
     @BeforeClass
     public static void setUp() throws Exception {
         StockBuyer stockBuyer = new StockBuyer();
         StockViewer stockViewer = new StockViewer();
-        stockMarket.addStockBroker(stockBuyer);
-        stockMarket.addStockBroker(stockViewer);
+        stockBrokers = StockBrokers.builder()
+                                    .addStockBroker(stockBuyer)
+                                    .addStockBroker(stockViewer)
+                                    .build();
 
         stockMarket.addStock(appleSymbol, applePrice);
     }
@@ -40,7 +43,7 @@ public class StockMarketTest {
     @Test
     public void givenAExistingStock_whenUpdateStock_thenExistingPriceIsChanged() {
         Double appleNewPrice = 600.11;
-        stockMarket.update(appleSymbol, appleNewPrice);
+        stockMarket.update(appleSymbol, appleNewPrice, stockBrokers);
 
         assertThat(stockMarket.getPrice(appleSymbol)).isEqualTo(appleNewPrice);
     }

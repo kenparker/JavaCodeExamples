@@ -8,4 +8,9 @@ public class StockBuyer implements StockBroker {
         System.out.println("StockBuyer: stockList is changed");
         stockList.forEach((symbol, value) -> System.out.println(symbol + " - $" + value));
     }
+
+    @Override
+    public String toString() {
+        return "StockBuyer{}";
+    }
 }
