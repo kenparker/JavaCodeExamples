@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 public class StocksTest {
@@ -8,10 +9,20 @@ public class StocksTest {
     private String nasdaq = "NAS";
     private Double nasdaqPrice =3333.1;
 
-    @Test
-    public void name() {
+    @Before
+    public void setUp() throws Exception {
         stocks.addElement(spy, spyPrice);
+    }
+
+    @Test
+    public void givenSomeStocks_whenAddElement_thenStocksAreAdded() {
         stocks.addElement(nasdaq, nasdaqPrice);
+        System.out.println(stocks.toString());
+    }
+
+    @Test
+    public void givenAExistingStock_whenAddElement_thenStockISNotAdded() {
+        stocks.addElement(spy,spyPrice);
         System.out.println(stocks.toString());
     }
 }
