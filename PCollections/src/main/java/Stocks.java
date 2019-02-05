@@ -5,8 +5,8 @@ public class Stocks {
 
     private HashPMap<String, Double> stockList = HashTreePMap.empty();
 
-    public void addElement(String stockName, Double price) {
-        stockList = stockList.plus(stockName, price);
+    public synchronized HashPMap addElement(String stockName, Double price) {
+        return stockList = stockList.plus(stockName, price);
     }
 
     public void removeElement(String stockName) {
@@ -15,12 +15,5 @@ public class Stocks {
 
     public void updateElement(String stockName, Double price) {
         stockList.minus(stockName).plus(stockName, price);
-    }
-
-    @Override
-    public String toString() {
-        return "Stocks{" +
-                "stockList=" + stockList +
-                '}';
     }
 }
