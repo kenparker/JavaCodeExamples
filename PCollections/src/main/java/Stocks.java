@@ -1,19 +1,55 @@
 import org.pcollections.HashPMap;
 import org.pcollections.HashTreePMap;
 
+import java.util.Objects;
+
 public class Stocks {
 
-    private HashPMap<String, Double> stockList = HashTreePMap.empty();
+    private final HashPMap<String, Double> stockList;
 
-    public synchronized HashPMap addElement(String stockName, Double price) {
-        return stockList = stockList.plus(stockName, price);
+    private Stocks(Builder builder) {
+        stockList = builder.stockList;
     }
 
-    public void removeElement(String stockName) {
-        stockList.minus(stockName);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Stocks)) return false;
+        Stocks stocks = (Stocks) o;
+        return Objects.equals(stockList, stocks.stockList);
     }
 
-    public void updateElement(String stockName, Double price) {
-        stockList.minus(stockName).plus(stockName, price);
+    @Override
+    public int hashCode() {
+        return Objects.hash(stockList);
+    }
+
+    @Override
+    public String toString() {
+        return "Stocks{" +
+                "stockList=" + stockList +
+                '}';
+    }
+
+    public static final class Builder {
+        private HashPMap<String, Double> stockList;
+
+        public Builder() {
+            stockList = HashTreePMap.empty();
+        }
+
+        public Builder withStockList(HashPMap<String, Double> val) {
+            stockList = val;
+            return this;
+        }
+
+        public Builder addStock(String stock, Double price) {
+            stockList = stockList.plus(stock,price);
+            return this;
+        }
+
+        public Stocks build() {
+            return new Stocks(this);
+        }
     }
 }

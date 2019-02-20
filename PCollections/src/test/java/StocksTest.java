@@ -3,7 +3,6 @@ import org.testng.annotations.Test;
 
 public class StocksTest {
 
-    private Stocks stocks = new Stocks();
     private String spy = "SPY";
     private Double spyPrice = 12.334;
     private String nasdaq = "NAS";
@@ -14,26 +13,33 @@ public class StocksTest {
 
     @Test
     public void addSPY() {
-        HashPMap<String, Double> stockList = stocks.addElement(spy, spyPrice);
+
+        Stocks stocks = new Stocks.Builder()
+                .addStock(spy, spyPrice)
+                .build();
 
         long id = Thread.currentThread().getId();
-        System.out.println("addSPY " + " HashCode : " + stockList.hashCode() + " Thread is: " + id + " " + stockList.toString());
+        System.out.println("addSPY " + " HashCode : " + stocks.hashCode() + " Thread is: " + id + " " + stocks.toString());
     }
 
     @Test
     public void addNAS()  {
-        HashPMap<String, Double> stockList = stocks.addElement(nasdaq, nasdaqPrice);
+        Stocks stocks = new Stocks.Builder()
+                .addStock(nasdaq, nasdaqPrice)
+                .build();
 
         long id = Thread.currentThread().getId();
-        System.out.println("addNAS " + " HashCode : " + stockList.hashCode() + " Thread is: " + id + " " + stockList.toString());
+        System.out.println("addNAS " + " HashCode : " + stocks.hashCode() + " Thread is: " + id + " " + stocks.toString());
     }
 
 
     @Test
     public void addNYSE()  {
-        HashPMap<String, Double> stockList = stocks.addElement(nyse, nysePrice);
+        Stocks stocks = new Stocks.Builder()
+                .addStock(nyse, nysePrice)
+                .build();
 
         long id = Thread.currentThread().getId();
-        System.out.println("addNYSE " + " HashCode : " + stockList.hashCode() + " Thread is: " + id + " " + stockList.toString());
+        System.out.println("addNYSE " + " HashCode : " + stocks.hashCode() + " Thread is: " + id + " " + stocks.toString());
     }
 }
