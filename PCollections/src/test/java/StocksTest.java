@@ -1,5 +1,6 @@
 import org.pcollections.HashPMap;
 import org.testng.annotations.Test;
+import static org.assertj.core.api.Assertions.*;
 
 public class StocksTest {
 
@@ -41,5 +42,45 @@ public class StocksTest {
 
         long id = Thread.currentThread().getId();
         System.out.println("addNYSE " + " HashCode : " + stocks.hashCode() + " Thread is: " + id + " " + stocks.toString());
+    }
+
+    @Test
+    public void addTwoStocks() {
+        Stocks stocks = new Stocks.Builder()
+                .addStock(nyse, nysePrice)
+                .addStock(nasdaq,nasdaqPrice)
+                .build();
+        long id = Thread.currentThread().getId();
+        System.out.println("addTwoStocks " + " HashCode : " + stocks.hashCode() + " Thread is: " + id + " " + stocks.toString());
+    }
+
+    @Test
+    public void addListAndStock() {
+        Stocks stocksWithNyse = new Stocks.Builder()
+                .addStock(nyse, nysePrice)
+                .build();
+
+        Stocks stocks = new Stocks.Builder()
+                .withStockList(stocksWithNyse.getStockList())
+                .addStock(nasdaq,nasdaqPrice)
+                .build();
+
+        long id = Thread.currentThread().getId();
+        System.out.println("addListAndStock " + " HashCode : " + stocks.hashCode() + " Thread is: " + id + " " + stocks.toString());
+
+    }
+
+    @Test
+    public void testGetMethod() {
+        Stocks stocksWithNyse = new Stocks.Builder()
+                .addStock(nyse, nysePrice)
+                .build();
+
+        HashPMap<String, Double> stockList1 = stocksWithNyse.getStockList();
+        HashPMap<String, Double> stockList2 = stocksWithNyse.getStockList().plus(nasdaq,nasdaqPrice);
+        System.out.println("testGetMethod :" + System.identityHashCode(stockList1) + " " + System.identityHashCode(stockList2));
+        System.out.println(" " +  stockList1 + " " + stockList2);
+        assertThat(stockList1).isNotSameAs(stockList2);
+
     }
 }

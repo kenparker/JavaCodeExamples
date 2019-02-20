@@ -11,6 +11,10 @@ public class Stocks {
         stockList = builder.stockList;
     }
 
+    public HashPMap<String, Double> getStockList() {
+        return HashTreePMap.from(stockList);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
