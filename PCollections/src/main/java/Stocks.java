@@ -3,7 +3,7 @@ import org.pcollections.HashTreePMap;
 
 import java.util.Objects;
 
-public class Stocks {
+public final class Stocks {
 
     private final HashPMap<String, Double> stockList;
 
@@ -11,9 +11,10 @@ public class Stocks {
         stockList = builder.stockList;
     }
 
-    public HashPMap<String, Double> getStockList() {
+    public HashPMap<String, Double> getStockListNewObject() {
         return HashTreePMap.from(stockList);
     }
+    public HashPMap<String, Double> getStockListReference() {return stockList;}
 
     @Override
     public boolean equals(Object o) {

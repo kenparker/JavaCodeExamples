@@ -61,7 +61,7 @@ public class StocksTest {
                 .build();
 
         Stocks stocks = new Stocks.Builder()
-                .withStockList(stocksWithNyse.getStockList())
+                .withStockList(stocksWithNyse.getStockListNewObject())
                 .addStock(nasdaq,nasdaqPrice)
                 .build();
 
@@ -76,11 +76,39 @@ public class StocksTest {
                 .addStock(nyse, nysePrice)
                 .build();
 
-        HashPMap<String, Double> stockList1 = stocksWithNyse.getStockList();
-        HashPMap<String, Double> stockList2 = stocksWithNyse.getStockList().plus(nasdaq,nasdaqPrice);
+        HashPMap<String, Double> stockList1 = stocksWithNyse.getStockListNewObject();
+        HashPMap<String, Double> stockList2 = stocksWithNyse.getStockListNewObject().plus(nasdaq,nasdaqPrice);
         System.out.println("testGetMethod :" + System.identityHashCode(stockList1) + " " + System.identityHashCode(stockList2));
         System.out.println(" " +  stockList1 + " " + stockList2);
         assertThat(stockList1).isNotSameAs(stockList2);
+    }
+
+    @Test
+    public void testGetMethodReference() {
+        Stocks originalStocks = new Stocks.Builder()
+                            .addStock(nyse,nysePrice)
+                            .addStock(nasdaq, nasdaqPrice)
+                            .build();
+
+        HashPMap<String, Double> stockListReference = originalStocks.getStockListReference();
+        HashPMap<String, Double> stockListReferenceA = stockListReference.plus(spy,spyPrice);
+        HashPMap<String, Double> stockListReferenceB = stockListReferenceA.minus(spy);
+
+        Stocks newStocks = new Stocks.Builder()
+                                .withStockList(stockListReferenceB)
+                                .build();
+
+
+        assertThat(stockListReference).isNotSameAs(stockListReferenceA);
+        assertThat(stockListReferenceA).isNotSameAs(stockListReferenceB);
+        assertThat(stockListReferenceB).isEqualTo(stockListReference);
+
+
+        assertThat(stockListReferenceB).isNotSameAs(originalStocks.getStockListReference());
+        assertThat(stockListReferenceB).isEqualTo(originalStocks.getStockListReference());
+
+        assertThat(newStocks).isNotSameAs(originalStocks);
+        assertThat(newStocks).isEqualTo(originalStocks);
 
     }
 }
