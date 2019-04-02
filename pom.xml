@@ -31,10 +31,11 @@
         <module>AutoValueDemos</module>
         <module>Immutables</module>
         <module>Functional_Programming_in_Java</module>
+        <module>CyclopsDemo</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.9</maven.compiler.source>
+        <maven.compiler.target>1.9</maven.compiler.target>
     </properties>
 </project>
