@@ -16,7 +16,7 @@ public class VectorDemoTest {
     @Test
     public void givenSomeStrings_WhenVectorOf_ThenVectorIsCreated() {
         Vector<String> vector = Vector.of(a, b, c);
-        System.out.println(vector);
+        assertThat(vector).isInstanceOf(Vector.class);
         assertThat(vector).contains(a, b, c);
     }
 
@@ -37,7 +37,7 @@ public class VectorDemoTest {
     }
 
     @Test
-    public void givenAStringAndAVectorWhenVectorAppendThenStringIsAddedToVectorAndNewVectorIsCreated() {
+    public void givenAStringAndAVector_WhenVectorAppend_ThenStringIsAddedToVectorAndNewVectorIsCreated() {
         Vector<String> vector = Vector.of(a, b, c);
         Vector<String> appendVector = vector.append(d);
         assertThat(appendVector).contains(a,b,c,d);
