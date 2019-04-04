@@ -1,10 +1,7 @@
 import cyclops.data.ImmutableList;
 import cyclops.data.Vector;
-import org.assertj.core.api.ThrowableAssert;
 import org.junit.Test;
 
-import javax.naming.ldap.UnsolicitedNotification;
-import java.lang.instrument.UnmodifiableClassException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,7 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.assertj.core.api.ThrowableAssert.*;
+import static org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 
 
 public class ImmutabilityTest {
@@ -32,8 +29,6 @@ public class ImmutabilityTest {
     @Test
     public void givenUsingCyclopsVector_whenVectorIsCreated_thenVectorIsImmutable() {
         Vector<String> vector = Vector.of(a, b, c);
-        vector.append(d);
-        assertThat(vector).doesNotContain(d);
         assertThat(vector).isInstanceOf(ImmutableList.class);
     }
 
