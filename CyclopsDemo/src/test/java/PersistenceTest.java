@@ -12,7 +12,7 @@ public class PersistenceTest {
     private String d = "Bert";
 
     @Test
-    public void givenACyclopsVector_whenVectorIsCreated_ThenVectorIsPersistent() {
+    public void givenACyclopsVector_whenTheVectorIsModified_thenPreviousVersionIsNotChanged() {
         Vector<String> vector = Vector.of(a, b, c);
         vector.append(d);
         assertThat(vector).contains(a, b, c).doesNotContain(d);
