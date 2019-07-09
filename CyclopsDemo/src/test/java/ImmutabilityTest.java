@@ -1,5 +1,9 @@
+import com.oath.cyclops.data.collections.extensions.standard.LazyCollectionX;
+import com.oath.cyclops.types.persistent.PersistentList;
 import cyclops.data.ImmutableList;
 import cyclops.data.Vector;
+import cyclops.reactive.collections.immutable.VectorX;
+import cyclops.reactive.collections.mutable.ListX;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -21,9 +25,17 @@ public class ImmutabilityTest {
 
     @Test
     public void givenUsingJava8List_whenListIsCreated_thenListIsMutable() {
-        List<String> java8MutableList = new ArrayList<>(Arrays.asList(a,b,c));
+        List<String> java8MutableList = new ArrayList<>(Arrays.asList(a, b, c));
         java8MutableList.add(d);
         assertThat(java8MutableList).contains(d);
+    }
+
+    @Test
+    public void givenUsingListX_whenListIsCreated_thenListXIsMutable() {
+        ListX<String> list = ListX.of(a, b, c);
+        list.add(d);
+        assertThat(list).contains(d);
+        assertThat(list).isInstanceOf(List.class).isInstanceOf(LazyCollectionX.class);
     }
 
     @Test
@@ -33,8 +45,14 @@ public class ImmutabilityTest {
     }
 
     @Test
+    public void givenUsingCyclopsVectorX_whenVectorIsCreated_thenVectorIsPersistentAndLazy() {
+        VectorX<String> vectorLazy = VectorX.of(a, b, c);
+        assertThat(vectorLazy).isInstanceOf(PersistentList.class).isInstanceOf(LazyCollectionX.class);
+    }
+
+    @Test
     public void givenUsingJava8List_whenUnmodifiableListIsCreated_thenListIsImmutable() {
-        List<String> java8List = new ArrayList<>(Arrays.asList(a,b,c));
+        List<String> java8List = new ArrayList<>(Arrays.asList(a, b, c));
         List<String> unmodifiableList = Collections.unmodifiableList(java8List);
         ThrowingCallable throwingCallable = () -> unmodifiableList.add(d);
         assertThatExceptionOfType(UnsupportedOperationException.class).isThrownBy(throwingCallable);
