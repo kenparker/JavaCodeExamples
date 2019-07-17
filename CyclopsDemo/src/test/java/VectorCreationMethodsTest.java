@@ -14,7 +14,6 @@ public class VectorCreationMethodsTest {
 
     private String a = "Angel";
     private String b = "Berta";
-    private Supplier<Employee> supplier = Employee::new;
 
     @Test
     public void vectorEmpty_Then_AnEmptyVectorIsCreated() {
@@ -25,7 +24,7 @@ public class VectorCreationMethodsTest {
     @Test
     public void vectorOf_When_SomeElementsAreProvided_Then_AVectorWithTheElementsIsCreated() {
         Vector<String> of = Vector.of(a, b);
-        assertThat(of).hasSize(2).containsOnly(a,b);
+        assertThat(of).hasSize(2).containsOnly(a, b);
     }
 
     @Test
@@ -35,13 +34,8 @@ public class VectorCreationMethodsTest {
     }
 
     @Test
-    public void vectorFill_When_SupplierAndAMaxNumberIsProvided_Then_AVectorWithNumberOfSuppliersIsCreated() {
-        Vector<Supplier<Employee>> fill = Vector.fill(supplier, 5);
-        assertThat(fill).hasSize(5).hasOnlyElementsOfType(Supplier.class);
-    }
-
-    @Test
     public void vectorGenerate_When_SupplierAndAMaxNumberIsProvided_Then_AVectorWithNumberOfSupplierResultsIsCreated() {
+        Supplier<Employee> supplier = Employee::new;
         Vector<Employee> generate = Vector.generate(supplier, 5);
         assertThat(generate).hasSize(5).hasOnlyElementsOfType(Employee.class);
     }
